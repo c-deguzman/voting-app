@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css?family=Bungee+Inline');
+
+h1, h2, h3, h4, th{
+  font-family: 'Bungee Inline', cursive;
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: 50px;
+}
+
+.centre{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+label {
+  margin-right: 2%;
+}
+
+#login_button {
+  width: 300px;
+}
+
+#root {
+  margin-top: 10%;
+}
+
+html {
+ background: -moz-linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 69%, rgba(5,193,255,1) 87%, rgba(5,193,255,1) 100%); /* ff3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(5,193,255,1)), color-stop(13%, rgba(5,193,255,1)), color-stop(31%, rgba(255,255,255,1)), color-stop(100%, rgba(255,255,255,1))); /* safari4+,chrome */
+background: -webkit-linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 69%, rgba(5,193,255,1) 87%, rgba(5,193,255,1) 100%); /* safari5.1+,chrome10+ */
+background: -o-linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 69%, rgba(5,193,255,1) 87%, rgba(5,193,255,1) 100%); /* opera 11.10+ */
+background: -ms-linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 69%, rgba(5,193,255,1) 87%, rgba(5,193,255,1) 100%); /* ie10+ */
+background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 69%, rgba(5,193,255,1) 87%, rgba(5,193,255,1) 100%); /* w3c */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#05C1FF', endColorstr='#FFFFFF',GradientType=0 ); /* ie6-9 */
+  background-size: auto;
+  background-repeat: no-repeat;
+}

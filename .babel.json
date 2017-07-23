@@ -1,0 +1,987 @@
+{
+  "{\"filename\":\"/app/authentication/index.js\",\"env\":{\"development\":{\"plugins\":[]}},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],{\"loose\":false,\"spec\":false}],[[],null],[[],null],[[],{\"spec\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"async\":false,\"asyncGenerators\":false}]],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"sourceRoot\":\"/app/authentication\",\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false,\"parserOpts\":false,\"generatorOpts\":false}:6.25.0": {
+    "metadata": {
+      "usedHelpers": [],
+      "marked": [],
+      "modules": {
+        "imports": [],
+        "exports": {
+          "exported": [],
+          "specifiers": []
+        }
+      }
+    },
+    "options": {
+      "filename": "/app/authentication/index.js",
+      "filenameRelative": "/app/authentication/index.js",
+      "env": {},
+      "retainLines": false,
+      "highlightCode": true,
+      "suppressDeprecationMessages": false,
+      "presets": [],
+      "plugins": [
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false,
+            "spec": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "spec": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          {
+            "async": false,
+            "asyncGenerators": false
+          }
+        ]
+      ],
+      "ignore": [],
+      "code": true,
+      "metadata": true,
+      "ast": false,
+      "comments": true,
+      "compact": "auto",
+      "minified": false,
+      "sourceMaps": "both",
+      "sourceMapTarget": "index.js",
+      "sourceFileName": "index.js",
+      "sourceRoot": "/app/authentication",
+      "babelrc": false,
+      "sourceType": "module",
+      "moduleRoot": "/app/authentication",
+      "moduleIds": false,
+      "passPerPreset": false,
+      "parserOpts": false,
+      "generatorOpts": false,
+      "basename": "index"
+    },
+    "ignored": false,
+    "code": "'use strict';\n\nmodule.exports = {\n  init: require('./init')\n};\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4LmpzIl0sIm5hbWVzIjpbIm1vZHVsZSIsImV4cG9ydHMiLCJpbml0IiwicmVxdWlyZSJdLCJtYXBwaW5ncyI6Ijs7QUFBQUEsT0FBT0MsT0FBUCxHQUFpQjtBQUNmQyxRQUFNQyxRQUFRLFFBQVI7QUFEUyxDQUFqQiIsImZpbGUiOiJpbmRleC5qcyIsInNvdXJjZVJvb3QiOiIvYXBwL2F1dGhlbnRpY2F0aW9uIiwic291cmNlc0NvbnRlbnQiOlsibW9kdWxlLmV4cG9ydHMgPSB7XG4gIGluaXQ6IHJlcXVpcmUoJy4vaW5pdCcpLFxufTsiXX0=",
+    "ast": null,
+    "map": {
+      "version": 3,
+      "sources": [
+        "index.js"
+      ],
+      "names": [
+        "module",
+        "exports",
+        "init",
+        "require"
+      ],
+      "mappings": ";;AAAAA,OAAOC,OAAP,GAAiB;AACfC,QAAMC,QAAQ,QAAR;AADS,CAAjB",
+      "file": "index.js",
+      "sourceRoot": "/app/authentication",
+      "sourcesContent": [
+        "module.exports = {\n  init: require('./init'),\n};"
+      ]
+    },
+    "mtime": 1500765152205
+  },
+  "{\"filename\":\"/app/authentication/init.js\",\"env\":{\"development\":{\"plugins\":[]}},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],{\"loose\":false,\"spec\":false}],[[],null],[[],null],[[],{\"spec\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"async\":false,\"asyncGenerators\":false}]],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"sourceRoot\":\"/app/authentication\",\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false,\"parserOpts\":false,\"generatorOpts\":false}:6.25.0": {
+    "metadata": {
+      "usedHelpers": [],
+      "marked": [],
+      "modules": {
+        "imports": [],
+        "exports": {
+          "exported": [],
+          "specifiers": []
+        }
+      }
+    },
+    "options": {
+      "filename": "/app/authentication/init.js",
+      "filenameRelative": "/app/authentication/init.js",
+      "env": {},
+      "retainLines": false,
+      "highlightCode": true,
+      "suppressDeprecationMessages": false,
+      "presets": [],
+      "plugins": [
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false,
+            "spec": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "spec": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          {
+            "async": false,
+            "asyncGenerators": false
+          }
+        ]
+      ],
+      "ignore": [],
+      "code": true,
+      "metadata": true,
+      "ast": false,
+      "comments": true,
+      "compact": "auto",
+      "minified": false,
+      "sourceMaps": "both",
+      "sourceMapTarget": "init.js",
+      "sourceFileName": "init.js",
+      "sourceRoot": "/app/authentication",
+      "babelrc": false,
+      "sourceType": "module",
+      "moduleRoot": "/app/authentication",
+      "moduleIds": false,
+      "passPerPreset": false,
+      "parserOpts": false,
+      "generatorOpts": false,
+      "basename": "init"
+    },
+    "ignored": false,
+    "code": "'use strict';\n\nvar passport = require('passport');\nvar LocalStrategy = require('passport-local').Strategy;\n\nvar MongoClient = require('mongodb').MongoClient;\n\nfunction findUser(username, callback) {\n\n  MongoClient.connect(process.env.MONGO_CONNECT, function (err, db) {\n    if (err) {\n      throw err;\n      return callback(err);\n    }\n\n    db.collection(\"accounts\", function (err, collection) {\n\n      if (err) {\n        throw err;\n        return callback(err);\n      }\n\n      collection.findOne({ \"user\": username }, function (err, result) {\n\n        db.close();\n\n        if (err) {\n          return callback(err);\n        }\n\n        console.log(result);\n\n        return callback(null, result);\n      });\n    });\n  });\n}\n\npassport.serializeUser(function (user, done) {\n  done(null, user.user);\n});\n\npassport.deserializeUser(function (user, done) {\n  done(null, user);\n});\n\nfunction initPassport() {\n  passport.use(new LocalStrategy({ usernameField: \"user\", passwordField: \"pass\" }, function (username, password, done) {\n    findUser(username, function (err, user) {\n      if (err) {\n        return done(err);\n      }\n      if (!user) {\n        return done(null, false, { message: 'Incorrect username.' });\n      }\n      if (password !== user.pass) {\n        return done(null, false, { message: 'Incorrect password.' });\n      }\n      return done(null, user);\n    });\n  }));\n}\n\nmodule.exports = initPassport;\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluaXQuanMiXSwibmFtZXMiOlsicGFzc3BvcnQiLCJyZXF1aXJlIiwiTG9jYWxTdHJhdGVneSIsIlN0cmF0ZWd5IiwiTW9uZ29DbGllbnQiLCJmaW5kVXNlciIsInVzZXJuYW1lIiwiY2FsbGJhY2siLCJjb25uZWN0IiwicHJvY2VzcyIsImVudiIsIk1PTkdPX0NPTk5FQ1QiLCJlcnIiLCJkYiIsImNvbGxlY3Rpb24iLCJmaW5kT25lIiwicmVzdWx0IiwiY2xvc2UiLCJjb25zb2xlIiwibG9nIiwic2VyaWFsaXplVXNlciIsInVzZXIiLCJkb25lIiwiZGVzZXJpYWxpemVVc2VyIiwiaW5pdFBhc3Nwb3J0IiwidXNlIiwidXNlcm5hbWVGaWVsZCIsInBhc3N3b3JkRmllbGQiLCJwYXNzd29yZCIsIm1lc3NhZ2UiLCJwYXNzIiwibW9kdWxlIiwiZXhwb3J0cyJdLCJtYXBwaW5ncyI6Ijs7QUFBQSxJQUFNQSxXQUFXQyxRQUFRLFVBQVIsQ0FBakI7QUFDQSxJQUFNQyxnQkFBZ0JELFFBQVEsZ0JBQVIsRUFBMEJFLFFBQWhEOztBQUVBLElBQUlDLGNBQWNILFFBQVEsU0FBUixFQUFtQkcsV0FBckM7O0FBR0EsU0FBU0MsUUFBVCxDQUFrQkMsUUFBbEIsRUFBNEJDLFFBQTVCLEVBQXFDOztBQUVuQ0gsY0FBWUksT0FBWixDQUFvQkMsUUFBUUMsR0FBUixDQUFZQyxhQUFoQyxFQUErQyxVQUFVQyxHQUFWLEVBQWVDLEVBQWYsRUFBa0I7QUFDL0QsUUFBSUQsR0FBSixFQUFRO0FBQ04sWUFBTUEsR0FBTjtBQUNBLGFBQU9MLFNBQVNLLEdBQVQsQ0FBUDtBQUNEOztBQUVEQyxPQUFHQyxVQUFILENBQWMsVUFBZCxFQUEwQixVQUFVRixHQUFWLEVBQWVFLFVBQWYsRUFBMEI7O0FBRWxELFVBQUlGLEdBQUosRUFBUTtBQUNOLGNBQU1BLEdBQU47QUFDQSxlQUFPTCxTQUFTSyxHQUFULENBQVA7QUFDRDs7QUFFREUsaUJBQVdDLE9BQVgsQ0FBbUIsRUFBQyxRQUFRVCxRQUFULEVBQW5CLEVBQXVDLFVBQVVNLEdBQVYsRUFBZUksTUFBZixFQUFzQjs7QUFFM0RILFdBQUdJLEtBQUg7O0FBRUEsWUFBSUwsR0FBSixFQUFTO0FBQ1AsaUJBQU9MLFNBQVNLLEdBQVQsQ0FBUDtBQUNEOztBQUVETSxnQkFBUUMsR0FBUixDQUFZSCxNQUFaOztBQUVBLGVBQU9ULFNBQVMsSUFBVCxFQUFlUyxNQUFmLENBQVA7QUFFRCxPQVpEO0FBYUQsS0FwQkQ7QUFxQkQsR0EzQkQ7QUE0QkQ7O0FBRURoQixTQUFTb0IsYUFBVCxDQUF1QixVQUFTQyxJQUFULEVBQWVDLElBQWYsRUFBcUI7QUFDMUNBLE9BQUssSUFBTCxFQUFXRCxLQUFLQSxJQUFoQjtBQUNELENBRkQ7O0FBSUFyQixTQUFTdUIsZUFBVCxDQUF5QixVQUFTRixJQUFULEVBQWVDLElBQWYsRUFBcUI7QUFDNUNBLE9BQUssSUFBTCxFQUFXRCxJQUFYO0FBQ0QsQ0FGRDs7QUFLQSxTQUFTRyxZQUFULEdBQXlCO0FBQ3ZCeEIsV0FBU3lCLEdBQVQsQ0FBYSxJQUFJdkIsYUFBSixDQUNYLEVBQUN3QixlQUFjLE1BQWYsRUFBdUJDLGVBQWMsTUFBckMsRUFEVyxFQUVYLFVBQVNyQixRQUFULEVBQW1Cc0IsUUFBbkIsRUFBNkJOLElBQTdCLEVBQW1DO0FBQ2pDakIsYUFBU0MsUUFBVCxFQUFtQixVQUFVTSxHQUFWLEVBQWVTLElBQWYsRUFBcUI7QUFDdEMsVUFBSVQsR0FBSixFQUFTO0FBQ1AsZUFBT1UsS0FBS1YsR0FBTCxDQUFQO0FBQ0Q7QUFDRCxVQUFJLENBQUNTLElBQUwsRUFBVztBQUNULGVBQU9DLEtBQUssSUFBTCxFQUFXLEtBQVgsRUFBa0IsRUFBRU8sU0FBUyxxQkFBWCxFQUFsQixDQUFQO0FBQ0Q7QUFDRCxVQUFJRCxhQUFhUCxLQUFLUyxJQUF0QixFQUE2QjtBQUMzQixlQUFPUixLQUFLLElBQUwsRUFBVyxLQUFYLEVBQWtCLEVBQUVPLFNBQVMscUJBQVgsRUFBbEIsQ0FBUDtBQUNEO0FBQ0QsYUFBT1AsS0FBSyxJQUFMLEVBQVdELElBQVgsQ0FBUDtBQUNELEtBWEQ7QUFZRCxHQWZVLENBQWI7QUFpQkQ7O0FBRURVLE9BQU9DLE9BQVAsR0FBaUJSLFlBQWpCIiwiZmlsZSI6ImluaXQuanMiLCJzb3VyY2VSb290IjoiL2FwcC9hdXRoZW50aWNhdGlvbiIsInNvdXJjZXNDb250ZW50IjpbImNvbnN0IHBhc3Nwb3J0ID0gcmVxdWlyZSgncGFzc3BvcnQnKSAgXG5jb25zdCBMb2NhbFN0cmF0ZWd5ID0gcmVxdWlyZSgncGFzc3BvcnQtbG9jYWwnKS5TdHJhdGVneVxuXG52YXIgTW9uZ29DbGllbnQgPSByZXF1aXJlKCdtb25nb2RiJykuTW9uZ29DbGllbnQ7XG5cblxuZnVuY3Rpb24gZmluZFVzZXIodXNlcm5hbWUsIGNhbGxiYWNrKXtcblxuICBNb25nb0NsaWVudC5jb25uZWN0KHByb2Nlc3MuZW52Lk1PTkdPX0NPTk5FQ1QsIGZ1bmN0aW9uIChlcnIsIGRiKXtcbiAgICBpZiAoZXJyKXtcbiAgICAgIHRocm93IGVycjtcbiAgICAgIHJldHVybiBjYWxsYmFjayhlcnIpO1xuICAgIH1cblxuICAgIGRiLmNvbGxlY3Rpb24oXCJhY2NvdW50c1wiLCBmdW5jdGlvbiAoZXJyLCBjb2xsZWN0aW9uKXtcblxuICAgICAgaWYgKGVycil7XG4gICAgICAgIHRocm93IGVycjtcbiAgICAgICAgcmV0dXJuIGNhbGxiYWNrKGVycik7XG4gICAgICB9XG5cbiAgICAgIGNvbGxlY3Rpb24uZmluZE9uZSh7XCJ1c2VyXCI6IHVzZXJuYW1lfSwgZnVuY3Rpb24gKGVyciwgcmVzdWx0KXtcblxuICAgICAgICBkYi5jbG9zZSgpO1xuXG4gICAgICAgIGlmIChlcnIpIHtcbiAgICAgICAgICByZXR1cm4gY2FsbGJhY2soZXJyKTtcbiAgICAgICAgfVxuICAgICAgICBcbiAgICAgICAgY29uc29sZS5sb2cocmVzdWx0KTtcbiAgICAgICAgXG4gICAgICAgIHJldHVybiBjYWxsYmFjayhudWxsLCByZXN1bHQpO1xuICAgICAgXG4gICAgICB9KTtcbiAgICB9KTtcbiAgfSk7XG59XG5cbnBhc3Nwb3J0LnNlcmlhbGl6ZVVzZXIoZnVuY3Rpb24odXNlciwgZG9uZSkge1xuICBkb25lKG51bGwsIHVzZXIudXNlcik7XG59KTtcblxucGFzc3BvcnQuZGVzZXJpYWxpemVVc2VyKGZ1bmN0aW9uKHVzZXIsIGRvbmUpIHtcbiAgZG9uZShudWxsLCB1c2VyKTtcbn0pO1xuXG5cbmZ1bmN0aW9uIGluaXRQYXNzcG9ydCAoKSB7XG4gIHBhc3Nwb3J0LnVzZShuZXcgTG9jYWxTdHJhdGVneShcbiAgICB7dXNlcm5hbWVGaWVsZDpcInVzZXJcIiwgcGFzc3dvcmRGaWVsZDpcInBhc3NcIn0sXG4gICAgZnVuY3Rpb24odXNlcm5hbWUsIHBhc3N3b3JkLCBkb25lKSB7XG4gICAgICBmaW5kVXNlcih1c2VybmFtZSwgZnVuY3Rpb24gKGVyciwgdXNlcikge1xuICAgICAgICBpZiAoZXJyKSB7XG4gICAgICAgICAgcmV0dXJuIGRvbmUoZXJyKVxuICAgICAgICB9XG4gICAgICAgIGlmICghdXNlcikge1xuICAgICAgICAgIHJldHVybiBkb25lKG51bGwsIGZhbHNlLCB7IG1lc3NhZ2U6ICdJbmNvcnJlY3QgdXNlcm5hbWUuJyB9KVxuICAgICAgICB9XG4gICAgICAgIGlmIChwYXNzd29yZCAhPT0gdXNlci5wYXNzICkge1xuICAgICAgICAgIHJldHVybiBkb25lKG51bGwsIGZhbHNlLCB7IG1lc3NhZ2U6ICdJbmNvcnJlY3QgcGFzc3dvcmQuJyB9KVxuICAgICAgICB9XG4gICAgICAgIHJldHVybiBkb25lKG51bGwsIHVzZXIpXG4gICAgICB9KVxuICAgIH1cbiAgKSlcbn1cblxubW9kdWxlLmV4cG9ydHMgPSBpbml0UGFzc3BvcnQiXX0=",
+    "ast": null,
+    "map": {
+      "version": 3,
+      "sources": [
+        "init.js"
+      ],
+      "names": [
+        "passport",
+        "require",
+        "LocalStrategy",
+        "Strategy",
+        "MongoClient",
+        "findUser",
+        "username",
+        "callback",
+        "connect",
+        "process",
+        "env",
+        "MONGO_CONNECT",
+        "err",
+        "db",
+        "collection",
+        "findOne",
+        "result",
+        "close",
+        "console",
+        "log",
+        "serializeUser",
+        "user",
+        "done",
+        "deserializeUser",
+        "initPassport",
+        "use",
+        "usernameField",
+        "passwordField",
+        "password",
+        "message",
+        "pass",
+        "module",
+        "exports"
+      ],
+      "mappings": ";;AAAA,IAAMA,WAAWC,QAAQ,UAAR,CAAjB;AACA,IAAMC,gBAAgBD,QAAQ,gBAAR,EAA0BE,QAAhD;;AAEA,IAAIC,cAAcH,QAAQ,SAAR,EAAmBG,WAArC;;AAGA,SAASC,QAAT,CAAkBC,QAAlB,EAA4BC,QAA5B,EAAqC;;AAEnCH,cAAYI,OAAZ,CAAoBC,QAAQC,GAAR,CAAYC,aAAhC,EAA+C,UAAUC,GAAV,EAAeC,EAAf,EAAkB;AAC/D,QAAID,GAAJ,EAAQ;AACN,YAAMA,GAAN;AACA,aAAOL,SAASK,GAAT,CAAP;AACD;;AAEDC,OAAGC,UAAH,CAAc,UAAd,EAA0B,UAAUF,GAAV,EAAeE,UAAf,EAA0B;;AAElD,UAAIF,GAAJ,EAAQ;AACN,cAAMA,GAAN;AACA,eAAOL,SAASK,GAAT,CAAP;AACD;;AAEDE,iBAAWC,OAAX,CAAmB,EAAC,QAAQT,QAAT,EAAnB,EAAuC,UAAUM,GAAV,EAAeI,MAAf,EAAsB;;AAE3DH,WAAGI,KAAH;;AAEA,YAAIL,GAAJ,EAAS;AACP,iBAAOL,SAASK,GAAT,CAAP;AACD;;AAEDM,gBAAQC,GAAR,CAAYH,MAAZ;;AAEA,eAAOT,SAAS,IAAT,EAAeS,MAAf,CAAP;AAED,OAZD;AAaD,KApBD;AAqBD,GA3BD;AA4BD;;AAEDhB,SAASoB,aAAT,CAAuB,UAASC,IAAT,EAAeC,IAAf,EAAqB;AAC1CA,OAAK,IAAL,EAAWD,KAAKA,IAAhB;AACD,CAFD;;AAIArB,SAASuB,eAAT,CAAyB,UAASF,IAAT,EAAeC,IAAf,EAAqB;AAC5CA,OAAK,IAAL,EAAWD,IAAX;AACD,CAFD;;AAKA,SAASG,YAAT,GAAyB;AACvBxB,WAASyB,GAAT,CAAa,IAAIvB,aAAJ,CACX,EAACwB,eAAc,MAAf,EAAuBC,eAAc,MAArC,EADW,EAEX,UAASrB,QAAT,EAAmBsB,QAAnB,EAA6BN,IAA7B,EAAmC;AACjCjB,aAASC,QAAT,EAAmB,UAAUM,GAAV,EAAeS,IAAf,EAAqB;AACtC,UAAIT,GAAJ,EAAS;AACP,eAAOU,KAAKV,GAAL,CAAP;AACD;AACD,UAAI,CAACS,IAAL,EAAW;AACT,eAAOC,KAAK,IAAL,EAAW,KAAX,EAAkB,EAAEO,SAAS,qBAAX,EAAlB,CAAP;AACD;AACD,UAAID,aAAaP,KAAKS,IAAtB,EAA6B;AAC3B,eAAOR,KAAK,IAAL,EAAW,KAAX,EAAkB,EAAEO,SAAS,qBAAX,EAAlB,CAAP;AACD;AACD,aAAOP,KAAK,IAAL,EAAWD,IAAX,CAAP;AACD,KAXD;AAYD,GAfU,CAAb;AAiBD;;AAEDU,OAAOC,OAAP,GAAiBR,YAAjB",
+      "file": "init.js",
+      "sourceRoot": "/app/authentication",
+      "sourcesContent": [
+        "const passport = require('passport')  \nconst LocalStrategy = require('passport-local').Strategy\n\nvar MongoClient = require('mongodb').MongoClient;\n\n\nfunction findUser(username, callback){\n\n  MongoClient.connect(process.env.MONGO_CONNECT, function (err, db){\n    if (err){\n      throw err;\n      return callback(err);\n    }\n\n    db.collection(\"accounts\", function (err, collection){\n\n      if (err){\n        throw err;\n        return callback(err);\n      }\n\n      collection.findOne({\"user\": username}, function (err, result){\n\n        db.close();\n\n        if (err) {\n          return callback(err);\n        }\n        \n        console.log(result);\n        \n        return callback(null, result);\n      \n      });\n    });\n  });\n}\n\npassport.serializeUser(function(user, done) {\n  done(null, user.user);\n});\n\npassport.deserializeUser(function(user, done) {\n  done(null, user);\n});\n\n\nfunction initPassport () {\n  passport.use(new LocalStrategy(\n    {usernameField:\"user\", passwordField:\"pass\"},\n    function(username, password, done) {\n      findUser(username, function (err, user) {\n        if (err) {\n          return done(err)\n        }\n        if (!user) {\n          return done(null, false, { message: 'Incorrect username.' })\n        }\n        if (password !== user.pass ) {\n          return done(null, false, { message: 'Incorrect password.' })\n        }\n        return done(null, user)\n      })\n    }\n  ))\n}\n\nmodule.exports = initPassport"
+      ]
+    },
+    "mtime": 1500765152209
+  },
+  "{\"filename\":\"/app/src/Login.js\",\"env\":{\"development\":{\"plugins\":[]}},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],{\"loose\":false,\"spec\":false}],[[],null],[[],null],[[],{\"spec\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"async\":false,\"asyncGenerators\":false}]],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"sourceRoot\":\"/app/src\",\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false,\"parserOpts\":false,\"generatorOpts\":false}:6.25.0": {
+    "metadata": {
+      "usedHelpers": [
+        "inherits",
+        "possibleConstructorReturn",
+        "createClass",
+        "classCallCheck",
+        "interopRequireDefault"
+      ],
+      "marked": [],
+      "modules": {
+        "imports": [
+          {
+            "source": "react",
+            "imported": [
+              "default"
+            ],
+            "specifiers": [
+              {
+                "kind": "named",
+                "imported": "default",
+                "local": "React"
+              }
+            ]
+          }
+        ],
+        "exports": {
+          "exported": [
+            "Login"
+          ],
+          "specifiers": [
+            {
+              "kind": "local",
+              "local": "Login",
+              "exported": "default"
+            }
+          ]
+        }
+      }
+    },
+    "options": {
+      "filename": "/app/src/Login.js",
+      "filenameRelative": "/app/src/Login.js",
+      "env": {},
+      "retainLines": false,
+      "highlightCode": true,
+      "suppressDeprecationMessages": false,
+      "presets": [],
+      "plugins": [
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false,
+            "spec": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "spec": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          {
+            "async": false,
+            "asyncGenerators": false
+          }
+        ]
+      ],
+      "ignore": [],
+      "code": true,
+      "metadata": true,
+      "ast": false,
+      "comments": true,
+      "compact": "auto",
+      "minified": false,
+      "sourceMaps": "both",
+      "sourceMapTarget": "Login.js",
+      "sourceFileName": "Login.js",
+      "sourceRoot": "/app/src",
+      "babelrc": false,
+      "sourceType": "module",
+      "moduleRoot": "/app/src",
+      "moduleIds": false,
+      "passPerPreset": false,
+      "parserOpts": false,
+      "generatorOpts": false,
+      "basename": "Login"
+    },
+    "ignored": false,
+    "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = require(\"react\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar Login = function (_React$Component) {\n  _inherits(Login, _React$Component);\n\n  function Login() {\n    _classCallCheck(this, Login);\n\n    return _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).apply(this, arguments));\n  }\n\n  _createClass(Login, [{\n    key: \"render\",\n    value: function render() {\n      return _react2.default.createElement(\n        \"div\",\n        null,\n        _react2.default.createElement(\n          \"h1\",\n          { className: \"centre\" },\n          \"Login Portal\"\n        ),\n        _react2.default.createElement(\n          \"form\",\n          { action: \"/login\", method: \"post\" },\n          _react2.default.createElement(\n            \"div\",\n            { className: \"centre\" },\n            _react2.default.createElement(\n              \"label\",\n              null,\n              _react2.default.createElement(\n                \"b\",\n                null,\n                \"Username: \"\n              )\n            ),\n            _react2.default.createElement(\"input\", { type: \"text\", placeholder: \"Enter Username\", name: \"user\", required: true })\n          ),\n          _react2.default.createElement(\n            \"div\",\n            { className: \"centre\" },\n            _react2.default.createElement(\n              \"label\",\n              null,\n              _react2.default.createElement(\n                \"b\",\n                null,\n                \"Password: \"\n              )\n            ),\n            _react2.default.createElement(\"input\", { type: \"password\", placeholder: \"Enter Password\", name: \"pass\", required: true })\n          ),\n          _react2.default.createElement(\n            \"div\",\n            { className: \"centre\" },\n            _react2.default.createElement(\n              \"button\",\n              { id: \"login_button\", type: \"submit\", className: \"btn btn-info\" },\n              \"Login\"\n            )\n          )\n        )\n      );\n    }\n  }]);\n\n  return Login;\n}(_react2.default.Component);\n\nexports.default = Login;\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkxvZ2luLmpzIl0sIm5hbWVzIjpbIkxvZ2luIiwiQ29tcG9uZW50Il0sIm1hcHBpbmdzIjoiOzs7Ozs7OztBQUFBOzs7Ozs7Ozs7Ozs7SUFFcUJBLEs7Ozs7Ozs7Ozs7OzZCQUNWO0FBQ1AsYUFDRTtBQUFBO0FBQUE7QUFDRTtBQUFBO0FBQUEsWUFBSSxXQUFVLFFBQWQ7QUFBQTtBQUFBLFNBREY7QUFFRTtBQUFBO0FBQUEsWUFBTSxRQUFPLFFBQWIsRUFBc0IsUUFBTyxNQUE3QjtBQUNFO0FBQUE7QUFBQSxjQUFLLFdBQVUsUUFBZjtBQUNBO0FBQUE7QUFBQTtBQUFPO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBUCxhQURBO0FBRUEscURBQU8sTUFBSyxNQUFaLEVBQW1CLGFBQVksZ0JBQS9CLEVBQWdELE1BQUssTUFBckQsRUFBNEQsY0FBNUQ7QUFGQSxXQURGO0FBTUU7QUFBQTtBQUFBLGNBQUssV0FBVSxRQUFmO0FBQ0E7QUFBQTtBQUFBO0FBQU87QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFQLGFBREE7QUFFQSxxREFBTyxNQUFLLFVBQVosRUFBdUIsYUFBWSxnQkFBbkMsRUFBb0QsTUFBSyxNQUF6RCxFQUFnRSxjQUFoRTtBQUZBLFdBTkY7QUFXRTtBQUFBO0FBQUEsY0FBSyxXQUFVLFFBQWY7QUFDRTtBQUFBO0FBQUEsZ0JBQVEsSUFBRyxjQUFYLEVBQTBCLE1BQUssUUFBL0IsRUFBd0MsV0FBVSxjQUFsRDtBQUFBO0FBQUE7QUFERjtBQVhGO0FBRkYsT0FERjtBQW9CRDs7OztFQXRCZ0MsZ0JBQU1DLFM7O2tCQUFwQkQsSyIsImZpbGUiOiJMb2dpbi5qcyIsInNvdXJjZVJvb3QiOiIvYXBwL3NyYyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCc7XG5cbmV4cG9ydCBkZWZhdWx0IGNsYXNzIExvZ2luIGV4dGVuZHMgUmVhY3QuQ29tcG9uZW50IHtcbiAgcmVuZGVyKCkge1xuICAgIHJldHVybiAoXG4gICAgICA8ZGl2PlxuICAgICAgICA8aDEgY2xhc3NOYW1lPVwiY2VudHJlXCI+TG9naW4gUG9ydGFsPC9oMT5cbiAgICAgICAgPGZvcm0gYWN0aW9uPVwiL2xvZ2luXCIgbWV0aG9kPVwicG9zdFwiPlxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiY2VudHJlXCI+XG4gICAgICAgICAgPGxhYmVsPjxiPlVzZXJuYW1lOiA8L2I+PC9sYWJlbD5cbiAgICAgICAgICA8aW5wdXQgdHlwZT1cInRleHRcIiBwbGFjZWhvbGRlcj1cIkVudGVyIFVzZXJuYW1lXCIgbmFtZT1cInVzZXJcIiByZXF1aXJlZCAvPlxuICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgIFxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiY2VudHJlXCI+XG4gICAgICAgICAgPGxhYmVsPjxiPlBhc3N3b3JkOiA8L2I+PC9sYWJlbD5cbiAgICAgICAgICA8aW5wdXQgdHlwZT1cInBhc3N3b3JkXCIgcGxhY2Vob2xkZXI9XCJFbnRlciBQYXNzd29yZFwiIG5hbWU9XCJwYXNzXCIgcmVxdWlyZWQgLz5cbiAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgICBcbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImNlbnRyZVwiPlxuICAgICAgICAgICAgPGJ1dHRvbiBpZD1cImxvZ2luX2J1dHRvblwiIHR5cGU9XCJzdWJtaXRcIiBjbGFzc05hbWU9XCJidG4gYnRuLWluZm9cIj5Mb2dpbjwvYnV0dG9uPlxuICAgICAgICAgIDwvZGl2PlxuICAgICAgICA8L2Zvcm0+XG4gICAgICA8L2Rpdj5cbiAgICApO1xuICB9XG59XG4iXX0=",
+    "ast": null,
+    "map": {
+      "version": 3,
+      "sources": [
+        "Login.js"
+      ],
+      "names": [
+        "Login",
+        "Component"
+      ],
+      "mappings": ";;;;;;;;AAAA;;;;;;;;;;;;IAEqBA,K;;;;;;;;;;;6BACV;AACP,aACE;AAAA;AAAA;AACE;AAAA;AAAA,YAAI,WAAU,QAAd;AAAA;AAAA,SADF;AAEE;AAAA;AAAA,YAAM,QAAO,QAAb,EAAsB,QAAO,MAA7B;AACE;AAAA;AAAA,cAAK,WAAU,QAAf;AACA;AAAA;AAAA;AAAO;AAAA;AAAA;AAAA;AAAA;AAAP,aADA;AAEA,qDAAO,MAAK,MAAZ,EAAmB,aAAY,gBAA/B,EAAgD,MAAK,MAArD,EAA4D,cAA5D;AAFA,WADF;AAME;AAAA;AAAA,cAAK,WAAU,QAAf;AACA;AAAA;AAAA;AAAO;AAAA;AAAA;AAAA;AAAA;AAAP,aADA;AAEA,qDAAO,MAAK,UAAZ,EAAuB,aAAY,gBAAnC,EAAoD,MAAK,MAAzD,EAAgE,cAAhE;AAFA,WANF;AAWE;AAAA;AAAA,cAAK,WAAU,QAAf;AACE;AAAA;AAAA,gBAAQ,IAAG,cAAX,EAA0B,MAAK,QAA/B,EAAwC,WAAU,cAAlD;AAAA;AAAA;AADF;AAXF;AAFF,OADF;AAoBD;;;;EAtBgC,gBAAMC,S;;kBAApBD,K",
+      "file": "Login.js",
+      "sourceRoot": "/app/src",
+      "sourcesContent": [
+        "import React from 'react';\n\nexport default class Login extends React.Component {\n  render() {\n    return (\n      <div>\n        <h1 className=\"centre\">Login Portal</h1>\n        <form action=\"/login\" method=\"post\">\n          <div className=\"centre\">\n          <label><b>Username: </b></label>\n          <input type=\"text\" placeholder=\"Enter Username\" name=\"user\" required />\n          </div>\n          \n          <div className=\"centre\">\n          <label><b>Password: </b></label>\n          <input type=\"password\" placeholder=\"Enter Password\" name=\"pass\" required />\n          </div>\n          \n          <div className=\"centre\">\n            <button id=\"login_button\" type=\"submit\" className=\"btn btn-info\">Login</button>\n          </div>\n        </form>\n      </div>\n    );\n  }\n}\n"
+      ]
+    },
+    "mtime": 1500691525085
+  },
+  "{\"filename\":\"/app/src/login_template.js\",\"env\":{\"development\":{\"plugins\":[]}},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],{\"loose\":false,\"spec\":false}],[[],null],[[],null],[[],{\"spec\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"async\":false,\"asyncGenerators\":false}]],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"sourceRoot\":\"/app/src\",\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false,\"parserOpts\":false,\"generatorOpts\":false}:6.25.0": {
+    "metadata": {
+      "usedHelpers": [],
+      "marked": [],
+      "modules": {
+        "imports": [],
+        "exports": {
+          "exported": [],
+          "specifiers": []
+        }
+      }
+    },
+    "options": {
+      "filename": "/app/src/login_template.js",
+      "filenameRelative": "/app/src/login_template.js",
+      "env": {},
+      "retainLines": false,
+      "highlightCode": true,
+      "suppressDeprecationMessages": false,
+      "presets": [],
+      "plugins": [
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false,
+            "spec": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "spec": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          {
+            "async": false,
+            "asyncGenerators": false
+          }
+        ]
+      ],
+      "ignore": [],
+      "code": true,
+      "metadata": true,
+      "ast": false,
+      "comments": true,
+      "compact": "auto",
+      "minified": false,
+      "sourceMaps": "both",
+      "sourceMapTarget": "login_template.js",
+      "sourceFileName": "login_template.js",
+      "sourceRoot": "/app/src",
+      "babelrc": false,
+      "sourceType": "module",
+      "moduleRoot": "/app/src",
+      "moduleIds": false,
+      "passPerPreset": false,
+      "parserOpts": false,
+      "generatorOpts": false,
+      "basename": "login_template"
+    },
+    "ignored": false,
+    "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\n// src/template.js\nexports.default = function (_ref) {\n  var body = _ref.body,\n      title = _ref.title;\n\n  return \"\\n    <!doctype html>\\n    <html>\\n      <head>\\n        <title>\" + title + \"</title>\\n        <meta name=\\\"description\\\" content=\\\"Web-based voting application.\\\">\\n        <link id=\\\"favicon\\\" rel=\\\"icon\\\" href=\\\"https://cdn.glitch.com/f0a70106-eee3-44ca-abf0-7ae97fb8b0a6%2Ffavicon.ico?1500669329975\\\" type=\\\"image/x-icon\\\">\\n        <meta charset=\\\"utf-8\\\">\\n        <meta http-equiv=\\\"X-UA-Compatible\\\" content=\\\"IE=edge\\\">\\n        <meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1\\\">\\n\\n        <link rel=\\\"stylesheet prefetch\\\" href=\\\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css\\\">\\n\\n        <link rel=\\\"stylesheet\\\" href=\\\"/css/login_style.css\\\">\\n\\n      </head>\\n      <body>\\n        <div id=\\\"root\\\">\" + body + \"</div>\\n        <script src=\\\"/static/login.bundle.js\\\"></script>\\n      </body>\\n    </html>\\n  \";\n};\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxvZ2luX3RlbXBsYXRlLmpzIl0sIm5hbWVzIjpbImJvZHkiLCJ0aXRsZSJdLCJtYXBwaW5ncyI6Ijs7Ozs7O0FBQUE7a0JBQ2UsZ0JBQXFCO0FBQUEsTUFBbEJBLElBQWtCLFFBQWxCQSxJQUFrQjtBQUFBLE1BQVpDLEtBQVksUUFBWkEsS0FBWTs7QUFDbEMsOEVBSWVBLEtBSmYsa3NCQWlCdUJELElBakJ2QjtBQXNCRCxDIiwiZmlsZSI6ImxvZ2luX3RlbXBsYXRlLmpzIiwic291cmNlUm9vdCI6Ii9hcHAvc3JjIiwic291cmNlc0NvbnRlbnQiOlsiLy8gc3JjL3RlbXBsYXRlLmpzXG5leHBvcnQgZGVmYXVsdCAoeyBib2R5LCB0aXRsZSB9KSA9PiB7XG4gIHJldHVybiBgXG4gICAgPCFkb2N0eXBlIGh0bWw+XG4gICAgPGh0bWw+XG4gICAgICA8aGVhZD5cbiAgICAgICAgPHRpdGxlPiR7dGl0bGV9PC90aXRsZT5cbiAgICAgICAgPG1ldGEgbmFtZT1cImRlc2NyaXB0aW9uXCIgY29udGVudD1cIldlYi1iYXNlZCB2b3RpbmcgYXBwbGljYXRpb24uXCI+XG4gICAgICAgIDxsaW5rIGlkPVwiZmF2aWNvblwiIHJlbD1cImljb25cIiBocmVmPVwiaHR0cHM6Ly9jZG4uZ2xpdGNoLmNvbS9mMGE3MDEwNi1lZWUzLTQ0Y2EtYWJmMC03YWU5N2ZiOGIwYTYlMkZmYXZpY29uLmljbz8xNTAwNjY5MzI5OTc1XCIgdHlwZT1cImltYWdlL3gtaWNvblwiPlxuICAgICAgICA8bWV0YSBjaGFyc2V0PVwidXRmLThcIj5cbiAgICAgICAgPG1ldGEgaHR0cC1lcXVpdj1cIlgtVUEtQ29tcGF0aWJsZVwiIGNvbnRlbnQ9XCJJRT1lZGdlXCI+XG4gICAgICAgIDxtZXRhIG5hbWU9XCJ2aWV3cG9ydFwiIGNvbnRlbnQ9XCJ3aWR0aD1kZXZpY2Utd2lkdGgsIGluaXRpYWwtc2NhbGU9MVwiPlxuXG4gICAgICAgIDxsaW5rIHJlbD1cInN0eWxlc2hlZXQgcHJlZmV0Y2hcIiBocmVmPVwiaHR0cHM6Ly9jZG5qcy5jbG91ZGZsYXJlLmNvbS9hamF4L2xpYnMvdHdpdHRlci1ib290c3RyYXAvMy4zLjcvY3NzL2Jvb3RzdHJhcC5taW4uY3NzXCI+XG5cbiAgICAgICAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIGhyZWY9XCIvY3NzL2xvZ2luX3N0eWxlLmNzc1wiPlxuXG4gICAgICA8L2hlYWQ+XG4gICAgICA8Ym9keT5cbiAgICAgICAgPGRpdiBpZD1cInJvb3RcIj4ke2JvZHl9PC9kaXY+XG4gICAgICAgIDxzY3JpcHQgc3JjPVwiL3N0YXRpYy9sb2dpbi5idW5kbGUuanNcIj48L3NjcmlwdD5cbiAgICAgIDwvYm9keT5cbiAgICA8L2h0bWw+XG4gIGA7XG59OyJdfQ==",
+    "ast": null,
+    "map": {
+      "version": 3,
+      "sources": [
+        "login_template.js"
+      ],
+      "names": [
+        "body",
+        "title"
+      ],
+      "mappings": ";;;;;;AAAA;kBACe,gBAAqB;AAAA,MAAlBA,IAAkB,QAAlBA,IAAkB;AAAA,MAAZC,KAAY,QAAZA,KAAY;;AAClC,8EAIeA,KAJf,ksBAiBuBD,IAjBvB;AAsBD,C",
+      "file": "login_template.js",
+      "sourceRoot": "/app/src",
+      "sourcesContent": [
+        "// src/template.js\nexport default ({ body, title }) => {\n  return `\n    <!doctype html>\n    <html>\n      <head>\n        <title>${title}</title>\n        <meta name=\"description\" content=\"Web-based voting application.\">\n        <link id=\"favicon\" rel=\"icon\" href=\"https://cdn.glitch.com/f0a70106-eee3-44ca-abf0-7ae97fb8b0a6%2Ffavicon.ico?1500669329975\" type=\"image/x-icon\">\n        <meta charset=\"utf-8\">\n        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n\n        <link rel=\"stylesheet prefetch\" href=\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css\">\n\n        <link rel=\"stylesheet\" href=\"/css/login_style.css\">\n\n      </head>\n      <body>\n        <div id=\"root\">${body}</div>\n        <script src=\"/static/login.bundle.js\"></script>\n      </body>\n    </html>\n  `;\n};"
+      ]
+    },
+    "mtime": 1500691525097
+  }
+}

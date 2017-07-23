@@ -7,20 +7,15 @@ export default class Login extends React.Component {
 
       this.render = this.render.bind(this);
       
-      if (this.props.basic_props){
+      if (this.props.hasOwnProperty('basic_props')){
         this.state = {
           auth: this.props.basic_props.auth
         }
-      } else if (this.props.auth){
+      } else if (this.props.hasOwnProperty('auth')){
         this.state = {
           auth: this.props.auth
         }
-      } else {
-        this.state = {
-          auth: false
-        }
-      }
-      
+      } 
     }
 
 
@@ -28,10 +23,6 @@ export default class Login extends React.Component {
 
       return (
         <div>
-        {this.state.auth ? 
-            <h2> Logged In </h2> :
-            <h2> Logged Out </h2> }
-      
         <h1 className="centre">Login Portal</h1>
         <form action="/login" method="post">
           <div className="centre">

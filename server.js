@@ -67,10 +67,22 @@ app.use(function(request, response, next){
 
 app.get('/', function(request, response) {
   
+});
+
+app.get('/logout', function (request, response){
+  request.session.destroy(function (err) {
+    response.redirect('/login/');
+  });
+});
+
+
+app.get('/login', function(request, response) {
+  //console.log(request.flash("error"));
+  //response.sendFile(path.join(__dirname, '/views/login_index.html'));
   var Login_App = require("./src/Login.js").default;
   var Login_html = require("./src/login_template").default;
 
-  var props = {auth: request.isAuthenticated()};
+  var props = {auth: request.isAuthenticated(), error: request.flash("error")};
   
   var Comp_Fact = React.createFactory(Login_App);
   const Login_string = ReactDOM.renderToString(Comp_Fact(props));
@@ -78,16 +90,8 @@ app.get('/', function(request, response) {
   response.send(Login_html({
     body: Login_string,
     title: "Voting App",
-    props: safeStringify({auth: request.isAuthenticated()})
+    props: safeStringify(props)
   }));
-  
-});
-
-
-
-app.get('/login', function(request, response) {
-  console.log(request.flash("error"));
-  response.sendFile(path.join(__dirname, '/views/login_index.html'));
 });
 
 app.get('/home', function(request, response) {

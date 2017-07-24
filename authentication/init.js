@@ -54,10 +54,10 @@ function initPassport () {
           return done(err)
         }
         if (!user) {
-          return done(null, false, { message: 'Incorrect username.' })
+          return done(null, false, { message: 'Invalid username' })
         }
         if (password !== user.pass ) {
-          return done(null, false, { message: 'Incorrect password.' })
+          return done(null, false, { message: 'Incorrect password' })
         }
         return done(null, user)
       })

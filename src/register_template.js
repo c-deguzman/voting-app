@@ -1,5 +1,5 @@
 
-export default ({ body, title, props}) => {
+export default ({ body, title}) => {
   return `
     <!doctype html>
     <html>
@@ -13,14 +13,13 @@ export default ({ body, title, props}) => {
 
         <link rel="stylesheet prefetch" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 
-        <link rel="stylesheet" href="/css/login_style.css">
+        <link rel="stylesheet" href="/css/register_style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
       </head>
       <body>
-        <script type="text/javascript">var app_prop = ${props};</script>
         <div id="root">${body}</div>
-        <script src="/static/login.bundle.js"></script>
+        <script src="/static/register.bundle.js"></script>
       </body>
     </html>
   `;

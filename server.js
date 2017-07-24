@@ -9,6 +9,7 @@ const session = require('express-session')
 const RedisStore = require('connect-redis')(session)
 
 var login = require('./routes/login.js');
+var register = require("./routes/register.js");
 
 var flash = require("connect-flash");
 var cookieParser = require('cookie-parser')
@@ -55,14 +56,25 @@ app.use(bodyParser.urlencoded({
 })); 
 
 login(app);
+register(app);
 
 
 app.use(function(request, response, next){
-  if (request.isAuthenticated() || request.path == "/login/") {
+  
+  if ((request.isAuthenticated() && request.path == "/login/") || 
+      (request.isAuthenticated() && request.path == "/register/")) {
+      response.redirect('/home/');
+    }
+  
+  console.log(request.path);
+  
+  if (request.isAuthenticated() || request.path == "/login/" || request.path == "/register/") {
       return next()
     }
+  
     response.redirect('/login/');
 });
+
 
 
 app.get('/', function(request, response) {
@@ -77,7 +89,6 @@ app.get('/logout', function (request, response){
 
 
 app.get('/login', function(request, response) {
-  //console.log(request.flash("error"));
   //response.sendFile(path.join(__dirname, '/views/login_index.html'));
   var Login_App = require("./src/Login.js").default;
   var Login_html = require("./src/login_template").default;
@@ -94,8 +105,23 @@ app.get('/login', function(request, response) {
   }));
 });
 
+app.get('/register', function(request, response) {
+  var Register_App = require("./src/Register.js").default;
+  var Register_html = require("./src/register_template").default;
+
+  var props = {auth: request.isAuthenticated(), error: request.flash("error")};
+  
+  var Comp_Fact = React.createFactory(Register_App);
+  const Register_string = ReactDOM.renderToString(Comp_Fact(props));
+  
+  response.send(Register_html({
+    body: Register_string,
+    title: "Voter Registration"
+  }));
+});
+
 app.get('/home', function(request, response) {
-  response.send("Temp landing page");
+  response.send("Welcome " + request.user);
 });
 
 app.listen(3000, function(err) {
@@ -105,8 +131,6 @@ app.listen(3000, function(err) {
 
   console.log('Listening at http://localhost:3000/');
 });
-
-
 
 
 function safeStringify(obj) {

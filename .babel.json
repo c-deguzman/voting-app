@@ -230,7 +230,7 @@
         "module.exports = {\n  init: require('./init'),\n};"
       ]
     },
-    "mtime": 1500765152205
+    "mtime": 1500857069629
   },
   "{\"filename\":\"/app/authentication/init.js\",\"env\":{\"development\":{\"plugins\":[]}},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],{\"loose\":false,\"spec\":false}],[[],null],[[],null],[[],{\"spec\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"async\":false,\"asyncGenerators\":false}]],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"sourceRoot\":\"/app/authentication\",\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false,\"parserOpts\":false,\"generatorOpts\":false}:6.25.0": {
     "metadata": {
@@ -443,7 +443,7 @@
       "basename": "init"
     },
     "ignored": false,
-    "code": "'use strict';\n\nvar passport = require('passport');\nvar LocalStrategy = require('passport-local').Strategy;\n\nvar MongoClient = require('mongodb').MongoClient;\n\nfunction findUser(username, callback) {\n\n  MongoClient.connect(process.env.MONGO_CONNECT, function (err, db) {\n    if (err) {\n      throw err;\n      return callback(err);\n    }\n\n    db.collection(\"accounts\", function (err, collection) {\n\n      if (err) {\n        throw err;\n        return callback(err);\n      }\n\n      collection.findOne({ \"user\": username }, function (err, result) {\n\n        db.close();\n\n        if (err) {\n          return callback(err);\n        }\n\n        console.log(result);\n\n        return callback(null, result);\n      });\n    });\n  });\n}\n\npassport.serializeUser(function (user, done) {\n  done(null, user.user);\n});\n\npassport.deserializeUser(function (user, done) {\n  done(null, user);\n});\n\nfunction initPassport() {\n  passport.use(new LocalStrategy({ usernameField: \"user\", passwordField: \"pass\" }, function (username, password, done) {\n    findUser(username, function (err, user) {\n      if (err) {\n        return done(err);\n      }\n      if (!user) {\n        return done(null, false, { message: 'Incorrect username.' });\n      }\n      if (password !== user.pass) {\n        return done(null, false, { message: 'Incorrect password.' });\n      }\n      return done(null, user);\n    });\n  }));\n}\n\nmodule.exports = initPassport;\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluaXQuanMiXSwibmFtZXMiOlsicGFzc3BvcnQiLCJyZXF1aXJlIiwiTG9jYWxTdHJhdGVneSIsIlN0cmF0ZWd5IiwiTW9uZ29DbGllbnQiLCJmaW5kVXNlciIsInVzZXJuYW1lIiwiY2FsbGJhY2siLCJjb25uZWN0IiwicHJvY2VzcyIsImVudiIsIk1PTkdPX0NPTk5FQ1QiLCJlcnIiLCJkYiIsImNvbGxlY3Rpb24iLCJmaW5kT25lIiwicmVzdWx0IiwiY2xvc2UiLCJjb25zb2xlIiwibG9nIiwic2VyaWFsaXplVXNlciIsInVzZXIiLCJkb25lIiwiZGVzZXJpYWxpemVVc2VyIiwiaW5pdFBhc3Nwb3J0IiwidXNlIiwidXNlcm5hbWVGaWVsZCIsInBhc3N3b3JkRmllbGQiLCJwYXNzd29yZCIsIm1lc3NhZ2UiLCJwYXNzIiwibW9kdWxlIiwiZXhwb3J0cyJdLCJtYXBwaW5ncyI6Ijs7QUFBQSxJQUFNQSxXQUFXQyxRQUFRLFVBQVIsQ0FBakI7QUFDQSxJQUFNQyxnQkFBZ0JELFFBQVEsZ0JBQVIsRUFBMEJFLFFBQWhEOztBQUVBLElBQUlDLGNBQWNILFFBQVEsU0FBUixFQUFtQkcsV0FBckM7O0FBR0EsU0FBU0MsUUFBVCxDQUFrQkMsUUFBbEIsRUFBNEJDLFFBQTVCLEVBQXFDOztBQUVuQ0gsY0FBWUksT0FBWixDQUFvQkMsUUFBUUMsR0FBUixDQUFZQyxhQUFoQyxFQUErQyxVQUFVQyxHQUFWLEVBQWVDLEVBQWYsRUFBa0I7QUFDL0QsUUFBSUQsR0FBSixFQUFRO0FBQ04sWUFBTUEsR0FBTjtBQUNBLGFBQU9MLFNBQVNLLEdBQVQsQ0FBUDtBQUNEOztBQUVEQyxPQUFHQyxVQUFILENBQWMsVUFBZCxFQUEwQixVQUFVRixHQUFWLEVBQWVFLFVBQWYsRUFBMEI7O0FBRWxELFVBQUlGLEdBQUosRUFBUTtBQUNOLGNBQU1BLEdBQU47QUFDQSxlQUFPTCxTQUFTSyxHQUFULENBQVA7QUFDRDs7QUFFREUsaUJBQVdDLE9BQVgsQ0FBbUIsRUFBQyxRQUFRVCxRQUFULEVBQW5CLEVBQXVDLFVBQVVNLEdBQVYsRUFBZUksTUFBZixFQUFzQjs7QUFFM0RILFdBQUdJLEtBQUg7O0FBRUEsWUFBSUwsR0FBSixFQUFTO0FBQ1AsaUJBQU9MLFNBQVNLLEdBQVQsQ0FBUDtBQUNEOztBQUVETSxnQkFBUUMsR0FBUixDQUFZSCxNQUFaOztBQUVBLGVBQU9ULFNBQVMsSUFBVCxFQUFlUyxNQUFmLENBQVA7QUFFRCxPQVpEO0FBYUQsS0FwQkQ7QUFxQkQsR0EzQkQ7QUE0QkQ7O0FBRURoQixTQUFTb0IsYUFBVCxDQUF1QixVQUFTQyxJQUFULEVBQWVDLElBQWYsRUFBcUI7QUFDMUNBLE9BQUssSUFBTCxFQUFXRCxLQUFLQSxJQUFoQjtBQUNELENBRkQ7O0FBSUFyQixTQUFTdUIsZUFBVCxDQUF5QixVQUFTRixJQUFULEVBQWVDLElBQWYsRUFBcUI7QUFDNUNBLE9BQUssSUFBTCxFQUFXRCxJQUFYO0FBQ0QsQ0FGRDs7QUFLQSxTQUFTRyxZQUFULEdBQXlCO0FBQ3ZCeEIsV0FBU3lCLEdBQVQsQ0FBYSxJQUFJdkIsYUFBSixDQUNYLEVBQUN3QixlQUFjLE1BQWYsRUFBdUJDLGVBQWMsTUFBckMsRUFEVyxFQUVYLFVBQVNyQixRQUFULEVBQW1Cc0IsUUFBbkIsRUFBNkJOLElBQTdCLEVBQW1DO0FBQ2pDakIsYUFBU0MsUUFBVCxFQUFtQixVQUFVTSxHQUFWLEVBQWVTLElBQWYsRUFBcUI7QUFDdEMsVUFBSVQsR0FBSixFQUFTO0FBQ1AsZUFBT1UsS0FBS1YsR0FBTCxDQUFQO0FBQ0Q7QUFDRCxVQUFJLENBQUNTLElBQUwsRUFBVztBQUNULGVBQU9DLEtBQUssSUFBTCxFQUFXLEtBQVgsRUFBa0IsRUFBRU8sU0FBUyxxQkFBWCxFQUFsQixDQUFQO0FBQ0Q7QUFDRCxVQUFJRCxhQUFhUCxLQUFLUyxJQUF0QixFQUE2QjtBQUMzQixlQUFPUixLQUFLLElBQUwsRUFBVyxLQUFYLEVBQWtCLEVBQUVPLFNBQVMscUJBQVgsRUFBbEIsQ0FBUDtBQUNEO0FBQ0QsYUFBT1AsS0FBSyxJQUFMLEVBQVdELElBQVgsQ0FBUDtBQUNELEtBWEQ7QUFZRCxHQWZVLENBQWI7QUFpQkQ7O0FBRURVLE9BQU9DLE9BQVAsR0FBaUJSLFlBQWpCIiwiZmlsZSI6ImluaXQuanMiLCJzb3VyY2VSb290IjoiL2FwcC9hdXRoZW50aWNhdGlvbiIsInNvdXJjZXNDb250ZW50IjpbImNvbnN0IHBhc3Nwb3J0ID0gcmVxdWlyZSgncGFzc3BvcnQnKSAgXG5jb25zdCBMb2NhbFN0cmF0ZWd5ID0gcmVxdWlyZSgncGFzc3BvcnQtbG9jYWwnKS5TdHJhdGVneVxuXG52YXIgTW9uZ29DbGllbnQgPSByZXF1aXJlKCdtb25nb2RiJykuTW9uZ29DbGllbnQ7XG5cblxuZnVuY3Rpb24gZmluZFVzZXIodXNlcm5hbWUsIGNhbGxiYWNrKXtcblxuICBNb25nb0NsaWVudC5jb25uZWN0KHByb2Nlc3MuZW52Lk1PTkdPX0NPTk5FQ1QsIGZ1bmN0aW9uIChlcnIsIGRiKXtcbiAgICBpZiAoZXJyKXtcbiAgICAgIHRocm93IGVycjtcbiAgICAgIHJldHVybiBjYWxsYmFjayhlcnIpO1xuICAgIH1cblxuICAgIGRiLmNvbGxlY3Rpb24oXCJhY2NvdW50c1wiLCBmdW5jdGlvbiAoZXJyLCBjb2xsZWN0aW9uKXtcblxuICAgICAgaWYgKGVycil7XG4gICAgICAgIHRocm93IGVycjtcbiAgICAgICAgcmV0dXJuIGNhbGxiYWNrKGVycik7XG4gICAgICB9XG5cbiAgICAgIGNvbGxlY3Rpb24uZmluZE9uZSh7XCJ1c2VyXCI6IHVzZXJuYW1lfSwgZnVuY3Rpb24gKGVyciwgcmVzdWx0KXtcblxuICAgICAgICBkYi5jbG9zZSgpO1xuXG4gICAgICAgIGlmIChlcnIpIHtcbiAgICAgICAgICByZXR1cm4gY2FsbGJhY2soZXJyKTtcbiAgICAgICAgfVxuICAgICAgICBcbiAgICAgICAgY29uc29sZS5sb2cocmVzdWx0KTtcbiAgICAgICAgXG4gICAgICAgIHJldHVybiBjYWxsYmFjayhudWxsLCByZXN1bHQpO1xuICAgICAgXG4gICAgICB9KTtcbiAgICB9KTtcbiAgfSk7XG59XG5cbnBhc3Nwb3J0LnNlcmlhbGl6ZVVzZXIoZnVuY3Rpb24odXNlciwgZG9uZSkge1xuICBkb25lKG51bGwsIHVzZXIudXNlcik7XG59KTtcblxucGFzc3BvcnQuZGVzZXJpYWxpemVVc2VyKGZ1bmN0aW9uKHVzZXIsIGRvbmUpIHtcbiAgZG9uZShudWxsLCB1c2VyKTtcbn0pO1xuXG5cbmZ1bmN0aW9uIGluaXRQYXNzcG9ydCAoKSB7XG4gIHBhc3Nwb3J0LnVzZShuZXcgTG9jYWxTdHJhdGVneShcbiAgICB7dXNlcm5hbWVGaWVsZDpcInVzZXJcIiwgcGFzc3dvcmRGaWVsZDpcInBhc3NcIn0sXG4gICAgZnVuY3Rpb24odXNlcm5hbWUsIHBhc3N3b3JkLCBkb25lKSB7XG4gICAgICBmaW5kVXNlcih1c2VybmFtZSwgZnVuY3Rpb24gKGVyciwgdXNlcikge1xuICAgICAgICBpZiAoZXJyKSB7XG4gICAgICAgICAgcmV0dXJuIGRvbmUoZXJyKVxuICAgICAgICB9XG4gICAgICAgIGlmICghdXNlcikge1xuICAgICAgICAgIHJldHVybiBkb25lKG51bGwsIGZhbHNlLCB7IG1lc3NhZ2U6ICdJbmNvcnJlY3QgdXNlcm5hbWUuJyB9KVxuICAgICAgICB9XG4gICAgICAgIGlmIChwYXNzd29yZCAhPT0gdXNlci5wYXNzICkge1xuICAgICAgICAgIHJldHVybiBkb25lKG51bGwsIGZhbHNlLCB7IG1lc3NhZ2U6ICdJbmNvcnJlY3QgcGFzc3dvcmQuJyB9KVxuICAgICAgICB9XG4gICAgICAgIHJldHVybiBkb25lKG51bGwsIHVzZXIpXG4gICAgICB9KVxuICAgIH1cbiAgKSlcbn1cblxubW9kdWxlLmV4cG9ydHMgPSBpbml0UGFzc3BvcnQiXX0=",
+    "code": "'use strict';\n\nvar passport = require('passport');\nvar LocalStrategy = require('passport-local').Strategy;\n\nvar MongoClient = require('mongodb').MongoClient;\n\nfunction findUser(username, callback) {\n\n  MongoClient.connect(process.env.MONGO_CONNECT, function (err, db) {\n    if (err) {\n      throw err;\n      return callback(err);\n    }\n\n    db.collection(\"accounts\", function (err, collection) {\n\n      if (err) {\n        throw err;\n        return callback(err);\n      }\n\n      collection.findOne({ \"user\": username }, function (err, result) {\n\n        db.close();\n\n        if (err) {\n          return callback(err);\n        }\n\n        console.log(result);\n\n        return callback(null, result);\n      });\n    });\n  });\n}\n\npassport.serializeUser(function (user, done) {\n  done(null, user.user);\n});\n\npassport.deserializeUser(function (user, done) {\n  done(null, user);\n});\n\nfunction initPassport() {\n  passport.use(new LocalStrategy({ usernameField: \"user\", passwordField: \"pass\" }, function (username, password, done) {\n    findUser(username, function (err, user) {\n      if (err) {\n        return done(err);\n      }\n      if (!user) {\n        return done(null, false, { message: 'Invalid username' });\n      }\n      if (password !== user.pass) {\n        return done(null, false, { message: 'Incorrect password' });\n      }\n      return done(null, user);\n    });\n  }));\n}\n\nmodule.exports = initPassport;\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluaXQuanMiXSwibmFtZXMiOlsicGFzc3BvcnQiLCJyZXF1aXJlIiwiTG9jYWxTdHJhdGVneSIsIlN0cmF0ZWd5IiwiTW9uZ29DbGllbnQiLCJmaW5kVXNlciIsInVzZXJuYW1lIiwiY2FsbGJhY2siLCJjb25uZWN0IiwicHJvY2VzcyIsImVudiIsIk1PTkdPX0NPTk5FQ1QiLCJlcnIiLCJkYiIsImNvbGxlY3Rpb24iLCJmaW5kT25lIiwicmVzdWx0IiwiY2xvc2UiLCJjb25zb2xlIiwibG9nIiwic2VyaWFsaXplVXNlciIsInVzZXIiLCJkb25lIiwiZGVzZXJpYWxpemVVc2VyIiwiaW5pdFBhc3Nwb3J0IiwidXNlIiwidXNlcm5hbWVGaWVsZCIsInBhc3N3b3JkRmllbGQiLCJwYXNzd29yZCIsIm1lc3NhZ2UiLCJwYXNzIiwibW9kdWxlIiwiZXhwb3J0cyJdLCJtYXBwaW5ncyI6Ijs7QUFBQSxJQUFNQSxXQUFXQyxRQUFRLFVBQVIsQ0FBakI7QUFDQSxJQUFNQyxnQkFBZ0JELFFBQVEsZ0JBQVIsRUFBMEJFLFFBQWhEOztBQUVBLElBQUlDLGNBQWNILFFBQVEsU0FBUixFQUFtQkcsV0FBckM7O0FBR0EsU0FBU0MsUUFBVCxDQUFrQkMsUUFBbEIsRUFBNEJDLFFBQTVCLEVBQXFDOztBQUVuQ0gsY0FBWUksT0FBWixDQUFvQkMsUUFBUUMsR0FBUixDQUFZQyxhQUFoQyxFQUErQyxVQUFVQyxHQUFWLEVBQWVDLEVBQWYsRUFBa0I7QUFDL0QsUUFBSUQsR0FBSixFQUFRO0FBQ04sWUFBTUEsR0FBTjtBQUNBLGFBQU9MLFNBQVNLLEdBQVQsQ0FBUDtBQUNEOztBQUVEQyxPQUFHQyxVQUFILENBQWMsVUFBZCxFQUEwQixVQUFVRixHQUFWLEVBQWVFLFVBQWYsRUFBMEI7O0FBRWxELFVBQUlGLEdBQUosRUFBUTtBQUNOLGNBQU1BLEdBQU47QUFDQSxlQUFPTCxTQUFTSyxHQUFULENBQVA7QUFDRDs7QUFFREUsaUJBQVdDLE9BQVgsQ0FBbUIsRUFBQyxRQUFRVCxRQUFULEVBQW5CLEVBQXVDLFVBQVVNLEdBQVYsRUFBZUksTUFBZixFQUFzQjs7QUFFM0RILFdBQUdJLEtBQUg7O0FBRUEsWUFBSUwsR0FBSixFQUFTO0FBQ1AsaUJBQU9MLFNBQVNLLEdBQVQsQ0FBUDtBQUNEOztBQUVETSxnQkFBUUMsR0FBUixDQUFZSCxNQUFaOztBQUVBLGVBQU9ULFNBQVMsSUFBVCxFQUFlUyxNQUFmLENBQVA7QUFFRCxPQVpEO0FBYUQsS0FwQkQ7QUFxQkQsR0EzQkQ7QUE0QkQ7O0FBRURoQixTQUFTb0IsYUFBVCxDQUF1QixVQUFTQyxJQUFULEVBQWVDLElBQWYsRUFBcUI7QUFDMUNBLE9BQUssSUFBTCxFQUFXRCxLQUFLQSxJQUFoQjtBQUNELENBRkQ7O0FBSUFyQixTQUFTdUIsZUFBVCxDQUF5QixVQUFTRixJQUFULEVBQWVDLElBQWYsRUFBcUI7QUFDNUNBLE9BQUssSUFBTCxFQUFXRCxJQUFYO0FBQ0QsQ0FGRDs7QUFLQSxTQUFTRyxZQUFULEdBQXlCO0FBQ3ZCeEIsV0FBU3lCLEdBQVQsQ0FBYSxJQUFJdkIsYUFBSixDQUNYLEVBQUN3QixlQUFjLE1BQWYsRUFBdUJDLGVBQWMsTUFBckMsRUFEVyxFQUVYLFVBQVNyQixRQUFULEVBQW1Cc0IsUUFBbkIsRUFBNkJOLElBQTdCLEVBQW1DO0FBQ2pDakIsYUFBU0MsUUFBVCxFQUFtQixVQUFVTSxHQUFWLEVBQWVTLElBQWYsRUFBcUI7QUFDdEMsVUFBSVQsR0FBSixFQUFTO0FBQ1AsZUFBT1UsS0FBS1YsR0FBTCxDQUFQO0FBQ0Q7QUFDRCxVQUFJLENBQUNTLElBQUwsRUFBVztBQUNULGVBQU9DLEtBQUssSUFBTCxFQUFXLEtBQVgsRUFBa0IsRUFBRU8sU0FBUyxrQkFBWCxFQUFsQixDQUFQO0FBQ0Q7QUFDRCxVQUFJRCxhQUFhUCxLQUFLUyxJQUF0QixFQUE2QjtBQUMzQixlQUFPUixLQUFLLElBQUwsRUFBVyxLQUFYLEVBQWtCLEVBQUVPLFNBQVMsb0JBQVgsRUFBbEIsQ0FBUDtBQUNEO0FBQ0QsYUFBT1AsS0FBSyxJQUFMLEVBQVdELElBQVgsQ0FBUDtBQUNELEtBWEQ7QUFZRCxHQWZVLENBQWI7QUFpQkQ7O0FBRURVLE9BQU9DLE9BQVAsR0FBaUJSLFlBQWpCIiwiZmlsZSI6ImluaXQuanMiLCJzb3VyY2VSb290IjoiL2FwcC9hdXRoZW50aWNhdGlvbiIsInNvdXJjZXNDb250ZW50IjpbImNvbnN0IHBhc3Nwb3J0ID0gcmVxdWlyZSgncGFzc3BvcnQnKSAgXG5jb25zdCBMb2NhbFN0cmF0ZWd5ID0gcmVxdWlyZSgncGFzc3BvcnQtbG9jYWwnKS5TdHJhdGVneVxuXG52YXIgTW9uZ29DbGllbnQgPSByZXF1aXJlKCdtb25nb2RiJykuTW9uZ29DbGllbnQ7XG5cblxuZnVuY3Rpb24gZmluZFVzZXIodXNlcm5hbWUsIGNhbGxiYWNrKXtcblxuICBNb25nb0NsaWVudC5jb25uZWN0KHByb2Nlc3MuZW52Lk1PTkdPX0NPTk5FQ1QsIGZ1bmN0aW9uIChlcnIsIGRiKXtcbiAgICBpZiAoZXJyKXtcbiAgICAgIHRocm93IGVycjtcbiAgICAgIHJldHVybiBjYWxsYmFjayhlcnIpO1xuICAgIH1cblxuICAgIGRiLmNvbGxlY3Rpb24oXCJhY2NvdW50c1wiLCBmdW5jdGlvbiAoZXJyLCBjb2xsZWN0aW9uKXtcblxuICAgICAgaWYgKGVycil7XG4gICAgICAgIHRocm93IGVycjtcbiAgICAgICAgcmV0dXJuIGNhbGxiYWNrKGVycik7XG4gICAgICB9XG5cbiAgICAgIGNvbGxlY3Rpb24uZmluZE9uZSh7XCJ1c2VyXCI6IHVzZXJuYW1lfSwgZnVuY3Rpb24gKGVyciwgcmVzdWx0KXtcblxuICAgICAgICBkYi5jbG9zZSgpO1xuXG4gICAgICAgIGlmIChlcnIpIHtcbiAgICAgICAgICByZXR1cm4gY2FsbGJhY2soZXJyKTtcbiAgICAgICAgfVxuICAgICAgICBcbiAgICAgICAgY29uc29sZS5sb2cocmVzdWx0KTtcbiAgICAgICAgXG4gICAgICAgIHJldHVybiBjYWxsYmFjayhudWxsLCByZXN1bHQpO1xuICAgICAgXG4gICAgICB9KTtcbiAgICB9KTtcbiAgfSk7XG59XG5cbnBhc3Nwb3J0LnNlcmlhbGl6ZVVzZXIoZnVuY3Rpb24odXNlciwgZG9uZSkge1xuICBkb25lKG51bGwsIHVzZXIudXNlcik7XG59KTtcblxucGFzc3BvcnQuZGVzZXJpYWxpemVVc2VyKGZ1bmN0aW9uKHVzZXIsIGRvbmUpIHtcbiAgZG9uZShudWxsLCB1c2VyKTtcbn0pO1xuXG5cbmZ1bmN0aW9uIGluaXRQYXNzcG9ydCAoKSB7XG4gIHBhc3Nwb3J0LnVzZShuZXcgTG9jYWxTdHJhdGVneShcbiAgICB7dXNlcm5hbWVGaWVsZDpcInVzZXJcIiwgcGFzc3dvcmRGaWVsZDpcInBhc3NcIn0sXG4gICAgZnVuY3Rpb24odXNlcm5hbWUsIHBhc3N3b3JkLCBkb25lKSB7XG4gICAgICBmaW5kVXNlcih1c2VybmFtZSwgZnVuY3Rpb24gKGVyciwgdXNlcikge1xuICAgICAgICBpZiAoZXJyKSB7XG4gICAgICAgICAgcmV0dXJuIGRvbmUoZXJyKVxuICAgICAgICB9XG4gICAgICAgIGlmICghdXNlcikge1xuICAgICAgICAgIHJldHVybiBkb25lKG51bGwsIGZhbHNlLCB7IG1lc3NhZ2U6ICdJbnZhbGlkIHVzZXJuYW1lJyB9KVxuICAgICAgICB9XG4gICAgICAgIGlmIChwYXNzd29yZCAhPT0gdXNlci5wYXNzICkge1xuICAgICAgICAgIHJldHVybiBkb25lKG51bGwsIGZhbHNlLCB7IG1lc3NhZ2U6ICdJbmNvcnJlY3QgcGFzc3dvcmQnIH0pXG4gICAgICAgIH1cbiAgICAgICAgcmV0dXJuIGRvbmUobnVsbCwgdXNlcilcbiAgICAgIH0pXG4gICAgfVxuICApKVxufVxuXG5tb2R1bGUuZXhwb3J0cyA9IGluaXRQYXNzcG9ydCJdfQ==",
     "ast": null,
     "map": {
       "version": 3,
@@ -485,14 +485,14 @@
         "module",
         "exports"
       ],
-      "mappings": ";;AAAA,IAAMA,WAAWC,QAAQ,UAAR,CAAjB;AACA,IAAMC,gBAAgBD,QAAQ,gBAAR,EAA0BE,QAAhD;;AAEA,IAAIC,cAAcH,QAAQ,SAAR,EAAmBG,WAArC;;AAGA,SAASC,QAAT,CAAkBC,QAAlB,EAA4BC,QAA5B,EAAqC;;AAEnCH,cAAYI,OAAZ,CAAoBC,QAAQC,GAAR,CAAYC,aAAhC,EAA+C,UAAUC,GAAV,EAAeC,EAAf,EAAkB;AAC/D,QAAID,GAAJ,EAAQ;AACN,YAAMA,GAAN;AACA,aAAOL,SAASK,GAAT,CAAP;AACD;;AAEDC,OAAGC,UAAH,CAAc,UAAd,EAA0B,UAAUF,GAAV,EAAeE,UAAf,EAA0B;;AAElD,UAAIF,GAAJ,EAAQ;AACN,cAAMA,GAAN;AACA,eAAOL,SAASK,GAAT,CAAP;AACD;;AAEDE,iBAAWC,OAAX,CAAmB,EAAC,QAAQT,QAAT,EAAnB,EAAuC,UAAUM,GAAV,EAAeI,MAAf,EAAsB;;AAE3DH,WAAGI,KAAH;;AAEA,YAAIL,GAAJ,EAAS;AACP,iBAAOL,SAASK,GAAT,CAAP;AACD;;AAEDM,gBAAQC,GAAR,CAAYH,MAAZ;;AAEA,eAAOT,SAAS,IAAT,EAAeS,MAAf,CAAP;AAED,OAZD;AAaD,KApBD;AAqBD,GA3BD;AA4BD;;AAEDhB,SAASoB,aAAT,CAAuB,UAASC,IAAT,EAAeC,IAAf,EAAqB;AAC1CA,OAAK,IAAL,EAAWD,KAAKA,IAAhB;AACD,CAFD;;AAIArB,SAASuB,eAAT,CAAyB,UAASF,IAAT,EAAeC,IAAf,EAAqB;AAC5CA,OAAK,IAAL,EAAWD,IAAX;AACD,CAFD;;AAKA,SAASG,YAAT,GAAyB;AACvBxB,WAASyB,GAAT,CAAa,IAAIvB,aAAJ,CACX,EAACwB,eAAc,MAAf,EAAuBC,eAAc,MAArC,EADW,EAEX,UAASrB,QAAT,EAAmBsB,QAAnB,EAA6BN,IAA7B,EAAmC;AACjCjB,aAASC,QAAT,EAAmB,UAAUM,GAAV,EAAeS,IAAf,EAAqB;AACtC,UAAIT,GAAJ,EAAS;AACP,eAAOU,KAAKV,GAAL,CAAP;AACD;AACD,UAAI,CAACS,IAAL,EAAW;AACT,eAAOC,KAAK,IAAL,EAAW,KAAX,EAAkB,EAAEO,SAAS,qBAAX,EAAlB,CAAP;AACD;AACD,UAAID,aAAaP,KAAKS,IAAtB,EAA6B;AAC3B,eAAOR,KAAK,IAAL,EAAW,KAAX,EAAkB,EAAEO,SAAS,qBAAX,EAAlB,CAAP;AACD;AACD,aAAOP,KAAK,IAAL,EAAWD,IAAX,CAAP;AACD,KAXD;AAYD,GAfU,CAAb;AAiBD;;AAEDU,OAAOC,OAAP,GAAiBR,YAAjB",
+      "mappings": ";;AAAA,IAAMA,WAAWC,QAAQ,UAAR,CAAjB;AACA,IAAMC,gBAAgBD,QAAQ,gBAAR,EAA0BE,QAAhD;;AAEA,IAAIC,cAAcH,QAAQ,SAAR,EAAmBG,WAArC;;AAGA,SAASC,QAAT,CAAkBC,QAAlB,EAA4BC,QAA5B,EAAqC;;AAEnCH,cAAYI,OAAZ,CAAoBC,QAAQC,GAAR,CAAYC,aAAhC,EAA+C,UAAUC,GAAV,EAAeC,EAAf,EAAkB;AAC/D,QAAID,GAAJ,EAAQ;AACN,YAAMA,GAAN;AACA,aAAOL,SAASK,GAAT,CAAP;AACD;;AAEDC,OAAGC,UAAH,CAAc,UAAd,EAA0B,UAAUF,GAAV,EAAeE,UAAf,EAA0B;;AAElD,UAAIF,GAAJ,EAAQ;AACN,cAAMA,GAAN;AACA,eAAOL,SAASK,GAAT,CAAP;AACD;;AAEDE,iBAAWC,OAAX,CAAmB,EAAC,QAAQT,QAAT,EAAnB,EAAuC,UAAUM,GAAV,EAAeI,MAAf,EAAsB;;AAE3DH,WAAGI,KAAH;;AAEA,YAAIL,GAAJ,EAAS;AACP,iBAAOL,SAASK,GAAT,CAAP;AACD;;AAEDM,gBAAQC,GAAR,CAAYH,MAAZ;;AAEA,eAAOT,SAAS,IAAT,EAAeS,MAAf,CAAP;AAED,OAZD;AAaD,KApBD;AAqBD,GA3BD;AA4BD;;AAEDhB,SAASoB,aAAT,CAAuB,UAASC,IAAT,EAAeC,IAAf,EAAqB;AAC1CA,OAAK,IAAL,EAAWD,KAAKA,IAAhB;AACD,CAFD;;AAIArB,SAASuB,eAAT,CAAyB,UAASF,IAAT,EAAeC,IAAf,EAAqB;AAC5CA,OAAK,IAAL,EAAWD,IAAX;AACD,CAFD;;AAKA,SAASG,YAAT,GAAyB;AACvBxB,WAASyB,GAAT,CAAa,IAAIvB,aAAJ,CACX,EAACwB,eAAc,MAAf,EAAuBC,eAAc,MAArC,EADW,EAEX,UAASrB,QAAT,EAAmBsB,QAAnB,EAA6BN,IAA7B,EAAmC;AACjCjB,aAASC,QAAT,EAAmB,UAAUM,GAAV,EAAeS,IAAf,EAAqB;AACtC,UAAIT,GAAJ,EAAS;AACP,eAAOU,KAAKV,GAAL,CAAP;AACD;AACD,UAAI,CAACS,IAAL,EAAW;AACT,eAAOC,KAAK,IAAL,EAAW,KAAX,EAAkB,EAAEO,SAAS,kBAAX,EAAlB,CAAP;AACD;AACD,UAAID,aAAaP,KAAKS,IAAtB,EAA6B;AAC3B,eAAOR,KAAK,IAAL,EAAW,KAAX,EAAkB,EAAEO,SAAS,oBAAX,EAAlB,CAAP;AACD;AACD,aAAOP,KAAK,IAAL,EAAWD,IAAX,CAAP;AACD,KAXD;AAYD,GAfU,CAAb;AAiBD;;AAEDU,OAAOC,OAAP,GAAiBR,YAAjB",
       "file": "init.js",
       "sourceRoot": "/app/authentication",
       "sourcesContent": [
-        "const passport = require('passport')  \nconst LocalStrategy = require('passport-local').Strategy\n\nvar MongoClient = require('mongodb').MongoClient;\n\n\nfunction findUser(username, callback){\n\n  MongoClient.connect(process.env.MONGO_CONNECT, function (err, db){\n    if (err){\n      throw err;\n      return callback(err);\n    }\n\n    db.collection(\"accounts\", function (err, collection){\n\n      if (err){\n        throw err;\n        return callback(err);\n      }\n\n      collection.findOne({\"user\": username}, function (err, result){\n\n        db.close();\n\n        if (err) {\n          return callback(err);\n        }\n        \n        console.log(result);\n        \n        return callback(null, result);\n      \n      });\n    });\n  });\n}\n\npassport.serializeUser(function(user, done) {\n  done(null, user.user);\n});\n\npassport.deserializeUser(function(user, done) {\n  done(null, user);\n});\n\n\nfunction initPassport () {\n  passport.use(new LocalStrategy(\n    {usernameField:\"user\", passwordField:\"pass\"},\n    function(username, password, done) {\n      findUser(username, function (err, user) {\n        if (err) {\n          return done(err)\n        }\n        if (!user) {\n          return done(null, false, { message: 'Incorrect username.' })\n        }\n        if (password !== user.pass ) {\n          return done(null, false, { message: 'Incorrect password.' })\n        }\n        return done(null, user)\n      })\n    }\n  ))\n}\n\nmodule.exports = initPassport"
+        "const passport = require('passport')  \nconst LocalStrategy = require('passport-local').Strategy\n\nvar MongoClient = require('mongodb').MongoClient;\n\n\nfunction findUser(username, callback){\n\n  MongoClient.connect(process.env.MONGO_CONNECT, function (err, db){\n    if (err){\n      throw err;\n      return callback(err);\n    }\n\n    db.collection(\"accounts\", function (err, collection){\n\n      if (err){\n        throw err;\n        return callback(err);\n      }\n\n      collection.findOne({\"user\": username}, function (err, result){\n\n        db.close();\n\n        if (err) {\n          return callback(err);\n        }\n        \n        console.log(result);\n        \n        return callback(null, result);\n      \n      });\n    });\n  });\n}\n\npassport.serializeUser(function(user, done) {\n  done(null, user.user);\n});\n\npassport.deserializeUser(function(user, done) {\n  done(null, user);\n});\n\n\nfunction initPassport () {\n  passport.use(new LocalStrategy(\n    {usernameField:\"user\", passwordField:\"pass\"},\n    function(username, password, done) {\n      findUser(username, function (err, user) {\n        if (err) {\n          return done(err)\n        }\n        if (!user) {\n          return done(null, false, { message: 'Invalid username' })\n        }\n        if (password !== user.pass ) {\n          return done(null, false, { message: 'Incorrect password' })\n        }\n        return done(null, user)\n      })\n    }\n  ))\n}\n\nmodule.exports = initPassport"
       ]
     },
-    "mtime": 1500765152209
+    "mtime": 1500857069641
   },
   "{\"filename\":\"/app/src/Login.js\",\"env\":{\"development\":{\"plugins\":[]}},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],{\"loose\":false,\"spec\":false}],[[],null],[[],null],[[],{\"spec\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"async\":false,\"asyncGenerators\":false}]],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"sourceRoot\":\"/app/src\",\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false,\"parserOpts\":false,\"generatorOpts\":false}:6.25.0": {
     "metadata": {
@@ -733,7 +733,7 @@
       "basename": "Login"
     },
     "ignored": false,
-    "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = require(\"react\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar Login = function (_React$Component) {\n  _inherits(Login, _React$Component);\n\n  function Login() {\n    _classCallCheck(this, Login);\n\n    return _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).apply(this, arguments));\n  }\n\n  _createClass(Login, [{\n    key: \"render\",\n    value: function render() {\n      return _react2.default.createElement(\n        \"div\",\n        null,\n        _react2.default.createElement(\n          \"h1\",\n          { className: \"centre\" },\n          \"Login Portal\"\n        ),\n        _react2.default.createElement(\n          \"form\",\n          { action: \"/login\", method: \"post\" },\n          _react2.default.createElement(\n            \"div\",\n            { className: \"centre\" },\n            _react2.default.createElement(\n              \"label\",\n              null,\n              _react2.default.createElement(\n                \"b\",\n                null,\n                \"Username: \"\n              )\n            ),\n            _react2.default.createElement(\"input\", { type: \"text\", placeholder: \"Enter Username\", name: \"user\", required: true })\n          ),\n          _react2.default.createElement(\n            \"div\",\n            { className: \"centre\" },\n            _react2.default.createElement(\n              \"label\",\n              null,\n              _react2.default.createElement(\n                \"b\",\n                null,\n                \"Password: \"\n              )\n            ),\n            _react2.default.createElement(\"input\", { type: \"password\", placeholder: \"Enter Password\", name: \"pass\", required: true })\n          ),\n          _react2.default.createElement(\n            \"div\",\n            { className: \"centre\" },\n            _react2.default.createElement(\n              \"button\",\n              { id: \"login_button\", type: \"submit\", className: \"btn btn-info\" },\n              \"Login\"\n            )\n          )\n        )\n      );\n    }\n  }]);\n\n  return Login;\n}(_react2.default.Component);\n\nexports.default = Login;\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkxvZ2luLmpzIl0sIm5hbWVzIjpbIkxvZ2luIiwiQ29tcG9uZW50Il0sIm1hcHBpbmdzIjoiOzs7Ozs7OztBQUFBOzs7Ozs7Ozs7Ozs7SUFFcUJBLEs7Ozs7Ozs7Ozs7OzZCQUNWO0FBQ1AsYUFDRTtBQUFBO0FBQUE7QUFDRTtBQUFBO0FBQUEsWUFBSSxXQUFVLFFBQWQ7QUFBQTtBQUFBLFNBREY7QUFFRTtBQUFBO0FBQUEsWUFBTSxRQUFPLFFBQWIsRUFBc0IsUUFBTyxNQUE3QjtBQUNFO0FBQUE7QUFBQSxjQUFLLFdBQVUsUUFBZjtBQUNBO0FBQUE7QUFBQTtBQUFPO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBUCxhQURBO0FBRUEscURBQU8sTUFBSyxNQUFaLEVBQW1CLGFBQVksZ0JBQS9CLEVBQWdELE1BQUssTUFBckQsRUFBNEQsY0FBNUQ7QUFGQSxXQURGO0FBTUU7QUFBQTtBQUFBLGNBQUssV0FBVSxRQUFmO0FBQ0E7QUFBQTtBQUFBO0FBQU87QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFQLGFBREE7QUFFQSxxREFBTyxNQUFLLFVBQVosRUFBdUIsYUFBWSxnQkFBbkMsRUFBb0QsTUFBSyxNQUF6RCxFQUFnRSxjQUFoRTtBQUZBLFdBTkY7QUFXRTtBQUFBO0FBQUEsY0FBSyxXQUFVLFFBQWY7QUFDRTtBQUFBO0FBQUEsZ0JBQVEsSUFBRyxjQUFYLEVBQTBCLE1BQUssUUFBL0IsRUFBd0MsV0FBVSxjQUFsRDtBQUFBO0FBQUE7QUFERjtBQVhGO0FBRkYsT0FERjtBQW9CRDs7OztFQXRCZ0MsZ0JBQU1DLFM7O2tCQUFwQkQsSyIsImZpbGUiOiJMb2dpbi5qcyIsInNvdXJjZVJvb3QiOiIvYXBwL3NyYyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCc7XG5cbmV4cG9ydCBkZWZhdWx0IGNsYXNzIExvZ2luIGV4dGVuZHMgUmVhY3QuQ29tcG9uZW50IHtcbiAgcmVuZGVyKCkge1xuICAgIHJldHVybiAoXG4gICAgICA8ZGl2PlxuICAgICAgICA8aDEgY2xhc3NOYW1lPVwiY2VudHJlXCI+TG9naW4gUG9ydGFsPC9oMT5cbiAgICAgICAgPGZvcm0gYWN0aW9uPVwiL2xvZ2luXCIgbWV0aG9kPVwicG9zdFwiPlxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiY2VudHJlXCI+XG4gICAgICAgICAgPGxhYmVsPjxiPlVzZXJuYW1lOiA8L2I+PC9sYWJlbD5cbiAgICAgICAgICA8aW5wdXQgdHlwZT1cInRleHRcIiBwbGFjZWhvbGRlcj1cIkVudGVyIFVzZXJuYW1lXCIgbmFtZT1cInVzZXJcIiByZXF1aXJlZCAvPlxuICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgIFxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiY2VudHJlXCI+XG4gICAgICAgICAgPGxhYmVsPjxiPlBhc3N3b3JkOiA8L2I+PC9sYWJlbD5cbiAgICAgICAgICA8aW5wdXQgdHlwZT1cInBhc3N3b3JkXCIgcGxhY2Vob2xkZXI9XCJFbnRlciBQYXNzd29yZFwiIG5hbWU9XCJwYXNzXCIgcmVxdWlyZWQgLz5cbiAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgICBcbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImNlbnRyZVwiPlxuICAgICAgICAgICAgPGJ1dHRvbiBpZD1cImxvZ2luX2J1dHRvblwiIHR5cGU9XCJzdWJtaXRcIiBjbGFzc05hbWU9XCJidG4gYnRuLWluZm9cIj5Mb2dpbjwvYnV0dG9uPlxuICAgICAgICAgIDwvZGl2PlxuICAgICAgICA8L2Zvcm0+XG4gICAgICA8L2Rpdj5cbiAgICApO1xuICB9XG59XG4iXX0=",
+    "code": "'use strict';\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = require('react');\n\nvar _react2 = _interopRequireDefault(_react);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar Login = function (_React$Component) {\n  _inherits(Login, _React$Component);\n\n  function Login(props) {\n    _classCallCheck(this, Login);\n\n    var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this, props));\n\n    _this.render = _this.render.bind(_this);\n    _this.error_check = _this.error_check.bind(_this);\n\n    if (_this.props.hasOwnProperty('basic_props')) {\n      _this.state = {\n        auth: _this.props.basic_props.auth,\n        error: _this.props.basic_props.error\n      };\n    } else if (_this.props.hasOwnProperty('auth')) {\n      _this.state = {\n        auth: _this.props.auth,\n        error: _this.props.error\n      };\n    }\n    return _this;\n  }\n\n  _createClass(Login, [{\n    key: 'error_check',\n    value: function error_check() {\n      if (this.state.error.length > 0) {\n        return this.state.error[0];\n      }\n      return false;\n    }\n  }, {\n    key: 'render',\n    value: function render() {\n\n      return _react2.default.createElement(\n        'div',\n        null,\n        _react2.default.createElement(\n          'h1',\n          { className: 'centre' },\n          'Login Portal'\n        ),\n        _react2.default.createElement(\n          'form',\n          { action: '/login', method: 'post' },\n          _react2.default.createElement(\n            'div',\n            { className: 'centre' },\n            _react2.default.createElement(\n              'label',\n              null,\n              _react2.default.createElement(\n                'b',\n                null,\n                'Username: '\n              )\n            ),\n            _react2.default.createElement('input', { type: 'text', placeholder: 'Enter Username', name: 'user', required: true })\n          ),\n          _react2.default.createElement(\n            'div',\n            { className: 'centre' },\n            _react2.default.createElement(\n              'label',\n              null,\n              _react2.default.createElement(\n                'b',\n                null,\n                'Password: '\n              )\n            ),\n            _react2.default.createElement('input', { type: 'password', placeholder: 'Enter Password', name: 'pass', required: true })\n          ),\n          _react2.default.createElement(\n            'div',\n            { className: 'centre' },\n            _react2.default.createElement(\n              'button',\n              { id: 'login_button', type: 'submit', className: 'btn btn-info' },\n              'Login'\n            )\n          )\n        ),\n        _react2.default.createElement(\n          'div',\n          { className: 'centre' },\n          this.error_check() ? _react2.default.createElement(\n            'h4',\n            { className: 'error_msg' },\n            ' ',\n            this.error_check()\n          ) : _react2.default.createElement('div', null)\n        ),\n        _react2.default.createElement(\n          'div',\n          { className: 'centre' },\n          _react2.default.createElement(\n            'a',\n            { href: '/register/' },\n            'Register Now!'\n          )\n        )\n      );\n    }\n  }]);\n\n  return Login;\n}(_react2.default.Component);\n\nexports.default = Login;\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkxvZ2luLmpzIl0sIm5hbWVzIjpbIkxvZ2luIiwicHJvcHMiLCJyZW5kZXIiLCJiaW5kIiwiZXJyb3JfY2hlY2siLCJoYXNPd25Qcm9wZXJ0eSIsInN0YXRlIiwiYXV0aCIsImJhc2ljX3Byb3BzIiwiZXJyb3IiLCJsZW5ndGgiLCJDb21wb25lbnQiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBQUE7Ozs7Ozs7Ozs7OztJQUVxQkEsSzs7O0FBRWpCLGlCQUFZQyxLQUFaLEVBQWtCO0FBQUE7O0FBQUEsOEdBQ1ZBLEtBRFU7O0FBR2hCLFVBQUtDLE1BQUwsR0FBYyxNQUFLQSxNQUFMLENBQVlDLElBQVosT0FBZDtBQUNBLFVBQUtDLFdBQUwsR0FBbUIsTUFBS0EsV0FBTCxDQUFpQkQsSUFBakIsT0FBbkI7O0FBRUEsUUFBSSxNQUFLRixLQUFMLENBQVdJLGNBQVgsQ0FBMEIsYUFBMUIsQ0FBSixFQUE2QztBQUMzQyxZQUFLQyxLQUFMLEdBQWE7QUFDWEMsY0FBTSxNQUFLTixLQUFMLENBQVdPLFdBQVgsQ0FBdUJELElBRGxCO0FBRVhFLGVBQU8sTUFBS1IsS0FBTCxDQUFXTyxXQUFYLENBQXVCQztBQUZuQixPQUFiO0FBSUQsS0FMRCxNQUtPLElBQUksTUFBS1IsS0FBTCxDQUFXSSxjQUFYLENBQTBCLE1BQTFCLENBQUosRUFBc0M7QUFDM0MsWUFBS0MsS0FBTCxHQUFhO0FBQ1hDLGNBQU0sTUFBS04sS0FBTCxDQUFXTSxJQUROO0FBRVhFLGVBQU8sTUFBS1IsS0FBTCxDQUFXUTtBQUZQLE9BQWI7QUFJRDtBQWhCZTtBQWlCakI7Ozs7a0NBR1k7QUFDWCxVQUFJLEtBQUtILEtBQUwsQ0FBV0csS0FBWCxDQUFpQkMsTUFBakIsR0FBMEIsQ0FBOUIsRUFBZ0M7QUFDOUIsZUFBTyxLQUFLSixLQUFMLENBQVdHLEtBQVgsQ0FBaUIsQ0FBakIsQ0FBUDtBQUNEO0FBQ0QsYUFBTyxLQUFQO0FBQ0Q7Ozs2QkFHUTs7QUFJUCxhQUVFO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQSxZQUFJLFdBQVUsUUFBZDtBQUFBO0FBQUEsU0FEQTtBQUVBO0FBQUE7QUFBQSxZQUFNLFFBQU8sUUFBYixFQUFzQixRQUFPLE1BQTdCO0FBQ0U7QUFBQTtBQUFBLGNBQUssV0FBVSxRQUFmO0FBQ0E7QUFBQTtBQUFBO0FBQU87QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFQLGFBREE7QUFFQSxxREFBTyxNQUFLLE1BQVosRUFBbUIsYUFBWSxnQkFBL0IsRUFBZ0QsTUFBSyxNQUFyRCxFQUE0RCxjQUE1RDtBQUZBLFdBREY7QUFNRTtBQUFBO0FBQUEsY0FBSyxXQUFVLFFBQWY7QUFDQTtBQUFBO0FBQUE7QUFBTztBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQVAsYUFEQTtBQUVBLHFEQUFPLE1BQUssVUFBWixFQUF1QixhQUFZLGdCQUFuQyxFQUFvRCxNQUFLLE1BQXpELEVBQWdFLGNBQWhFO0FBRkEsV0FORjtBQVdFO0FBQUE7QUFBQSxjQUFLLFdBQVUsUUFBZjtBQUNFO0FBQUE7QUFBQSxnQkFBUSxJQUFHLGNBQVgsRUFBMEIsTUFBSyxRQUEvQixFQUF3QyxXQUFVLGNBQWxEO0FBQUE7QUFBQTtBQURGO0FBWEYsU0FGQTtBQWlCQTtBQUFBO0FBQUEsWUFBSyxXQUFVLFFBQWY7QUFFSSxlQUFLTCxXQUFMLEtBQ0E7QUFBQTtBQUFBLGNBQUksV0FBVSxXQUFkO0FBQUE7QUFBNEIsaUJBQUtBLFdBQUw7QUFBNUIsV0FEQSxHQUVBO0FBSkosU0FqQkE7QUF3QkE7QUFBQTtBQUFBLFlBQUssV0FBVSxRQUFmO0FBQ0U7QUFBQTtBQUFBLGNBQUcsTUFBSyxZQUFSO0FBQUE7QUFBQTtBQURGO0FBeEJBLE9BRkY7QUErQkg7Ozs7RUFqRWdDLGdCQUFNTyxTOztrQkFBcEJYLEsiLCJmaWxlIjoiTG9naW4uanMiLCJzb3VyY2VSb290IjoiL2FwcC9zcmMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnO1xuXG5leHBvcnQgZGVmYXVsdCBjbGFzcyBMb2dpbiBleHRlbmRzIFJlYWN0LkNvbXBvbmVudCB7XG5cbiAgICBjb25zdHJ1Y3Rvcihwcm9wcyl7XG4gICAgICBzdXBlcihwcm9wcyk7XG5cbiAgICAgIHRoaXMucmVuZGVyID0gdGhpcy5yZW5kZXIuYmluZCh0aGlzKTtcbiAgICAgIHRoaXMuZXJyb3JfY2hlY2sgPSB0aGlzLmVycm9yX2NoZWNrLmJpbmQodGhpcyk7XG4gICAgICBcbiAgICAgIGlmICh0aGlzLnByb3BzLmhhc093blByb3BlcnR5KCdiYXNpY19wcm9wcycpKXtcbiAgICAgICAgdGhpcy5zdGF0ZSA9IHtcbiAgICAgICAgICBhdXRoOiB0aGlzLnByb3BzLmJhc2ljX3Byb3BzLmF1dGgsXG4gICAgICAgICAgZXJyb3I6IHRoaXMucHJvcHMuYmFzaWNfcHJvcHMuZXJyb3JcbiAgICAgICAgfVxuICAgICAgfSBlbHNlIGlmICh0aGlzLnByb3BzLmhhc093blByb3BlcnR5KCdhdXRoJykpe1xuICAgICAgICB0aGlzLnN0YXRlID0ge1xuICAgICAgICAgIGF1dGg6IHRoaXMucHJvcHMuYXV0aCxcbiAgICAgICAgICBlcnJvcjogdGhpcy5wcm9wcy5lcnJvclxuICAgICAgICB9XG4gICAgICB9IFxuICAgIH1cbiAgXG4gICAgXG4gICAgZXJyb3JfY2hlY2soKXtcbiAgICAgIGlmICh0aGlzLnN0YXRlLmVycm9yLmxlbmd0aCA+IDApe1xuICAgICAgICByZXR1cm4gdGhpcy5zdGF0ZS5lcnJvclswXTtcbiAgICAgIH1cbiAgICAgIHJldHVybiBmYWxzZTtcbiAgICB9XG5cblxuICAgIHJlbmRlcigpIHtcbiAgICAgIFxuXG5cbiAgICAgIHJldHVybiAoXG4gICAgICAgIFxuICAgICAgICA8ZGl2PlxuICAgICAgICA8aDEgY2xhc3NOYW1lPVwiY2VudHJlXCI+TG9naW4gUG9ydGFsPC9oMT5cbiAgICAgICAgPGZvcm0gYWN0aW9uPVwiL2xvZ2luXCIgbWV0aG9kPVwicG9zdFwiPlxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiY2VudHJlXCI+XG4gICAgICAgICAgPGxhYmVsPjxiPlVzZXJuYW1lOiA8L2I+PC9sYWJlbD5cbiAgICAgICAgICA8aW5wdXQgdHlwZT1cInRleHRcIiBwbGFjZWhvbGRlcj1cIkVudGVyIFVzZXJuYW1lXCIgbmFtZT1cInVzZXJcIiByZXF1aXJlZCAvPlxuICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgIFxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiY2VudHJlXCI+XG4gICAgICAgICAgPGxhYmVsPjxiPlBhc3N3b3JkOiA8L2I+PC9sYWJlbD5cbiAgICAgICAgICA8aW5wdXQgdHlwZT1cInBhc3N3b3JkXCIgcGxhY2Vob2xkZXI9XCJFbnRlciBQYXNzd29yZFwiIG5hbWU9XCJwYXNzXCIgcmVxdWlyZWQgLz5cbiAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgICBcbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImNlbnRyZVwiPlxuICAgICAgICAgICAgPGJ1dHRvbiBpZD1cImxvZ2luX2J1dHRvblwiIHR5cGU9XCJzdWJtaXRcIiBjbGFzc05hbWU9XCJidG4gYnRuLWluZm9cIj5Mb2dpbjwvYnV0dG9uPlxuICAgICAgICAgIDwvZGl2PlxuICAgICAgICA8L2Zvcm0+XG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiY2VudHJlXCI+XG4gICAgICAgICAgeyBcbiAgICAgICAgICAgIHRoaXMuZXJyb3JfY2hlY2soKSA/XG4gICAgICAgICAgICA8aDQgY2xhc3NOYW1lPVwiZXJyb3JfbXNnXCI+IHt0aGlzLmVycm9yX2NoZWNrKCl9PC9oND4gOlxuICAgICAgICAgICAgPGRpdj48L2Rpdj5cbiAgICAgICAgICB9XG4gICAgICAgIDwvZGl2PlxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImNlbnRyZVwiPlxuICAgICAgICAgIDxhIGhyZWY9XCIvcmVnaXN0ZXIvXCI+UmVnaXN0ZXIgTm93ITwvYT5cbiAgICAgICAgPC9kaXY+XG4gICAgICA8L2Rpdj5cbiAgICApO1xuICB9XG59XG5cbiJdfQ==",
     "ast": null,
     "map": {
       "version": 3,
@@ -742,16 +742,26 @@
       ],
       "names": [
         "Login",
+        "props",
+        "render",
+        "bind",
+        "error_check",
+        "hasOwnProperty",
+        "state",
+        "auth",
+        "basic_props",
+        "error",
+        "length",
         "Component"
       ],
-      "mappings": ";;;;;;;;AAAA;;;;;;;;;;;;IAEqBA,K;;;;;;;;;;;6BACV;AACP,aACE;AAAA;AAAA;AACE;AAAA;AAAA,YAAI,WAAU,QAAd;AAAA;AAAA,SADF;AAEE;AAAA;AAAA,YAAM,QAAO,QAAb,EAAsB,QAAO,MAA7B;AACE;AAAA;AAAA,cAAK,WAAU,QAAf;AACA;AAAA;AAAA;AAAO;AAAA;AAAA;AAAA;AAAA;AAAP,aADA;AAEA,qDAAO,MAAK,MAAZ,EAAmB,aAAY,gBAA/B,EAAgD,MAAK,MAArD,EAA4D,cAA5D;AAFA,WADF;AAME;AAAA;AAAA,cAAK,WAAU,QAAf;AACA;AAAA;AAAA;AAAO;AAAA;AAAA;AAAA;AAAA;AAAP,aADA;AAEA,qDAAO,MAAK,UAAZ,EAAuB,aAAY,gBAAnC,EAAoD,MAAK,MAAzD,EAAgE,cAAhE;AAFA,WANF;AAWE;AAAA;AAAA,cAAK,WAAU,QAAf;AACE;AAAA;AAAA,gBAAQ,IAAG,cAAX,EAA0B,MAAK,QAA/B,EAAwC,WAAU,cAAlD;AAAA;AAAA;AADF;AAXF;AAFF,OADF;AAoBD;;;;EAtBgC,gBAAMC,S;;kBAApBD,K",
+      "mappings": ";;;;;;;;AAAA;;;;;;;;;;;;IAEqBA,K;;;AAEjB,iBAAYC,KAAZ,EAAkB;AAAA;;AAAA,8GACVA,KADU;;AAGhB,UAAKC,MAAL,GAAc,MAAKA,MAAL,CAAYC,IAAZ,OAAd;AACA,UAAKC,WAAL,GAAmB,MAAKA,WAAL,CAAiBD,IAAjB,OAAnB;;AAEA,QAAI,MAAKF,KAAL,CAAWI,cAAX,CAA0B,aAA1B,CAAJ,EAA6C;AAC3C,YAAKC,KAAL,GAAa;AACXC,cAAM,MAAKN,KAAL,CAAWO,WAAX,CAAuBD,IADlB;AAEXE,eAAO,MAAKR,KAAL,CAAWO,WAAX,CAAuBC;AAFnB,OAAb;AAID,KALD,MAKO,IAAI,MAAKR,KAAL,CAAWI,cAAX,CAA0B,MAA1B,CAAJ,EAAsC;AAC3C,YAAKC,KAAL,GAAa;AACXC,cAAM,MAAKN,KAAL,CAAWM,IADN;AAEXE,eAAO,MAAKR,KAAL,CAAWQ;AAFP,OAAb;AAID;AAhBe;AAiBjB;;;;kCAGY;AACX,UAAI,KAAKH,KAAL,CAAWG,KAAX,CAAiBC,MAAjB,GAA0B,CAA9B,EAAgC;AAC9B,eAAO,KAAKJ,KAAL,CAAWG,KAAX,CAAiB,CAAjB,CAAP;AACD;AACD,aAAO,KAAP;AACD;;;6BAGQ;;AAIP,aAEE;AAAA;AAAA;AACA;AAAA;AAAA,YAAI,WAAU,QAAd;AAAA;AAAA,SADA;AAEA;AAAA;AAAA,YAAM,QAAO,QAAb,EAAsB,QAAO,MAA7B;AACE;AAAA;AAAA,cAAK,WAAU,QAAf;AACA;AAAA;AAAA;AAAO;AAAA;AAAA;AAAA;AAAA;AAAP,aADA;AAEA,qDAAO,MAAK,MAAZ,EAAmB,aAAY,gBAA/B,EAAgD,MAAK,MAArD,EAA4D,cAA5D;AAFA,WADF;AAME;AAAA;AAAA,cAAK,WAAU,QAAf;AACA;AAAA;AAAA;AAAO;AAAA;AAAA;AAAA;AAAA;AAAP,aADA;AAEA,qDAAO,MAAK,UAAZ,EAAuB,aAAY,gBAAnC,EAAoD,MAAK,MAAzD,EAAgE,cAAhE;AAFA,WANF;AAWE;AAAA;AAAA,cAAK,WAAU,QAAf;AACE;AAAA;AAAA,gBAAQ,IAAG,cAAX,EAA0B,MAAK,QAA/B,EAAwC,WAAU,cAAlD;AAAA;AAAA;AADF;AAXF,SAFA;AAiBA;AAAA;AAAA,YAAK,WAAU,QAAf;AAEI,eAAKL,WAAL,KACA;AAAA;AAAA,cAAI,WAAU,WAAd;AAAA;AAA4B,iBAAKA,WAAL;AAA5B,WADA,GAEA;AAJJ,SAjBA;AAwBA;AAAA;AAAA,YAAK,WAAU,QAAf;AACE;AAAA;AAAA,cAAG,MAAK,YAAR;AAAA;AAAA;AADF;AAxBA,OAFF;AA+BH;;;;EAjEgC,gBAAMO,S;;kBAApBX,K",
       "file": "Login.js",
       "sourceRoot": "/app/src",
       "sourcesContent": [
-        "import React from 'react';\n\nexport default class Login extends React.Component {\n  render() {\n    return (\n      <div>\n        <h1 className=\"centre\">Login Portal</h1>\n        <form action=\"/login\" method=\"post\">\n          <div className=\"centre\">\n          <label><b>Username: </b></label>\n          <input type=\"text\" placeholder=\"Enter Username\" name=\"user\" required />\n          </div>\n          \n          <div className=\"centre\">\n          <label><b>Password: </b></label>\n          <input type=\"password\" placeholder=\"Enter Password\" name=\"pass\" required />\n          </div>\n          \n          <div className=\"centre\">\n            <button id=\"login_button\" type=\"submit\" className=\"btn btn-info\">Login</button>\n          </div>\n        </form>\n      </div>\n    );\n  }\n}\n"
+        "import React from 'react';\n\nexport default class Login extends React.Component {\n\n    constructor(props){\n      super(props);\n\n      this.render = this.render.bind(this);\n      this.error_check = this.error_check.bind(this);\n      \n      if (this.props.hasOwnProperty('basic_props')){\n        this.state = {\n          auth: this.props.basic_props.auth,\n          error: this.props.basic_props.error\n        }\n      } else if (this.props.hasOwnProperty('auth')){\n        this.state = {\n          auth: this.props.auth,\n          error: this.props.error\n        }\n      } \n    }\n  \n    \n    error_check(){\n      if (this.state.error.length > 0){\n        return this.state.error[0];\n      }\n      return false;\n    }\n\n\n    render() {\n      \n\n\n      return (\n        \n        <div>\n        <h1 className=\"centre\">Login Portal</h1>\n        <form action=\"/login\" method=\"post\">\n          <div className=\"centre\">\n          <label><b>Username: </b></label>\n          <input type=\"text\" placeholder=\"Enter Username\" name=\"user\" required />\n          </div>\n          \n          <div className=\"centre\">\n          <label><b>Password: </b></label>\n          <input type=\"password\" placeholder=\"Enter Password\" name=\"pass\" required />\n          </div>\n          \n          <div className=\"centre\">\n            <button id=\"login_button\" type=\"submit\" className=\"btn btn-info\">Login</button>\n          </div>\n        </form>\n        <div className=\"centre\">\n          { \n            this.error_check() ?\n            <h4 className=\"error_msg\"> {this.error_check()}</h4> :\n            <div></div>\n          }\n        </div>\n        <div className=\"centre\">\n          <a href=\"/register/\">Register Now!</a>\n        </div>\n      </div>\n    );\n  }\n}\n\n"
       ]
     },
-    "mtime": 1500691525085
+    "mtime": 1500859713981
   },
   "{\"filename\":\"/app/src/login_template.js\",\"env\":{\"development\":{\"plugins\":[]}},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],{\"loose\":false,\"spec\":false}],[[],null],[[],null],[[],{\"spec\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"async\":false,\"asyncGenerators\":false}]],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"sourceRoot\":\"/app/src\",\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false,\"parserOpts\":false,\"generatorOpts\":false}:6.25.0": {
     "metadata": {
@@ -964,7 +974,7 @@
       "basename": "login_template"
     },
     "ignored": false,
-    "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\n// src/template.js\nexports.default = function (_ref) {\n  var body = _ref.body,\n      title = _ref.title;\n\n  return \"\\n    <!doctype html>\\n    <html>\\n      <head>\\n        <title>\" + title + \"</title>\\n        <meta name=\\\"description\\\" content=\\\"Web-based voting application.\\\">\\n        <link id=\\\"favicon\\\" rel=\\\"icon\\\" href=\\\"https://cdn.glitch.com/f0a70106-eee3-44ca-abf0-7ae97fb8b0a6%2Ffavicon.ico?1500669329975\\\" type=\\\"image/x-icon\\\">\\n        <meta charset=\\\"utf-8\\\">\\n        <meta http-equiv=\\\"X-UA-Compatible\\\" content=\\\"IE=edge\\\">\\n        <meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1\\\">\\n\\n        <link rel=\\\"stylesheet prefetch\\\" href=\\\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css\\\">\\n\\n        <link rel=\\\"stylesheet\\\" href=\\\"/css/login_style.css\\\">\\n\\n      </head>\\n      <body>\\n        <div id=\\\"root\\\">\" + body + \"</div>\\n        <script src=\\\"/static/login.bundle.js\\\"></script>\\n      </body>\\n    </html>\\n  \";\n};\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxvZ2luX3RlbXBsYXRlLmpzIl0sIm5hbWVzIjpbImJvZHkiLCJ0aXRsZSJdLCJtYXBwaW5ncyI6Ijs7Ozs7O0FBQUE7a0JBQ2UsZ0JBQXFCO0FBQUEsTUFBbEJBLElBQWtCLFFBQWxCQSxJQUFrQjtBQUFBLE1BQVpDLEtBQVksUUFBWkEsS0FBWTs7QUFDbEMsOEVBSWVBLEtBSmYsa3NCQWlCdUJELElBakJ2QjtBQXNCRCxDIiwiZmlsZSI6ImxvZ2luX3RlbXBsYXRlLmpzIiwic291cmNlUm9vdCI6Ii9hcHAvc3JjIiwic291cmNlc0NvbnRlbnQiOlsiLy8gc3JjL3RlbXBsYXRlLmpzXG5leHBvcnQgZGVmYXVsdCAoeyBib2R5LCB0aXRsZSB9KSA9PiB7XG4gIHJldHVybiBgXG4gICAgPCFkb2N0eXBlIGh0bWw+XG4gICAgPGh0bWw+XG4gICAgICA8aGVhZD5cbiAgICAgICAgPHRpdGxlPiR7dGl0bGV9PC90aXRsZT5cbiAgICAgICAgPG1ldGEgbmFtZT1cImRlc2NyaXB0aW9uXCIgY29udGVudD1cIldlYi1iYXNlZCB2b3RpbmcgYXBwbGljYXRpb24uXCI+XG4gICAgICAgIDxsaW5rIGlkPVwiZmF2aWNvblwiIHJlbD1cImljb25cIiBocmVmPVwiaHR0cHM6Ly9jZG4uZ2xpdGNoLmNvbS9mMGE3MDEwNi1lZWUzLTQ0Y2EtYWJmMC03YWU5N2ZiOGIwYTYlMkZmYXZpY29uLmljbz8xNTAwNjY5MzI5OTc1XCIgdHlwZT1cImltYWdlL3gtaWNvblwiPlxuICAgICAgICA8bWV0YSBjaGFyc2V0PVwidXRmLThcIj5cbiAgICAgICAgPG1ldGEgaHR0cC1lcXVpdj1cIlgtVUEtQ29tcGF0aWJsZVwiIGNvbnRlbnQ9XCJJRT1lZGdlXCI+XG4gICAgICAgIDxtZXRhIG5hbWU9XCJ2aWV3cG9ydFwiIGNvbnRlbnQ9XCJ3aWR0aD1kZXZpY2Utd2lkdGgsIGluaXRpYWwtc2NhbGU9MVwiPlxuXG4gICAgICAgIDxsaW5rIHJlbD1cInN0eWxlc2hlZXQgcHJlZmV0Y2hcIiBocmVmPVwiaHR0cHM6Ly9jZG5qcy5jbG91ZGZsYXJlLmNvbS9hamF4L2xpYnMvdHdpdHRlci1ib290c3RyYXAvMy4zLjcvY3NzL2Jvb3RzdHJhcC5taW4uY3NzXCI+XG5cbiAgICAgICAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIGhyZWY9XCIvY3NzL2xvZ2luX3N0eWxlLmNzc1wiPlxuXG4gICAgICA8L2hlYWQ+XG4gICAgICA8Ym9keT5cbiAgICAgICAgPGRpdiBpZD1cInJvb3RcIj4ke2JvZHl9PC9kaXY+XG4gICAgICAgIDxzY3JpcHQgc3JjPVwiL3N0YXRpYy9sb2dpbi5idW5kbGUuanNcIj48L3NjcmlwdD5cbiAgICAgIDwvYm9keT5cbiAgICA8L2h0bWw+XG4gIGA7XG59OyJdfQ==",
+    "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nexports.default = function (_ref) {\n  var body = _ref.body,\n      title = _ref.title,\n      props = _ref.props;\n\n  return \"\\n    <!doctype html>\\n    <html>\\n      <head>\\n        <title>\" + title + \"</title>\\n        <meta name=\\\"description\\\" content=\\\"Web-based voting application.\\\">\\n        <link id=\\\"favicon\\\" rel=\\\"icon\\\" href=\\\"https://cdn.glitch.com/f0a70106-eee3-44ca-abf0-7ae97fb8b0a6%2Ffavicon.ico?1500669329975\\\" type=\\\"image/x-icon\\\">\\n        <meta charset=\\\"utf-8\\\">\\n        <meta http-equiv=\\\"X-UA-Compatible\\\" content=\\\"IE=edge\\\">\\n        <meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1\\\">\\n\\n        <link rel=\\\"stylesheet prefetch\\\" href=\\\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css\\\">\\n\\n        <link rel=\\\"stylesheet\\\" href=\\\"/css/login_style.css\\\">\\n        <script src=\\\"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js\\\"></script>\\n\\n      </head>\\n      <body>\\n        <script type=\\\"text/javascript\\\">var app_prop = \" + props + \";</script>\\n        <div id=\\\"root\\\">\" + body + \"</div>\\n        <script src=\\\"/static/login.bundle.js\\\"></script>\\n      </body>\\n    </html>\\n  \";\n};\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxvZ2luX3RlbXBsYXRlLmpzIl0sIm5hbWVzIjpbImJvZHkiLCJ0aXRsZSIsInByb3BzIl0sIm1hcHBpbmdzIjoiOzs7Ozs7a0JBQ2UsZ0JBQTJCO0FBQUEsTUFBeEJBLElBQXdCLFFBQXhCQSxJQUF3QjtBQUFBLE1BQWxCQyxLQUFrQixRQUFsQkEsS0FBa0I7QUFBQSxNQUFYQyxLQUFXLFFBQVhBLEtBQVc7O0FBQ3hDLDhFQUllRCxLQUpmLHEwQkFrQnNEQyxLQWxCdEQsNkNBbUJ1QkYsSUFuQnZCO0FBd0JELEMiLCJmaWxlIjoibG9naW5fdGVtcGxhdGUuanMiLCJzb3VyY2VSb290IjoiL2FwcC9zcmMiLCJzb3VyY2VzQ29udGVudCI6WyJcbmV4cG9ydCBkZWZhdWx0ICh7IGJvZHksIHRpdGxlLCBwcm9wc30pID0+IHtcbiAgcmV0dXJuIGBcbiAgICA8IWRvY3R5cGUgaHRtbD5cbiAgICA8aHRtbD5cbiAgICAgIDxoZWFkPlxuICAgICAgICA8dGl0bGU+JHt0aXRsZX08L3RpdGxlPlxuICAgICAgICA8bWV0YSBuYW1lPVwiZGVzY3JpcHRpb25cIiBjb250ZW50PVwiV2ViLWJhc2VkIHZvdGluZyBhcHBsaWNhdGlvbi5cIj5cbiAgICAgICAgPGxpbmsgaWQ9XCJmYXZpY29uXCIgcmVsPVwiaWNvblwiIGhyZWY9XCJodHRwczovL2Nkbi5nbGl0Y2guY29tL2YwYTcwMTA2LWVlZTMtNDRjYS1hYmYwLTdhZTk3ZmI4YjBhNiUyRmZhdmljb24uaWNvPzE1MDA2NjkzMjk5NzVcIiB0eXBlPVwiaW1hZ2UveC1pY29uXCI+XG4gICAgICAgIDxtZXRhIGNoYXJzZXQ9XCJ1dGYtOFwiPlxuICAgICAgICA8bWV0YSBodHRwLWVxdWl2PVwiWC1VQS1Db21wYXRpYmxlXCIgY29udGVudD1cIklFPWVkZ2VcIj5cbiAgICAgICAgPG1ldGEgbmFtZT1cInZpZXdwb3J0XCIgY29udGVudD1cIndpZHRoPWRldmljZS13aWR0aCwgaW5pdGlhbC1zY2FsZT0xXCI+XG5cbiAgICAgICAgPGxpbmsgcmVsPVwic3R5bGVzaGVldCBwcmVmZXRjaFwiIGhyZWY9XCJodHRwczovL2NkbmpzLmNsb3VkZmxhcmUuY29tL2FqYXgvbGlicy90d2l0dGVyLWJvb3RzdHJhcC8zLjMuNy9jc3MvYm9vdHN0cmFwLm1pbi5jc3NcIj5cblxuICAgICAgICA8bGluayByZWw9XCJzdHlsZXNoZWV0XCIgaHJlZj1cIi9jc3MvbG9naW5fc3R5bGUuY3NzXCI+XG4gICAgICAgIDxzY3JpcHQgc3JjPVwiaHR0cHM6Ly9hamF4Lmdvb2dsZWFwaXMuY29tL2FqYXgvbGlicy9qcXVlcnkvMy4yLjEvanF1ZXJ5Lm1pbi5qc1wiPjwvc2NyaXB0PlxuXG4gICAgICA8L2hlYWQ+XG4gICAgICA8Ym9keT5cbiAgICAgICAgPHNjcmlwdCB0eXBlPVwidGV4dC9qYXZhc2NyaXB0XCI+dmFyIGFwcF9wcm9wID0gJHtwcm9wc307PC9zY3JpcHQ+XG4gICAgICAgIDxkaXYgaWQ9XCJyb290XCI+JHtib2R5fTwvZGl2PlxuICAgICAgICA8c2NyaXB0IHNyYz1cIi9zdGF0aWMvbG9naW4uYnVuZGxlLmpzXCI+PC9zY3JpcHQ+XG4gICAgICA8L2JvZHk+XG4gICAgPC9odG1sPlxuICBgO1xufTsiXX0=",
     "ast": null,
     "map": {
       "version": 3,
@@ -973,15 +983,533 @@
       ],
       "names": [
         "body",
-        "title"
+        "title",
+        "props"
       ],
-      "mappings": ";;;;;;AAAA;kBACe,gBAAqB;AAAA,MAAlBA,IAAkB,QAAlBA,IAAkB;AAAA,MAAZC,KAAY,QAAZA,KAAY;;AAClC,8EAIeA,KAJf,ksBAiBuBD,IAjBvB;AAsBD,C",
+      "mappings": ";;;;;;kBACe,gBAA2B;AAAA,MAAxBA,IAAwB,QAAxBA,IAAwB;AAAA,MAAlBC,KAAkB,QAAlBA,KAAkB;AAAA,MAAXC,KAAW,QAAXA,KAAW;;AACxC,8EAIeD,KAJf,q0BAkBsDC,KAlBtD,6CAmBuBF,IAnBvB;AAwBD,C",
       "file": "login_template.js",
       "sourceRoot": "/app/src",
       "sourcesContent": [
-        "// src/template.js\nexport default ({ body, title }) => {\n  return `\n    <!doctype html>\n    <html>\n      <head>\n        <title>${title}</title>\n        <meta name=\"description\" content=\"Web-based voting application.\">\n        <link id=\"favicon\" rel=\"icon\" href=\"https://cdn.glitch.com/f0a70106-eee3-44ca-abf0-7ae97fb8b0a6%2Ffavicon.ico?1500669329975\" type=\"image/x-icon\">\n        <meta charset=\"utf-8\">\n        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n\n        <link rel=\"stylesheet prefetch\" href=\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css\">\n\n        <link rel=\"stylesheet\" href=\"/css/login_style.css\">\n\n      </head>\n      <body>\n        <div id=\"root\">${body}</div>\n        <script src=\"/static/login.bundle.js\"></script>\n      </body>\n    </html>\n  `;\n};"
+        "\nexport default ({ body, title, props}) => {\n  return `\n    <!doctype html>\n    <html>\n      <head>\n        <title>${title}</title>\n        <meta name=\"description\" content=\"Web-based voting application.\">\n        <link id=\"favicon\" rel=\"icon\" href=\"https://cdn.glitch.com/f0a70106-eee3-44ca-abf0-7ae97fb8b0a6%2Ffavicon.ico?1500669329975\" type=\"image/x-icon\">\n        <meta charset=\"utf-8\">\n        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n\n        <link rel=\"stylesheet prefetch\" href=\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css\">\n\n        <link rel=\"stylesheet\" href=\"/css/login_style.css\">\n        <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js\"></script>\n\n      </head>\n      <body>\n        <script type=\"text/javascript\">var app_prop = ${props};</script>\n        <div id=\"root\">${body}</div>\n        <script src=\"/static/login.bundle.js\"></script>\n      </body>\n    </html>\n  `;\n};"
       ]
     },
-    "mtime": 1500691525097
+    "mtime": 1500858547640
+  },
+  "{\"filename\":\"/app/src/Register.js\",\"env\":{\"development\":{\"plugins\":[]}},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],{\"loose\":false,\"spec\":false}],[[],null],[[],null],[[],{\"spec\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"async\":false,\"asyncGenerators\":false}]],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"sourceRoot\":\"/app/src\",\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false,\"parserOpts\":false,\"generatorOpts\":false}:6.25.0": {
+    "metadata": {
+      "usedHelpers": [
+        "inherits",
+        "possibleConstructorReturn",
+        "createClass",
+        "classCallCheck",
+        "interopRequireDefault"
+      ],
+      "marked": [],
+      "modules": {
+        "imports": [
+          {
+            "source": "react",
+            "imported": [
+              "default"
+            ],
+            "specifiers": [
+              {
+                "kind": "named",
+                "imported": "default",
+                "local": "React"
+              }
+            ]
+          }
+        ],
+        "exports": {
+          "exported": [
+            "Register"
+          ],
+          "specifiers": [
+            {
+              "kind": "local",
+              "local": "Register",
+              "exported": "default"
+            }
+          ]
+        }
+      }
+    },
+    "options": {
+      "filename": "/app/src/Register.js",
+      "filenameRelative": "/app/src/Register.js",
+      "env": {},
+      "retainLines": false,
+      "highlightCode": true,
+      "suppressDeprecationMessages": false,
+      "presets": [],
+      "plugins": [
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false,
+            "spec": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "spec": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          {
+            "async": false,
+            "asyncGenerators": false
+          }
+        ]
+      ],
+      "ignore": [],
+      "code": true,
+      "metadata": true,
+      "ast": false,
+      "comments": true,
+      "compact": "auto",
+      "minified": false,
+      "sourceMaps": "both",
+      "sourceMapTarget": "Register.js",
+      "sourceFileName": "Register.js",
+      "sourceRoot": "/app/src",
+      "babelrc": false,
+      "sourceType": "module",
+      "moduleRoot": "/app/src",
+      "moduleIds": false,
+      "passPerPreset": false,
+      "parserOpts": false,
+      "generatorOpts": false,
+      "basename": "Register"
+    },
+    "ignored": false,
+    "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = require(\"react\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar Register = function (_React$Component) {\n  _inherits(Register, _React$Component);\n\n  function Register(props) {\n    _classCallCheck(this, Register);\n\n    var _this = _possibleConstructorReturn(this, (Register.__proto__ || Object.getPrototypeOf(Register)).call(this, props));\n\n    _this.render = _this.render.bind(_this);\n    _this.handle_submit = _this.handle_submit.bind(_this);\n\n    _this.state = {\n      status: \"Not Sent\"\n    };\n    return _this;\n  }\n\n  _createClass(Register, [{\n    key: \"handle_submit\",\n    value: function handle_submit(event) {\n\n      event.preventDefault();\n\n      var user = event.target.user.value;\n      var pass = event.target.pass.value;\n\n      var send_data = { user: user, pass: pass };\n\n      $.ajax({\n        type: \"POST\",\n        url: \"/register\",\n        contentType: 'application/json',\n        data: JSON.stringify(send_data),\n        done: function done(data) {\n          console.log(data);\n\n          if (data.result == \"error\") {\n            this.setState({\n              status: data.result,\n              error: data.error\n            });\n          } else {\n            this.setState({\n              status: data.result\n            });\n          }\n        }\n      });\n    }\n  }, {\n    key: \"render\",\n    value: function render() {\n      return _react2.default.createElement(\n        \"div\",\n        null,\n        _react2.default.createElement(\n          \"h1\",\n          { className: \"centre\" },\n          \"Register\"\n        ),\n        _react2.default.createElement(\n          \"form\",\n          { onSubmit: this.handle_submit },\n          _react2.default.createElement(\n            \"div\",\n            { className: \"centre\" },\n            _react2.default.createElement(\n              \"label\",\n              null,\n              _react2.default.createElement(\n                \"b\",\n                null,\n                \"Email Acc:\"\n              )\n            ),\n            _react2.default.createElement(\"input\", { type: \"text\", placeholder: \"Enter email (OPTIONAL)\", name: \"email\" })\n          ),\n          _react2.default.createElement(\n            \"div\",\n            { className: \"centre\" },\n            _react2.default.createElement(\n              \"label\",\n              null,\n              _react2.default.createElement(\n                \"b\",\n                null,\n                \"Username: \"\n              )\n            ),\n            _react2.default.createElement(\"input\", { type: \"text\", placeholder: \"Enter Username\", name: \"user\", required: true })\n          ),\n          _react2.default.createElement(\n            \"div\",\n            { className: \"centre\" },\n            _react2.default.createElement(\n              \"label\",\n              null,\n              _react2.default.createElement(\n                \"b\",\n                null,\n                \"Password: \"\n              )\n            ),\n            _react2.default.createElement(\"input\", { type: \"password\", placeholder: \"Enter Password\", name: \"pass\", required: true })\n          ),\n          _react2.default.createElement(\n            \"div\",\n            { className: \"centre\" },\n            _react2.default.createElement(\n              \"button\",\n              { id: \"login_button\", type: \"submit\", className: \"btn btn-info\" },\n              \"Register\"\n            )\n          )\n        ),\n        _react2.default.createElement(\n          \"div\",\n          { className: \"centre\", id: \"email_notice\" },\n          _react2.default.createElement(\n            \"p\",\n            null,\n            \" * Currently email is not used for anything. \"\n          )\n        ),\n        _react2.default.createElement(\n          \"div\",\n          { className: \"centre\", id: \"status_msg\" },\n          this.state.status == \"Not Sent\" ? _react2.default.createElement(\"div\", null) : this.state.status == \"error\" ? _react2.default.createElement(\n            \"h4\",\n            { id: \"fail\" },\n            this.state.error\n          ) : _react2.default.createElement(\n            \"div\",\n            null,\n            _react2.default.createElement(\n              \"h4\",\n              { id: \"pass\" },\n              \"Account Created!\"\n            ),\n            _react2.default.createElement(\n              \"a\",\n              { href: \"/login/\" },\n              \"Login Now!\"\n            )\n          )\n        )\n      );\n    }\n  }]);\n\n  return Register;\n}(_react2.default.Component);\n\nexports.default = Register;\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIlJlZ2lzdGVyLmpzIl0sIm5hbWVzIjpbIlJlZ2lzdGVyIiwicHJvcHMiLCJyZW5kZXIiLCJiaW5kIiwiaGFuZGxlX3N1Ym1pdCIsInN0YXRlIiwic3RhdHVzIiwiZXZlbnQiLCJwcmV2ZW50RGVmYXVsdCIsInVzZXIiLCJ0YXJnZXQiLCJ2YWx1ZSIsInBhc3MiLCJzZW5kX2RhdGEiLCIkIiwiYWpheCIsInR5cGUiLCJ1cmwiLCJjb250ZW50VHlwZSIsImRhdGEiLCJKU09OIiwic3RyaW5naWZ5IiwiZG9uZSIsImNvbnNvbGUiLCJsb2ciLCJyZXN1bHQiLCJzZXRTdGF0ZSIsImVycm9yIiwiQ29tcG9uZW50Il0sIm1hcHBpbmdzIjoiOzs7Ozs7OztBQUFBOzs7Ozs7Ozs7Ozs7SUFFcUJBLFE7OztBQUNuQixvQkFBWUMsS0FBWixFQUFrQjtBQUFBOztBQUFBLG9IQUNWQSxLQURVOztBQUdoQixVQUFLQyxNQUFMLEdBQWMsTUFBS0EsTUFBTCxDQUFZQyxJQUFaLE9BQWQ7QUFDQSxVQUFLQyxhQUFMLEdBQXFCLE1BQUtBLGFBQUwsQ0FBbUJELElBQW5CLE9BQXJCOztBQUVBLFVBQUtFLEtBQUwsR0FBYTtBQUNYQyxjQUFRO0FBREcsS0FBYjtBQU5nQjtBQVNqQjs7OztrQ0FFYUMsSyxFQUFPOztBQUVuQkEsWUFBTUMsY0FBTjs7QUFFQSxVQUFJQyxPQUFPRixNQUFNRyxNQUFOLENBQWFELElBQWIsQ0FBa0JFLEtBQTdCO0FBQ0EsVUFBSUMsT0FBT0wsTUFBTUcsTUFBTixDQUFhRSxJQUFiLENBQWtCRCxLQUE3Qjs7QUFFQSxVQUFJRSxZQUFZLEVBQUNKLE1BQU1BLElBQVAsRUFBYUcsTUFBTUEsSUFBbkIsRUFBaEI7O0FBRUFFLFFBQUVDLElBQUYsQ0FBTztBQUNMQyxjQUFNLE1BREQ7QUFFTEMsYUFBSyxXQUZBO0FBR0xDLHFCQUFhLGtCQUhSO0FBSUxDLGNBQU1DLEtBQUtDLFNBQUwsQ0FBZVIsU0FBZixDQUpEO0FBS0xTLGNBQU0sY0FBU0gsSUFBVCxFQUFlO0FBQ25CSSxrQkFBUUMsR0FBUixDQUFZTCxJQUFaOztBQUVBLGNBQUlBLEtBQUtNLE1BQUwsSUFBZSxPQUFuQixFQUEyQjtBQUN6QixpQkFBS0MsUUFBTCxDQUFjO0FBQ1pwQixzQkFBUWEsS0FBS00sTUFERDtBQUVaRSxxQkFBT1IsS0FBS1E7QUFGQSxhQUFkO0FBSUQsV0FMRCxNQUtPO0FBQ0wsaUJBQUtELFFBQUwsQ0FBYztBQUNacEIsc0JBQVFhLEtBQUtNO0FBREQsYUFBZDtBQUdEO0FBQ0Y7QUFsQkksT0FBUDtBQXFCRDs7OzZCQUVRO0FBQ1AsYUFDRTtBQUFBO0FBQUE7QUFDRTtBQUFBO0FBQUEsWUFBSSxXQUFVLFFBQWQ7QUFBQTtBQUFBLFNBREY7QUFFRTtBQUFBO0FBQUEsWUFBTSxVQUFVLEtBQUtyQixhQUFyQjtBQUNFO0FBQUE7QUFBQSxjQUFLLFdBQVUsUUFBZjtBQUNBO0FBQUE7QUFBQTtBQUFPO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBUCxhQURBO0FBRUEscURBQU8sTUFBSyxNQUFaLEVBQW1CLGFBQVksd0JBQS9CLEVBQXdELE1BQUssT0FBN0Q7QUFGQSxXQURGO0FBS0U7QUFBQTtBQUFBLGNBQUssV0FBVSxRQUFmO0FBQ0E7QUFBQTtBQUFBO0FBQU87QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFQLGFBREE7QUFFQSxxREFBTyxNQUFLLE1BQVosRUFBbUIsYUFBWSxnQkFBL0IsRUFBZ0QsTUFBSyxNQUFyRCxFQUE0RCxjQUE1RDtBQUZBLFdBTEY7QUFVRTtBQUFBO0FBQUEsY0FBSyxXQUFVLFFBQWY7QUFDQTtBQUFBO0FBQUE7QUFBTztBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQVAsYUFEQTtBQUVBLHFEQUFPLE1BQUssVUFBWixFQUF1QixhQUFZLGdCQUFuQyxFQUFvRCxNQUFLLE1BQXpELEVBQWdFLGNBQWhFO0FBRkEsV0FWRjtBQWVFO0FBQUE7QUFBQSxjQUFLLFdBQVUsUUFBZjtBQUNFO0FBQUE7QUFBQSxnQkFBUSxJQUFHLGNBQVgsRUFBMEIsTUFBSyxRQUEvQixFQUF3QyxXQUFVLGNBQWxEO0FBQUE7QUFBQTtBQURGO0FBZkYsU0FGRjtBQXFCRTtBQUFBO0FBQUEsWUFBSyxXQUFVLFFBQWYsRUFBd0IsSUFBRyxjQUEzQjtBQUNJO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFESixTQXJCRjtBQXlCRTtBQUFBO0FBQUEsWUFBSyxXQUFVLFFBQWYsRUFBd0IsSUFBRyxZQUEzQjtBQUVJLGVBQUtDLEtBQUwsQ0FBV0MsTUFBWCxJQUFxQixVQUFyQixHQUNBLDBDQURBLEdBRUEsS0FBS0QsS0FBTCxDQUFXQyxNQUFYLElBQXFCLE9BQXJCLEdBQ0U7QUFBQTtBQUFBLGNBQUksSUFBRyxNQUFQO0FBQWUsaUJBQUtELEtBQUwsQ0FBV3NCO0FBQTFCLFdBREYsR0FFRTtBQUFBO0FBQUE7QUFDRTtBQUFBO0FBQUEsZ0JBQUksSUFBRyxNQUFQO0FBQUE7QUFBQSxhQURGO0FBRUU7QUFBQTtBQUFBLGdCQUFHLE1BQUssU0FBUjtBQUFBO0FBQUE7QUFGRjtBQU5OO0FBekJGLE9BREY7QUF5Q0Q7Ozs7RUF0Rm1DLGdCQUFNQyxTOztrQkFBdkI1QixRIiwiZmlsZSI6IlJlZ2lzdGVyLmpzIiwic291cmNlUm9vdCI6Ii9hcHAvc3JjIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0IGZyb20gJ3JlYWN0JztcblxuZXhwb3J0IGRlZmF1bHQgY2xhc3MgUmVnaXN0ZXIgZXh0ZW5kcyBSZWFjdC5Db21wb25lbnQge1xuICBjb25zdHJ1Y3Rvcihwcm9wcyl7XG4gICAgc3VwZXIocHJvcHMpO1xuICAgIFxuICAgIHRoaXMucmVuZGVyID0gdGhpcy5yZW5kZXIuYmluZCh0aGlzKTtcbiAgICB0aGlzLmhhbmRsZV9zdWJtaXQgPSB0aGlzLmhhbmRsZV9zdWJtaXQuYmluZCh0aGlzKTtcbiAgICBcbiAgICB0aGlzLnN0YXRlID0ge1xuICAgICAgc3RhdHVzOiBcIk5vdCBTZW50XCJcbiAgICB9XG4gIH1cbiAgXG4gIGhhbmRsZV9zdWJtaXQoZXZlbnQpIHtcbiAgICBcbiAgICBldmVudC5wcmV2ZW50RGVmYXVsdCgpO1xuICAgIFxuICAgIHZhciB1c2VyID0gZXZlbnQudGFyZ2V0LnVzZXIudmFsdWU7XG4gICAgdmFyIHBhc3MgPSBldmVudC50YXJnZXQucGFzcy52YWx1ZTtcbiAgICBcbiAgICB2YXIgc2VuZF9kYXRhID0ge3VzZXI6IHVzZXIsIHBhc3M6IHBhc3N9O1xuICAgIFxuICAgICQuYWpheCh7XG4gICAgICB0eXBlOiBcIlBPU1RcIixcbiAgICAgIHVybDogXCIvcmVnaXN0ZXJcIixcbiAgICAgIGNvbnRlbnRUeXBlOiAnYXBwbGljYXRpb24vanNvbicsXG4gICAgICBkYXRhOiBKU09OLnN0cmluZ2lmeShzZW5kX2RhdGEpLFxuICAgICAgZG9uZTogZnVuY3Rpb24oZGF0YSkge1xuICAgICAgICBjb25zb2xlLmxvZyhkYXRhKTtcblxuICAgICAgICBpZiAoZGF0YS5yZXN1bHQgPT0gXCJlcnJvclwiKXtcbiAgICAgICAgICB0aGlzLnNldFN0YXRlKHtcbiAgICAgICAgICAgIHN0YXR1czogZGF0YS5yZXN1bHQsXG4gICAgICAgICAgICBlcnJvcjogZGF0YS5lcnJvclxuICAgICAgICAgIH0pO1xuICAgICAgICB9IGVsc2Uge1xuICAgICAgICAgIHRoaXMuc2V0U3RhdGUoe1xuICAgICAgICAgICAgc3RhdHVzOiBkYXRhLnJlc3VsdCxcbiAgICAgICAgICB9KTtcbiAgICAgICAgfVxuICAgICAgfVxuICAgIH0pO1xuICAgIFxuICB9XG4gIFxuICByZW5kZXIoKSB7XG4gICAgcmV0dXJuIChcbiAgICAgIDxkaXY+XG4gICAgICAgIDxoMSBjbGFzc05hbWU9XCJjZW50cmVcIj5SZWdpc3RlcjwvaDE+XG4gICAgICAgIDxmb3JtIG9uU3VibWl0PXt0aGlzLmhhbmRsZV9zdWJtaXR9PlxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiY2VudHJlXCI+XG4gICAgICAgICAgPGxhYmVsPjxiPkVtYWlsIEFjYzo8L2I+PC9sYWJlbD5cbiAgICAgICAgICA8aW5wdXQgdHlwZT1cInRleHRcIiBwbGFjZWhvbGRlcj1cIkVudGVyIGVtYWlsIChPUFRJT05BTClcIiBuYW1lPVwiZW1haWxcIiAvPlxuICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiY2VudHJlXCI+XG4gICAgICAgICAgPGxhYmVsPjxiPlVzZXJuYW1lOiA8L2I+PC9sYWJlbD5cbiAgICAgICAgICA8aW5wdXQgdHlwZT1cInRleHRcIiBwbGFjZWhvbGRlcj1cIkVudGVyIFVzZXJuYW1lXCIgbmFtZT1cInVzZXJcIiByZXF1aXJlZCAvPlxuICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgIFxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiY2VudHJlXCI+XG4gICAgICAgICAgPGxhYmVsPjxiPlBhc3N3b3JkOiA8L2I+PC9sYWJlbD5cbiAgICAgICAgICA8aW5wdXQgdHlwZT1cInBhc3N3b3JkXCIgcGxhY2Vob2xkZXI9XCJFbnRlciBQYXNzd29yZFwiIG5hbWU9XCJwYXNzXCIgcmVxdWlyZWQgLz5cbiAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgICBcbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImNlbnRyZVwiPlxuICAgICAgICAgICAgPGJ1dHRvbiBpZD1cImxvZ2luX2J1dHRvblwiIHR5cGU9XCJzdWJtaXRcIiBjbGFzc05hbWU9XCJidG4gYnRuLWluZm9cIj5SZWdpc3RlcjwvYnV0dG9uPlxuICAgICAgICAgIDwvZGl2PlxuICAgICAgICA8L2Zvcm0+XG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiY2VudHJlXCIgaWQ9XCJlbWFpbF9ub3RpY2VcIj5cbiAgICAgICAgICAgIDxwPiAqIEN1cnJlbnRseSBlbWFpbCBpcyBub3QgdXNlZCBmb3IgYW55dGhpbmcuIDwvcD5cbiAgICAgICAgPC9kaXY+XG4gICAgICAgIFxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImNlbnRyZVwiIGlkPVwic3RhdHVzX21zZ1wiPlxuICAgICAgICAgIHtcbiAgICAgICAgICAgIHRoaXMuc3RhdGUuc3RhdHVzID09IFwiTm90IFNlbnRcIiA/XG4gICAgICAgICAgICA8ZGl2IC8+IDpcbiAgICAgICAgICAgIHRoaXMuc3RhdGUuc3RhdHVzID09IFwiZXJyb3JcIiA/XG4gICAgICAgICAgICAgIDxoNCBpZD1cImZhaWxcIj57dGhpcy5zdGF0ZS5lcnJvcn08L2g0PiA6XG4gICAgICAgICAgICAgIDxkaXY+XG4gICAgICAgICAgICAgICAgPGg0IGlkPVwicGFzc1wiPkFjY291bnQgQ3JlYXRlZCE8L2g0PlxuICAgICAgICAgICAgICAgIDxhIGhyZWY9XCIvbG9naW4vXCI+TG9naW4gTm93ITwvYT5cbiAgICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgfVxuICAgICAgICA8L2Rpdj5cbiAgICAgICAgXG4gICAgICA8L2Rpdj5cbiAgICApO1xuICB9XG59Il19",
+    "ast": null,
+    "map": {
+      "version": 3,
+      "sources": [
+        "Register.js"
+      ],
+      "names": [
+        "Register",
+        "props",
+        "render",
+        "bind",
+        "handle_submit",
+        "state",
+        "status",
+        "event",
+        "preventDefault",
+        "user",
+        "target",
+        "value",
+        "pass",
+        "send_data",
+        "$",
+        "ajax",
+        "type",
+        "url",
+        "contentType",
+        "data",
+        "JSON",
+        "stringify",
+        "done",
+        "console",
+        "log",
+        "result",
+        "setState",
+        "error",
+        "Component"
+      ],
+      "mappings": ";;;;;;;;AAAA;;;;;;;;;;;;IAEqBA,Q;;;AACnB,oBAAYC,KAAZ,EAAkB;AAAA;;AAAA,oHACVA,KADU;;AAGhB,UAAKC,MAAL,GAAc,MAAKA,MAAL,CAAYC,IAAZ,OAAd;AACA,UAAKC,aAAL,GAAqB,MAAKA,aAAL,CAAmBD,IAAnB,OAArB;;AAEA,UAAKE,KAAL,GAAa;AACXC,cAAQ;AADG,KAAb;AANgB;AASjB;;;;kCAEaC,K,EAAO;;AAEnBA,YAAMC,cAAN;;AAEA,UAAIC,OAAOF,MAAMG,MAAN,CAAaD,IAAb,CAAkBE,KAA7B;AACA,UAAIC,OAAOL,MAAMG,MAAN,CAAaE,IAAb,CAAkBD,KAA7B;;AAEA,UAAIE,YAAY,EAACJ,MAAMA,IAAP,EAAaG,MAAMA,IAAnB,EAAhB;;AAEAE,QAAEC,IAAF,CAAO;AACLC,cAAM,MADD;AAELC,aAAK,WAFA;AAGLC,qBAAa,kBAHR;AAILC,cAAMC,KAAKC,SAAL,CAAeR,SAAf,CAJD;AAKLS,cAAM,cAASH,IAAT,EAAe;AACnBI,kBAAQC,GAAR,CAAYL,IAAZ;;AAEA,cAAIA,KAAKM,MAAL,IAAe,OAAnB,EAA2B;AACzB,iBAAKC,QAAL,CAAc;AACZpB,sBAAQa,KAAKM,MADD;AAEZE,qBAAOR,KAAKQ;AAFA,aAAd;AAID,WALD,MAKO;AACL,iBAAKD,QAAL,CAAc;AACZpB,sBAAQa,KAAKM;AADD,aAAd;AAGD;AACF;AAlBI,OAAP;AAqBD;;;6BAEQ;AACP,aACE;AAAA;AAAA;AACE;AAAA;AAAA,YAAI,WAAU,QAAd;AAAA;AAAA,SADF;AAEE;AAAA;AAAA,YAAM,UAAU,KAAKrB,aAArB;AACE;AAAA;AAAA,cAAK,WAAU,QAAf;AACA;AAAA;AAAA;AAAO;AAAA;AAAA;AAAA;AAAA;AAAP,aADA;AAEA,qDAAO,MAAK,MAAZ,EAAmB,aAAY,wBAA/B,EAAwD,MAAK,OAA7D;AAFA,WADF;AAKE;AAAA;AAAA,cAAK,WAAU,QAAf;AACA;AAAA;AAAA;AAAO;AAAA;AAAA;AAAA;AAAA;AAAP,aADA;AAEA,qDAAO,MAAK,MAAZ,EAAmB,aAAY,gBAA/B,EAAgD,MAAK,MAArD,EAA4D,cAA5D;AAFA,WALF;AAUE;AAAA;AAAA,cAAK,WAAU,QAAf;AACA;AAAA;AAAA;AAAO;AAAA;AAAA;AAAA;AAAA;AAAP,aADA;AAEA,qDAAO,MAAK,UAAZ,EAAuB,aAAY,gBAAnC,EAAoD,MAAK,MAAzD,EAAgE,cAAhE;AAFA,WAVF;AAeE;AAAA;AAAA,cAAK,WAAU,QAAf;AACE;AAAA;AAAA,gBAAQ,IAAG,cAAX,EAA0B,MAAK,QAA/B,EAAwC,WAAU,cAAlD;AAAA;AAAA;AADF;AAfF,SAFF;AAqBE;AAAA;AAAA,YAAK,WAAU,QAAf,EAAwB,IAAG,cAA3B;AACI;AAAA;AAAA;AAAA;AAAA;AADJ,SArBF;AAyBE;AAAA;AAAA,YAAK,WAAU,QAAf,EAAwB,IAAG,YAA3B;AAEI,eAAKC,KAAL,CAAWC,MAAX,IAAqB,UAArB,GACA,0CADA,GAEA,KAAKD,KAAL,CAAWC,MAAX,IAAqB,OAArB,GACE;AAAA;AAAA,cAAI,IAAG,MAAP;AAAe,iBAAKD,KAAL,CAAWsB;AAA1B,WADF,GAEE;AAAA;AAAA;AACE;AAAA;AAAA,gBAAI,IAAG,MAAP;AAAA;AAAA,aADF;AAEE;AAAA;AAAA,gBAAG,MAAK,SAAR;AAAA;AAAA;AAFF;AANN;AAzBF,OADF;AAyCD;;;;EAtFmC,gBAAMC,S;;kBAAvB5B,Q",
+      "file": "Register.js",
+      "sourceRoot": "/app/src",
+      "sourcesContent": [
+        "import React from 'react';\n\nexport default class Register extends React.Component {\n  constructor(props){\n    super(props);\n    \n    this.render = this.render.bind(this);\n    this.handle_submit = this.handle_submit.bind(this);\n    \n    this.state = {\n      status: \"Not Sent\"\n    }\n  }\n  \n  handle_submit(event) {\n    \n    event.preventDefault();\n    \n    var user = event.target.user.value;\n    var pass = event.target.pass.value;\n    \n    var send_data = {user: user, pass: pass};\n    \n    $.ajax({\n      type: \"POST\",\n      url: \"/register\",\n      contentType: 'application/json',\n      data: JSON.stringify(send_data),\n      done: function(data) {\n        console.log(data);\n\n        if (data.result == \"error\"){\n          this.setState({\n            status: data.result,\n            error: data.error\n          });\n        } else {\n          this.setState({\n            status: data.result,\n          });\n        }\n      }\n    });\n    \n  }\n  \n  render() {\n    return (\n      <div>\n        <h1 className=\"centre\">Register</h1>\n        <form onSubmit={this.handle_submit}>\n          <div className=\"centre\">\n          <label><b>Email Acc:</b></label>\n          <input type=\"text\" placeholder=\"Enter email (OPTIONAL)\" name=\"email\" />\n          </div>\n          <div className=\"centre\">\n          <label><b>Username: </b></label>\n          <input type=\"text\" placeholder=\"Enter Username\" name=\"user\" required />\n          </div>\n          \n          <div className=\"centre\">\n          <label><b>Password: </b></label>\n          <input type=\"password\" placeholder=\"Enter Password\" name=\"pass\" required />\n          </div>\n          \n          <div className=\"centre\">\n            <button id=\"login_button\" type=\"submit\" className=\"btn btn-info\">Register</button>\n          </div>\n        </form>\n        <div className=\"centre\" id=\"email_notice\">\n            <p> * Currently email is not used for anything. </p>\n        </div>\n        \n        <div className=\"centre\" id=\"status_msg\">\n          {\n            this.state.status == \"Not Sent\" ?\n            <div /> :\n            this.state.status == \"error\" ?\n              <h4 id=\"fail\">{this.state.error}</h4> :\n              <div>\n                <h4 id=\"pass\">Account Created!</h4>\n                <a href=\"/login/\">Login Now!</a>\n              </div>\n          }\n        </div>\n        \n      </div>\n    );\n  }\n}"
+      ]
+    },
+    "mtime": 1500862849932
+  },
+  "{\"filename\":\"/app/src/register_template.js\",\"env\":{\"development\":{\"plugins\":[]}},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],{\"loose\":false,\"spec\":false}],[[],null],[[],null],[[],{\"spec\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"async\":false,\"asyncGenerators\":false}]],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"sourceRoot\":\"/app/src\",\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false,\"parserOpts\":false,\"generatorOpts\":false}:6.25.0": {
+    "metadata": {
+      "usedHelpers": [],
+      "marked": [],
+      "modules": {
+        "imports": [],
+        "exports": {
+          "exported": [],
+          "specifiers": []
+        }
+      }
+    },
+    "options": {
+      "filename": "/app/src/register_template.js",
+      "filenameRelative": "/app/src/register_template.js",
+      "env": {},
+      "retainLines": false,
+      "highlightCode": true,
+      "suppressDeprecationMessages": false,
+      "presets": [],
+      "plugins": [
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false,
+            "spec": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "spec": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          {
+            "async": false,
+            "asyncGenerators": false
+          }
+        ]
+      ],
+      "ignore": [],
+      "code": true,
+      "metadata": true,
+      "ast": false,
+      "comments": true,
+      "compact": "auto",
+      "minified": false,
+      "sourceMaps": "both",
+      "sourceMapTarget": "register_template.js",
+      "sourceFileName": "register_template.js",
+      "sourceRoot": "/app/src",
+      "babelrc": false,
+      "sourceType": "module",
+      "moduleRoot": "/app/src",
+      "moduleIds": false,
+      "passPerPreset": false,
+      "parserOpts": false,
+      "generatorOpts": false,
+      "basename": "register_template"
+    },
+    "ignored": false,
+    "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nexports.default = function (_ref) {\n  var body = _ref.body,\n      title = _ref.title;\n\n  return \"\\n    <!doctype html>\\n    <html>\\n      <head>\\n        <title>\" + title + \"</title>\\n        <meta name=\\\"description\\\" content=\\\"Web-based voting application.\\\">\\n        <link id=\\\"favicon\\\" rel=\\\"icon\\\" href=\\\"https://cdn.glitch.com/f0a70106-eee3-44ca-abf0-7ae97fb8b0a6%2Ffavicon.ico?1500669329975\\\" type=\\\"image/x-icon\\\">\\n        <meta charset=\\\"utf-8\\\">\\n        <meta http-equiv=\\\"X-UA-Compatible\\\" content=\\\"IE=edge\\\">\\n        <meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1\\\">\\n\\n        <link rel=\\\"stylesheet prefetch\\\" href=\\\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css\\\">\\n\\n        <link rel=\\\"stylesheet\\\" href=\\\"/css/register_style.css\\\">\\n        <script src=\\\"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js\\\"></script>\\n\\n      </head>\\n      <body>\\n        <div id=\\\"root\\\">\" + body + \"</div>\\n        <script src=\\\"/static/register.bundle.js\\\"></script>\\n      </body>\\n    </html>\\n  \";\n};\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInJlZ2lzdGVyX3RlbXBsYXRlLmpzIl0sIm5hbWVzIjpbImJvZHkiLCJ0aXRsZSJdLCJtYXBwaW5ncyI6Ijs7Ozs7O2tCQUNlLGdCQUFvQjtBQUFBLE1BQWpCQSxJQUFpQixRQUFqQkEsSUFBaUI7QUFBQSxNQUFYQyxLQUFXLFFBQVhBLEtBQVc7O0FBQ2pDLDhFQUllQSxLQUpmLHl5QkFrQnVCRCxJQWxCdkI7QUF1QkQsQyIsImZpbGUiOiJyZWdpc3Rlcl90ZW1wbGF0ZS5qcyIsInNvdXJjZVJvb3QiOiIvYXBwL3NyYyIsInNvdXJjZXNDb250ZW50IjpbIlxuZXhwb3J0IGRlZmF1bHQgKHsgYm9keSwgdGl0bGV9KSA9PiB7XG4gIHJldHVybiBgXG4gICAgPCFkb2N0eXBlIGh0bWw+XG4gICAgPGh0bWw+XG4gICAgICA8aGVhZD5cbiAgICAgICAgPHRpdGxlPiR7dGl0bGV9PC90aXRsZT5cbiAgICAgICAgPG1ldGEgbmFtZT1cImRlc2NyaXB0aW9uXCIgY29udGVudD1cIldlYi1iYXNlZCB2b3RpbmcgYXBwbGljYXRpb24uXCI+XG4gICAgICAgIDxsaW5rIGlkPVwiZmF2aWNvblwiIHJlbD1cImljb25cIiBocmVmPVwiaHR0cHM6Ly9jZG4uZ2xpdGNoLmNvbS9mMGE3MDEwNi1lZWUzLTQ0Y2EtYWJmMC03YWU5N2ZiOGIwYTYlMkZmYXZpY29uLmljbz8xNTAwNjY5MzI5OTc1XCIgdHlwZT1cImltYWdlL3gtaWNvblwiPlxuICAgICAgICA8bWV0YSBjaGFyc2V0PVwidXRmLThcIj5cbiAgICAgICAgPG1ldGEgaHR0cC1lcXVpdj1cIlgtVUEtQ29tcGF0aWJsZVwiIGNvbnRlbnQ9XCJJRT1lZGdlXCI+XG4gICAgICAgIDxtZXRhIG5hbWU9XCJ2aWV3cG9ydFwiIGNvbnRlbnQ9XCJ3aWR0aD1kZXZpY2Utd2lkdGgsIGluaXRpYWwtc2NhbGU9MVwiPlxuXG4gICAgICAgIDxsaW5rIHJlbD1cInN0eWxlc2hlZXQgcHJlZmV0Y2hcIiBocmVmPVwiaHR0cHM6Ly9jZG5qcy5jbG91ZGZsYXJlLmNvbS9hamF4L2xpYnMvdHdpdHRlci1ib290c3RyYXAvMy4zLjcvY3NzL2Jvb3RzdHJhcC5taW4uY3NzXCI+XG5cbiAgICAgICAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIGhyZWY9XCIvY3NzL3JlZ2lzdGVyX3N0eWxlLmNzc1wiPlxuICAgICAgICA8c2NyaXB0IHNyYz1cImh0dHBzOi8vYWpheC5nb29nbGVhcGlzLmNvbS9hamF4L2xpYnMvanF1ZXJ5LzMuMi4xL2pxdWVyeS5taW4uanNcIj48L3NjcmlwdD5cblxuICAgICAgPC9oZWFkPlxuICAgICAgPGJvZHk+XG4gICAgICAgIDxkaXYgaWQ9XCJyb290XCI+JHtib2R5fTwvZGl2PlxuICAgICAgICA8c2NyaXB0IHNyYz1cIi9zdGF0aWMvcmVnaXN0ZXIuYnVuZGxlLmpzXCI+PC9zY3JpcHQ+XG4gICAgICA8L2JvZHk+XG4gICAgPC9odG1sPlxuICBgO1xufTsiXX0=",
+    "ast": null,
+    "map": {
+      "version": 3,
+      "sources": [
+        "register_template.js"
+      ],
+      "names": [
+        "body",
+        "title"
+      ],
+      "mappings": ";;;;;;kBACe,gBAAoB;AAAA,MAAjBA,IAAiB,QAAjBA,IAAiB;AAAA,MAAXC,KAAW,QAAXA,KAAW;;AACjC,8EAIeA,KAJf,yyBAkBuBD,IAlBvB;AAuBD,C",
+      "file": "register_template.js",
+      "sourceRoot": "/app/src",
+      "sourcesContent": [
+        "\nexport default ({ body, title}) => {\n  return `\n    <!doctype html>\n    <html>\n      <head>\n        <title>${title}</title>\n        <meta name=\"description\" content=\"Web-based voting application.\">\n        <link id=\"favicon\" rel=\"icon\" href=\"https://cdn.glitch.com/f0a70106-eee3-44ca-abf0-7ae97fb8b0a6%2Ffavicon.ico?1500669329975\" type=\"image/x-icon\">\n        <meta charset=\"utf-8\">\n        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n\n        <link rel=\"stylesheet prefetch\" href=\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css\">\n\n        <link rel=\"stylesheet\" href=\"/css/register_style.css\">\n        <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js\"></script>\n\n      </head>\n      <body>\n        <div id=\"root\">${body}</div>\n        <script src=\"/static/register.bundle.js\"></script>\n      </body>\n    </html>\n  `;\n};"
+      ]
+    },
+    "mtime": 1500859614404
   }
 }

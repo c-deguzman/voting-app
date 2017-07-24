@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Bungee+Inline');
 
-body {
-  height: 200px;
-}
-
 h1, h2, h3, h4, th{
   font-family: 'Bungee Inline', cursive;
+}
+
+body {
+  height: 200px;
 }
 
 h1 {
@@ -21,17 +21,26 @@ h1 {
 }
 
 label {
-  margin-right: 2%;
+  margin-right: 40px;
 }
 
 #login_button {
   width: 300px;
-  margin-top: 2%;
 }
 
 #root {
   margin-top: 10%;
 }
+
+#fail {
+  color: red;
+}
+
+#pass {
+  color: green;
+}
+
+
 
 html {
  background: -moz-linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 69%, rgba(5,193,255,1) 87%, rgba(5,193,255,1) 100%); /* ff3.6+ */
@@ -43,9 +52,4 @@ background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 69
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#05C1FF', endColorstr='#FFFFFF',GradientType=0 ); /* ie6-9 */
   background-size: auto;
   background-repeat: no-repeat;
-}
-
-
-.error_msg {
-  color: red;
 }

@@ -10,6 +10,7 @@ const RedisStore = require('connect-redis')(session)
 
 var login = require('./routes/login.js');
 var register = require("./routes/register.js");
+var get_info = require("./routes/get_info.js");
 
 var flash = require("connect-flash");
 var cookieParser = require('cookie-parser')
@@ -20,6 +21,11 @@ var ReactDOM = require('react-dom/server');
 require('babel-core/register');
 require('babel-polyfill');
 
+var cors = require("cors");
+
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+
 var app = express();
 var compiler = webpack(config);
 
@@ -28,6 +34,7 @@ require('./authentication').init(app)
 app.use(cookieParser());
 app.use(flash());
 
+app.use(cors({origin: "https://voting-app-gamma.glitch.me/"}));
 
 app.use(session({  
   store: new RedisStore({
@@ -57,7 +64,9 @@ app.use(bodyParser.urlencoded({
 
 login(app);
 register(app);
-
+get_info.get_polls(app);
+get_info.get_auth(app);
+get_info.get_user(app);
 
 app.use(function(request, response, next){
   
@@ -108,11 +117,9 @@ app.get('/login', function(request, response) {
 app.get('/register', function(request, response) {
   var Register_App = require("./src/Register.js").default;
   var Register_html = require("./src/register_template").default;
-
-  var props = {auth: request.isAuthenticated(), error: request.flash("error")};
   
   var Comp_Fact = React.createFactory(Register_App);
-  const Register_string = ReactDOM.renderToString(Comp_Fact(props));
+  const Register_string = ReactDOM.renderToString(Comp_Fact());
   
   response.send(Register_html({
     body: Register_string,
@@ -121,7 +128,16 @@ app.get('/register', function(request, response) {
 });
 
 app.get('/home', function(request, response) {
-  response.send("Welcome " + request.user);
+  var Home_App = require("./src/Home.js").default;
+  var Home_html = require("./src/home_template").default;
+
+  var Comp_Fact = React.createFactory(Home_App);
+  const Home_string = ReactDOM.renderToString(Comp_Fact());
+  
+  response.send(Home_html({
+    body: Home_string,
+    title: "Home Page"
+  }));
 });
 
 app.listen(3000, function(err) {

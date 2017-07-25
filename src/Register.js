@@ -1,4 +1,5 @@
 import React from 'react';
+var $ = require("jquery");
 
 export default class Register extends React.Component {
   constructor(props){
@@ -54,7 +55,7 @@ export default class Register extends React.Component {
           </div>
           <div className="centre">
           <label><b>Username: </b></label>
-          <input type="text" placeholder="Enter Username" name="user" required />
+          <input type="text" placeholder="Enter Username" name="user" required  pattern="^[a-z0-9_-]{3,15}$"/>
           </div>
           
           <div className="centre">
@@ -66,11 +67,13 @@ export default class Register extends React.Component {
             <button id="login_button" type="submit" className="btn btn-info">Register</button>
           </div>
         </form>
-        <div className="centre" id="email_notice">
-            <p> * Currently email is not used for anything. </p>
+        <div  id="email_notice">
+            <p className="centre"> * Currently email is not used for anything. </p>
+            <p className="centre"> Username must be 3 - 15 characters. Only lowercase alphanumeric, hyphens, and dashes are allowed.</p>
         </div>
         
         <div id="status_msg">
+          <a className="centre" href="/login/">Login</a>
           {
             this.state.status == "Not Sent" ?
             <div /> :
@@ -79,7 +82,6 @@ export default class Register extends React.Component {
               <h4 className="centre"  id="pass">Account Created!</h4>
           }
         </div>
-        <a className="centre" href="/login/">Login</a>
       </div>
     );
   }

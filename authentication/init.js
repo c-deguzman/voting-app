@@ -27,8 +27,6 @@ function findUser(username, callback){
           return callback(err);
         }
         
-        console.log(result);
-        
         return callback(null, result);
       
       });

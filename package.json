@@ -53,6 +53,9 @@
     "passport": "0.3.2",
     "passport-local": "1.0.0",
     "connect-flash": "^0.1.1",
-    "cookie-parser": "^1.4.3"
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
+    "jquery": "*",
+    "jsdom": "*"
   }
 }

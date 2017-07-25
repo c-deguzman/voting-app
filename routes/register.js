@@ -1,9 +1,6 @@
 module.exports = function(app){
   
-  app.post('/register', function(request, response) {
-    console.log("Caught Request");
-    console.log(request.body);
-    
+  app.post('/register', function(request, response) {    
     var forwardedIpsStr = request.header('x-forwarded-for');
      var IP = 'localhost';
 

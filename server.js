@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 var path = require('path');
 var webpack = require('webpack');
 var express = require('express');
@@ -30,6 +32,8 @@ const { JSDOM } = jsdom;
 var app = express();
 var compiler = webpack(config);
 
+
+
 require('./authentication').init(app)
 
 app.use(cookieParser());
@@ -43,6 +47,8 @@ if (process.env.MODE == "DEV"){
   // IN PRODUCTION DISABLE CORS
   app.use(cors({origin: "https://voting-app-gamma.glitch.me/"}));
 }
+
+
 
 app.use(session({  
   store: new RedisStore({
@@ -60,7 +66,8 @@ app.use(passport.session())
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(require('webpack-dev-middleware')(compiler, {
-  publicPath: config.output.publicPath
+  publicPath: config.output.publicPath,
+  noInfo: true
 }));
 
 app.use(require('webpack-hot-middleware')(compiler));
@@ -163,9 +170,6 @@ app.get('/create_poll', function(request, response) {
 });
 
 app.get('/poll', function(request, response) {
-  
-  console.log(request.user);
-  console.log(request.user);
 
   var ChartDisplay_App = require("./src/ChartDisplay.js").default;
   var ChartDisplay_html = require("./src/chartDisplay_template").default;

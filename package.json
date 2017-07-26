@@ -42,21 +42,23 @@
     "webpack-hot-middleware": "^2.10.0"
   },
   "dependencies": {
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "express": "^4.15.3",
-    "mongodb": "^2.2.30",
     "body-parser": "^1.17.2",
-    "connect-redis": "^3.3.0",
-    "express-handlebars": "3.0.0",
-    "express-session": "^1.15.4",
-    "passport": "0.3.2",
-    "passport-local": "1.0.0",
     "connect-flash": "^0.1.1",
+    "connect-redis": "^3.3.0",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.4",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.3",
+    "express-handlebars": "3.0.0",
+    "express-session": "^1.15.4",
     "jquery": "^3.2.1",
     "jsdom": "^11.1.0",
+    "mongodb": "^2.2.30",
+    "nodemon": "^1.11.0",
+    "passport": "0.3.2",
+    "passport-local": "1.0.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
     "react-google-charts": "^1.5.5"
   }
 }

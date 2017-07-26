@@ -15,35 +15,13 @@ export default class ChartDisplay extends React.Component {
   }
   
   componentDidMount(){
-    var id = (window.location.pathname).replace("/poll?id=", "");
-    
+    var id = (window.location.search).replace("?id=", "");
+
     var send_data = {
       id: id
     };
     
-    var request = $.ajax({
-      type: "POST",
-      url: "/poll",
-      contentType: 'application/json',
-      data: JSON.stringify(send_data),
-    });
     
-    request.done((data) => {
-        
-        if (data.result == "error"){
-          this.setState({
-            status: data.result,
-            error: data.error
-          });
-        } else {
-          this.setState({
-            status: data.result,
-            poster: data.poster,
-            chart_data: data.chart_data,
-            title: data.title
-          });
-        }
-      });
     
     var request_user = $.ajax({
         type: "POST",
@@ -61,18 +39,41 @@ export default class ChartDisplay extends React.Component {
           auth_state = true;
         }
         
-        this.setState({
-          user: data_user,
-          auth: auth_state
+        var request = $.ajax({
+          type: "POST",
+          url: "/poll",
+          contentType: 'application/json',
+          data: JSON.stringify(send_data),
         });
+        
+        request.done((data) => {
+            
+            if (data.result == "error"){
+              this.setState({
+                status: data.result,
+                error: data.error,
+                user: data_user,
+                auth: auth_state
+              });
+            } else {
+              this.setState({
+                status: data.result,
+                poster: data.poster,
+                chart_data: data.chart_data,
+                title: data.title,
+                user: data_user,
+                auth: auth_state,
+              });
+            }
+          });
       });
     
   }
   
   render() {
     return (
-      <div className={'my-pretty-chart-container'}>
-      
+      <div>
+      <a href="/home"><button className="btn btn-default">Home</button></a>
       {
         this.state.auth ? 
         <div id="logout_button">
@@ -82,21 +83,28 @@ export default class ChartDisplay extends React.Component {
         <a href="/register"><button className="btn btn-success">Register!</button></a>
         </div>
       }
+
+      <div id="chart">
       
-      {this.state.status == "success" ?
-        <Chart
-          chartType="PieChart"
-          data={this.state.chart_data}
-          options={{}}
-          graph_id="PieChart"
-          width="100%"
-          height="500px"
-          legend_toggle
-        /> :
-      this.state.status == "error" ?
-        <h4 id="error_msg">Poll not found.</h4> :
-      <h4>Loading...</h4>  }
+        {this.state.status == "success" ?
+          //<div className={'my-pretty-chart-container'}>
+            <Chart
+              chartType="PieChart"
+              data={this.state.chart_data}
+              options={{title: this.state.title,
+                        sliceVisibilityThreshold:0}}
+              graph_id="PieChart"
+              width="100%"
+              height="400px"
+              legend_toggle
+            /> 
+          //</div>
+          :
+        this.state.status == "error" ?
+          <h4 id="error_msg">Poll not found.</h4> :
+        <h4>Loading...</h4>  }
       </div>
+    </div>
     );
   }
 }

@@ -20,6 +20,11 @@ module.exports = function(app){
                     voted_list: []
                     };
 
+    if (!request.isAuthenticated()){
+      response.send({"result" : "error",
+                     "error": "You are not signed in."});
+    }
+
     MongoClient.connect(process.env.MONGO_CONNECT, function (err, db){
       if (err){
         throw err;
@@ -50,7 +55,9 @@ module.exports = function(app){
                 throw err;
               }
 
-              response.status(200).send({"result": "success"});
+              response.status(200).send({
+                "result": "success",
+                "redirect": records.ops[0]._id });
             }); 
           }
         });

@@ -55,11 +55,9 @@ module.exports = {
       var MongoClient = require('mongodb').MongoClient;
       
       var poll_id = request.body.id;
-      //var poll_id = request.query.id;
       
       var o_id = new require('mongodb').ObjectID(poll_id);
       
-      console.log(poll_id);
       
       MongoClient.connect(process.env.MONGO_CONNECT, function (err, db){
         if (err){

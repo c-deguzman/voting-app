@@ -11,6 +11,7 @@ class CustomPoll extends React.Component {
     this.removeOption = this.removeOption.bind(this);
     this.optionJSX = this.optionJSX.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleRedirect = this.handleRedirect.bind(this);
     
     this.state = {
       title: "",
@@ -71,6 +72,10 @@ class CustomPoll extends React.Component {
       title: event.target.value
     });
   }
+
+  handleRedirect(id){
+    window.location.assign("/poll?id=" + id);
+  }
   
  handleSubmit(event) {
     
@@ -99,6 +104,8 @@ class CustomPoll extends React.Component {
           this.setState({
             status: data.result
           });
+
+          this.handleRedirect(data.redirect);
         }
       });
   } 

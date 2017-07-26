@@ -34,7 +34,14 @@ require('./authentication').init(app)
 app.use(cookieParser());
 app.use(flash());
 
-app.use(cors({origin: "https://voting-app-gamma.glitch.me/"}));
+if (process.env.MODE == "DEV"){
+  // DEVELOPMENT USE ONLY
+  app.use(cors());
+} else {
+
+  // IN PRODUCTION DISABLE CORS
+  app.use(cors({origin: "https://voting-app-gamma.glitch.me/"}));
+}
 
 app.use(session({  
   store: new RedisStore({
@@ -68,27 +75,26 @@ get_info.get_polls(app);
 get_info.get_auth(app);
 get_info.get_user(app);
 
-app.use(function(request, response, next){
-  
-  if ((request.isAuthenticated() && request.path == "/login/") || 
-      (request.isAuthenticated() && request.path == "/register/")) {
-      response.redirect('/home/');
-    }
-  
-  console.log(request.path);
-  
-  if (request.isAuthenticated() || request.path == "/login/" || request.path == "/register/") {
-      return next()
-    }
-  
-    response.redirect('/login/');
-});
+
+if (!(process.env.MODE == "DEV")){
+  app.use(function(request, response, next){
+
+    if ((request.isAuthenticated() && request.path == "/login/") || 
+        (request.isAuthenticated() && request.path == "/register/")) {
+        response.redirect('/home/');
+      }
+
+    console.log(request.path);
+
+    if (request.isAuthenticated() || request.path == "/login/" || request.path == "/register/") {
+        return next()
+      }
+
+      response.redirect('/login/');
+  });
+}
 
 
-
-app.get('/', function(request, response) {
-  
-});
 
 app.get('/logout', function (request, response){
   request.session.destroy(function (err) {

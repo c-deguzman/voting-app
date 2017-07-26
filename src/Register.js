@@ -48,29 +48,40 @@ export default class Register extends React.Component {
     return (
       <div>
         <h1 className="centre">Register</h1>
-        <form onSubmit={this.handle_submit}>
-          <div className="centre">
-          <label><b>Email Acc:</b></label>
-          <input type="text" placeholder="Enter email (OPTIONAL)" name="email" />
-          </div>
-          <div className="centre">
-          <label><b>Username: </b></label>
-          <input type="text" placeholder="Enter Username" name="user" required  pattern="^[a-z0-9_-]{3,15}$"/>
-          </div>
-          
-          <div className="centre">
-          <label><b>Password: </b></label>
-          <input type="password" placeholder="Enter Password" name="pass" required />
-          </div>
-          
-          <div className="centre">
-            <button id="login_button" type="submit" className="btn btn-info">Register</button>
-          </div>
-        </form>
-        <div  id="email_notice">
-            <p className="centre"> * Currently email is not used for anything. </p>
-            <p className="centre"> Username must be 3 - 15 characters. Only lowercase alphanumeric, hyphens, and dashes are allowed.</p>
+        
+        <div className="centre">
+          <form className="form-horizontal" onSubmit={this.handle_submit}>
+            <div className="form-group">
+              <label className="control-label col-sm-2" for="email">Email*:</label>
+              <div className="col-sm-10">
+                <input type="email" className="form-control" id="email" name="email" placeholder="Enter email (optional)" />
+              </div>
+            </div>
+            <div className="form-group">
+              <label className="control-label col-sm-2" for="user">Username:</label>
+              <div className="col-sm-10">
+                <input type="text" className="form-control" id="user" name="user" placeholder="Enter username"  pattern="^[a-z0-9_-]{3,15}$" required/>
+              </div>
+            </div>
+            <div className="form-group">
+              <label className="control-label col-sm-2" for="pwd">Password:</label>
+              <div className="col-sm-10"> 
+                <input type="password" className="form-control" id="pwd" name="pass" placeholder="Enter password" required />
+              </div>
+            </div>
+
+            <div className="form-group"> 
+              <div className="col-sm-10">
+                <button type="submit" className="btn btn-default">Register</button>
+              </div>
+            </div>
+          </form>
         </div>
+      
+        <div  id="email_notice">
+            <p className="centre"> Username must be 3 - 15 characters. Only lowercase alphanumeric, hyphens, and dashes are allowed.</p>
+            <p className="centre"> * Currently email is not used for anything. </p>  
+      </div>
         
         <div id="status_msg">
           <a className="centre" href="/login/">Login</a>

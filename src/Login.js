@@ -10,12 +10,10 @@ export default class Login extends React.Component {
       
       if (this.props.hasOwnProperty('basic_props')){
         this.state = {
-          auth: this.props.basic_props.auth,
           error: this.props.basic_props.error
         }
       } else if (this.props.hasOwnProperty('auth')){
         this.state = {
-          auth: this.props.auth,
           error: this.props.error
         }
       } 
@@ -38,21 +36,30 @@ export default class Login extends React.Component {
         
         <div>
         <h1 className="centre">Login Portal</h1>
-        <form action="/login" method="post">
-          <div className="centre">
-          <label><b>Username: </b></label>
-          <input type="text" placeholder="Enter Username" name="user" required />
-          </div>
-          
-          <div className="centre">
-          <label><b>Password: </b></label>
-          <input type="password" placeholder="Enter Password" name="pass" required />
-          </div>
-          
-          <div className="centre">
-            <button id="login_button" type="submit" className="btn btn-info">Login</button>
-          </div>
-        </form>
+        
+        <div className="centre">
+          <form className="form-horizontal" action="/login" method="post">
+            <div className="form-group">
+              <label className="control-label col-sm-2" for="user">Username:</label>
+              <div className="col-sm-10">
+                <input type="text" className="form-control" id="user" name="user" placeholder="Enter username" required/>
+              </div>
+            </div>
+            <div className="form-group">
+              <label className="control-label col-sm-2" for="pwd">Password:</label>
+              <div className="col-sm-10"> 
+                <input type="password" className="form-control" id="pwd" name="pass" placeholder="Enter password" required />
+              </div>
+            </div>
+
+            <div className="form-group"> 
+              <div className="col-sm-10">
+                <button type="submit" className="btn btn-default">Login</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        
         <div className="centre">
           { 
             this.error_check() ?

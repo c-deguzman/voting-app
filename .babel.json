@@ -230,7 +230,7 @@
         "module.exports = {\n  init: require('./init'),\n};"
       ]
     },
-    "mtime": 1501038472794
+    "mtime": 1501080502940
   },
   "{\"filename\":\"/app/authentication/init.js\",\"env\":{\"development\":{\"plugins\":[]}},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],{\"loose\":false,\"spec\":false}],[[],null],[[],null],[[],{\"spec\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"async\":false,\"asyncGenerators\":false}]],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"sourceRoot\":\"/app/authentication\",\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false,\"parserOpts\":false,\"generatorOpts\":false}:6.25.0": {
     "metadata": {
@@ -490,7 +490,7 @@
         "const passport = require('passport')  \nconst LocalStrategy = require('passport-local').Strategy\n\nvar MongoClient = require('mongodb').MongoClient;\n\n\nfunction findUser(username, callback){\n\n  MongoClient.connect(process.env.MONGO_CONNECT, function (err, db){\n    if (err){\n      throw err;\n      return callback(err);\n    }\n\n    db.collection(\"accounts\", function (err, collection){\n\n      if (err){\n        throw err;\n        return callback(err);\n      }\n\n      collection.findOne({\"user\": username}, function (err, result){\n\n        db.close();\n\n        if (err) {\n          return callback(err);\n        }\n        \n        return callback(null, result);\n      \n      });\n    });\n  });\n}\n\npassport.serializeUser(function(user, done) {\n  done(null, user.user);\n});\n\npassport.deserializeUser(function(user, done) {\n  done(null, user);\n});\n\n\nfunction initPassport () {\n  passport.use(new LocalStrategy(\n    {usernameField:\"user\", passwordField:\"pass\"},\n    function(username, password, done) {\n      findUser(username, function (err, user) {\n        if (err) {\n          return done(err)\n        }\n        if (!user) {\n          return done(null, false, { message: 'Invalid username' })\n        }\n        if (password !== user.pass ) {\n          return done(null, false, { message: 'Incorrect password' })\n        }\n        return done(null, user)\n      })\n    }\n  ))\n}\n\nmodule.exports = initPassport"
       ]
     },
-    "mtime": 1501038472798
+    "mtime": 1501080502956
   },
   "{\"filename\":\"/app/src/Login.js\",\"env\":{\"development\":{\"plugins\":[]}},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],{\"loose\":false,\"spec\":false}],[[],null],[[],null],[[],{\"spec\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"async\":false,\"asyncGenerators\":false}]],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"sourceRoot\":\"/app/src\",\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false,\"parserOpts\":false,\"generatorOpts\":false}:6.25.0": {
     "metadata": {
@@ -731,7 +731,7 @@
       "basename": "Login"
     },
     "ignored": false,
-    "code": "'use strict';\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = require('react');\n\nvar _react2 = _interopRequireDefault(_react);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar Login = function (_React$Component) {\n  _inherits(Login, _React$Component);\n\n  function Login(props) {\n    _classCallCheck(this, Login);\n\n    var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this, props));\n\n    _this.render = _this.render.bind(_this);\n    _this.error_check = _this.error_check.bind(_this);\n\n    if (_this.props.hasOwnProperty('basic_props')) {\n      _this.state = {\n        auth: _this.props.basic_props.auth,\n        error: _this.props.basic_props.error\n      };\n    } else if (_this.props.hasOwnProperty('auth')) {\n      _this.state = {\n        auth: _this.props.auth,\n        error: _this.props.error\n      };\n    }\n    return _this;\n  }\n\n  _createClass(Login, [{\n    key: 'error_check',\n    value: function error_check() {\n      if (this.state.error.length > 0) {\n        return this.state.error[0];\n      }\n      return false;\n    }\n  }, {\n    key: 'render',\n    value: function render() {\n\n      return _react2.default.createElement(\n        'div',\n        null,\n        _react2.default.createElement(\n          'h1',\n          { className: 'centre' },\n          'Login Portal'\n        ),\n        _react2.default.createElement(\n          'form',\n          { action: '/login', method: 'post' },\n          _react2.default.createElement(\n            'div',\n            { className: 'centre' },\n            _react2.default.createElement(\n              'label',\n              null,\n              _react2.default.createElement(\n                'b',\n                null,\n                'Username: '\n              )\n            ),\n            _react2.default.createElement('input', { type: 'text', placeholder: 'Enter Username', name: 'user', required: true })\n          ),\n          _react2.default.createElement(\n            'div',\n            { className: 'centre' },\n            _react2.default.createElement(\n              'label',\n              null,\n              _react2.default.createElement(\n                'b',\n                null,\n                'Password: '\n              )\n            ),\n            _react2.default.createElement('input', { type: 'password', placeholder: 'Enter Password', name: 'pass', required: true })\n          ),\n          _react2.default.createElement(\n            'div',\n            { className: 'centre' },\n            _react2.default.createElement(\n              'button',\n              { id: 'login_button', type: 'submit', className: 'btn btn-info' },\n              'Login'\n            )\n          )\n        ),\n        _react2.default.createElement(\n          'div',\n          { className: 'centre' },\n          this.error_check() ? _react2.default.createElement(\n            'h4',\n            { className: 'error_msg' },\n            ' ',\n            this.error_check()\n          ) : _react2.default.createElement('div', null)\n        ),\n        _react2.default.createElement(\n          'div',\n          { className: 'centre' },\n          _react2.default.createElement(\n            'a',\n            { href: '/register/' },\n            'Register Now!'\n          )\n        )\n      );\n    }\n  }]);\n\n  return Login;\n}(_react2.default.Component);\n\nexports.default = Login;\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkxvZ2luLmpzIl0sIm5hbWVzIjpbIkxvZ2luIiwicHJvcHMiLCJyZW5kZXIiLCJiaW5kIiwiZXJyb3JfY2hlY2siLCJoYXNPd25Qcm9wZXJ0eSIsInN0YXRlIiwiYXV0aCIsImJhc2ljX3Byb3BzIiwiZXJyb3IiLCJsZW5ndGgiLCJDb21wb25lbnQiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBQUE7Ozs7Ozs7Ozs7OztJQUVxQkEsSzs7O0FBRWpCLGlCQUFZQyxLQUFaLEVBQWtCO0FBQUE7O0FBQUEsOEdBQ1ZBLEtBRFU7O0FBR2hCLFVBQUtDLE1BQUwsR0FBYyxNQUFLQSxNQUFMLENBQVlDLElBQVosT0FBZDtBQUNBLFVBQUtDLFdBQUwsR0FBbUIsTUFBS0EsV0FBTCxDQUFpQkQsSUFBakIsT0FBbkI7O0FBRUEsUUFBSSxNQUFLRixLQUFMLENBQVdJLGNBQVgsQ0FBMEIsYUFBMUIsQ0FBSixFQUE2QztBQUMzQyxZQUFLQyxLQUFMLEdBQWE7QUFDWEMsY0FBTSxNQUFLTixLQUFMLENBQVdPLFdBQVgsQ0FBdUJELElBRGxCO0FBRVhFLGVBQU8sTUFBS1IsS0FBTCxDQUFXTyxXQUFYLENBQXVCQztBQUZuQixPQUFiO0FBSUQsS0FMRCxNQUtPLElBQUksTUFBS1IsS0FBTCxDQUFXSSxjQUFYLENBQTBCLE1BQTFCLENBQUosRUFBc0M7QUFDM0MsWUFBS0MsS0FBTCxHQUFhO0FBQ1hDLGNBQU0sTUFBS04sS0FBTCxDQUFXTSxJQUROO0FBRVhFLGVBQU8sTUFBS1IsS0FBTCxDQUFXUTtBQUZQLE9BQWI7QUFJRDtBQWhCZTtBQWlCakI7Ozs7a0NBR1k7QUFDWCxVQUFJLEtBQUtILEtBQUwsQ0FBV0csS0FBWCxDQUFpQkMsTUFBakIsR0FBMEIsQ0FBOUIsRUFBZ0M7QUFDOUIsZUFBTyxLQUFLSixLQUFMLENBQVdHLEtBQVgsQ0FBaUIsQ0FBakIsQ0FBUDtBQUNEO0FBQ0QsYUFBTyxLQUFQO0FBQ0Q7Ozs2QkFHUTs7QUFJUCxhQUVFO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQSxZQUFJLFdBQVUsUUFBZDtBQUFBO0FBQUEsU0FEQTtBQUVBO0FBQUE7QUFBQSxZQUFNLFFBQU8sUUFBYixFQUFzQixRQUFPLE1BQTdCO0FBQ0U7QUFBQTtBQUFBLGNBQUssV0FBVSxRQUFmO0FBQ0E7QUFBQTtBQUFBO0FBQU87QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFQLGFBREE7QUFFQSxxREFBTyxNQUFLLE1BQVosRUFBbUIsYUFBWSxnQkFBL0IsRUFBZ0QsTUFBSyxNQUFyRCxFQUE0RCxjQUE1RDtBQUZBLFdBREY7QUFNRTtBQUFBO0FBQUEsY0FBSyxXQUFVLFFBQWY7QUFDQTtBQUFBO0FBQUE7QUFBTztBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQVAsYUFEQTtBQUVBLHFEQUFPLE1BQUssVUFBWixFQUF1QixhQUFZLGdCQUFuQyxFQUFvRCxNQUFLLE1BQXpELEVBQWdFLGNBQWhFO0FBRkEsV0FORjtBQVdFO0FBQUE7QUFBQSxjQUFLLFdBQVUsUUFBZjtBQUNFO0FBQUE7QUFBQSxnQkFBUSxJQUFHLGNBQVgsRUFBMEIsTUFBSyxRQUEvQixFQUF3QyxXQUFVLGNBQWxEO0FBQUE7QUFBQTtBQURGO0FBWEYsU0FGQTtBQWlCQTtBQUFBO0FBQUEsWUFBSyxXQUFVLFFBQWY7QUFFSSxlQUFLTCxXQUFMLEtBQ0E7QUFBQTtBQUFBLGNBQUksV0FBVSxXQUFkO0FBQUE7QUFBNEIsaUJBQUtBLFdBQUw7QUFBNUIsV0FEQSxHQUVBO0FBSkosU0FqQkE7QUF3QkE7QUFBQTtBQUFBLFlBQUssV0FBVSxRQUFmO0FBQ0U7QUFBQTtBQUFBLGNBQUcsTUFBSyxZQUFSO0FBQUE7QUFBQTtBQURGO0FBeEJBLE9BRkY7QUErQkg7Ozs7RUFqRWdDLGdCQUFNTyxTOztrQkFBcEJYLEsiLCJmaWxlIjoiTG9naW4uanMiLCJzb3VyY2VSb290IjoiL2FwcC9zcmMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnO1xuXG5leHBvcnQgZGVmYXVsdCBjbGFzcyBMb2dpbiBleHRlbmRzIFJlYWN0LkNvbXBvbmVudCB7XG5cbiAgICBjb25zdHJ1Y3Rvcihwcm9wcyl7XG4gICAgICBzdXBlcihwcm9wcyk7XG5cbiAgICAgIHRoaXMucmVuZGVyID0gdGhpcy5yZW5kZXIuYmluZCh0aGlzKTtcbiAgICAgIHRoaXMuZXJyb3JfY2hlY2sgPSB0aGlzLmVycm9yX2NoZWNrLmJpbmQodGhpcyk7XG4gICAgICBcbiAgICAgIGlmICh0aGlzLnByb3BzLmhhc093blByb3BlcnR5KCdiYXNpY19wcm9wcycpKXtcbiAgICAgICAgdGhpcy5zdGF0ZSA9IHtcbiAgICAgICAgICBhdXRoOiB0aGlzLnByb3BzLmJhc2ljX3Byb3BzLmF1dGgsXG4gICAgICAgICAgZXJyb3I6IHRoaXMucHJvcHMuYmFzaWNfcHJvcHMuZXJyb3JcbiAgICAgICAgfVxuICAgICAgfSBlbHNlIGlmICh0aGlzLnByb3BzLmhhc093blByb3BlcnR5KCdhdXRoJykpe1xuICAgICAgICB0aGlzLnN0YXRlID0ge1xuICAgICAgICAgIGF1dGg6IHRoaXMucHJvcHMuYXV0aCxcbiAgICAgICAgICBlcnJvcjogdGhpcy5wcm9wcy5lcnJvclxuICAgICAgICB9XG4gICAgICB9IFxuICAgIH1cbiAgXG4gICAgXG4gICAgZXJyb3JfY2hlY2soKXtcbiAgICAgIGlmICh0aGlzLnN0YXRlLmVycm9yLmxlbmd0aCA+IDApe1xuICAgICAgICByZXR1cm4gdGhpcy5zdGF0ZS5lcnJvclswXTtcbiAgICAgIH1cbiAgICAgIHJldHVybiBmYWxzZTtcbiAgICB9XG5cblxuICAgIHJlbmRlcigpIHtcbiAgICAgIFxuXG5cbiAgICAgIHJldHVybiAoXG4gICAgICAgIFxuICAgICAgICA8ZGl2PlxuICAgICAgICA8aDEgY2xhc3NOYW1lPVwiY2VudHJlXCI+TG9naW4gUG9ydGFsPC9oMT5cbiAgICAgICAgPGZvcm0gYWN0aW9uPVwiL2xvZ2luXCIgbWV0aG9kPVwicG9zdFwiPlxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiY2VudHJlXCI+XG4gICAgICAgICAgPGxhYmVsPjxiPlVzZXJuYW1lOiA8L2I+PC9sYWJlbD5cbiAgICAgICAgICA8aW5wdXQgdHlwZT1cInRleHRcIiBwbGFjZWhvbGRlcj1cIkVudGVyIFVzZXJuYW1lXCIgbmFtZT1cInVzZXJcIiByZXF1aXJlZCAvPlxuICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgIFxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiY2VudHJlXCI+XG4gICAgICAgICAgPGxhYmVsPjxiPlBhc3N3b3JkOiA8L2I+PC9sYWJlbD5cbiAgICAgICAgICA8aW5wdXQgdHlwZT1cInBhc3N3b3JkXCIgcGxhY2Vob2xkZXI9XCJFbnRlciBQYXNzd29yZFwiIG5hbWU9XCJwYXNzXCIgcmVxdWlyZWQgLz5cbiAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgICBcbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImNlbnRyZVwiPlxuICAgICAgICAgICAgPGJ1dHRvbiBpZD1cImxvZ2luX2J1dHRvblwiIHR5cGU9XCJzdWJtaXRcIiBjbGFzc05hbWU9XCJidG4gYnRuLWluZm9cIj5Mb2dpbjwvYnV0dG9uPlxuICAgICAgICAgIDwvZGl2PlxuICAgICAgICA8L2Zvcm0+XG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiY2VudHJlXCI+XG4gICAgICAgICAgeyBcbiAgICAgICAgICAgIHRoaXMuZXJyb3JfY2hlY2soKSA/XG4gICAgICAgICAgICA8aDQgY2xhc3NOYW1lPVwiZXJyb3JfbXNnXCI+IHt0aGlzLmVycm9yX2NoZWNrKCl9PC9oND4gOlxuICAgICAgICAgICAgPGRpdj48L2Rpdj5cbiAgICAgICAgICB9XG4gICAgICAgIDwvZGl2PlxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImNlbnRyZVwiPlxuICAgICAgICAgIDxhIGhyZWY9XCIvcmVnaXN0ZXIvXCI+UmVnaXN0ZXIgTm93ITwvYT5cbiAgICAgICAgPC9kaXY+XG4gICAgICA8L2Rpdj5cbiAgICApO1xuICB9XG59XG5cbiJdfQ==",
+    "code": "'use strict';\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = require('react');\n\nvar _react2 = _interopRequireDefault(_react);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar Login = function (_React$Component) {\n  _inherits(Login, _React$Component);\n\n  function Login(props) {\n    _classCallCheck(this, Login);\n\n    var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this, props));\n\n    _this.render = _this.render.bind(_this);\n    _this.error_check = _this.error_check.bind(_this);\n\n    if (_this.props.hasOwnProperty('basic_props')) {\n      _this.state = {\n        error: _this.props.basic_props.error\n      };\n    } else if (_this.props.hasOwnProperty('auth')) {\n      _this.state = {\n        error: _this.props.error\n      };\n    }\n    return _this;\n  }\n\n  _createClass(Login, [{\n    key: 'error_check',\n    value: function error_check() {\n      if (this.state.error.length > 0) {\n        return this.state.error[0];\n      }\n      return false;\n    }\n  }, {\n    key: 'render',\n    value: function render() {\n\n      return _react2.default.createElement(\n        'div',\n        null,\n        _react2.default.createElement(\n          'h1',\n          { className: 'centre' },\n          'Login Portal'\n        ),\n        _react2.default.createElement(\n          'div',\n          { className: 'centre' },\n          _react2.default.createElement(\n            'form',\n            { className: 'form-horizontal', action: '/login', method: 'post' },\n            _react2.default.createElement(\n              'div',\n              { className: 'form-group' },\n              _react2.default.createElement(\n                'label',\n                { className: 'control-label col-sm-2', htmlFor: 'user' },\n                'Username:'\n              ),\n              _react2.default.createElement(\n                'div',\n                { className: 'col-sm-12' },\n                _react2.default.createElement('input', { type: 'text', className: 'form-control', id: 'user', name: 'user', placeholder: 'Enter username', required: true })\n              )\n            ),\n            _react2.default.createElement(\n              'div',\n              { className: 'form-group' },\n              _react2.default.createElement(\n                'label',\n                { className: 'control-label col-sm-2', htmlFor: 'pwd' },\n                'Password:'\n              ),\n              _react2.default.createElement(\n                'div',\n                { className: 'col-sm-12' },\n                _react2.default.createElement('input', { type: 'password', className: 'form-control', id: 'pwd', name: 'pass', placeholder: 'Enter password', required: true })\n              )\n            ),\n            _react2.default.createElement(\n              'div',\n              { className: 'form-group' },\n              _react2.default.createElement(\n                'div',\n                { className: 'col-sm-12' },\n                _react2.default.createElement(\n                  'button',\n                  { type: 'submit', className: 'btn btn-default' },\n                  'Login'\n                )\n              )\n            )\n          )\n        ),\n        _react2.default.createElement(\n          'div',\n          { className: 'centre' },\n          this.error_check() ? _react2.default.createElement(\n            'h4',\n            { className: 'error_msg' },\n            ' ',\n            this.error_check()\n          ) : _react2.default.createElement('div', null)\n        ),\n        _react2.default.createElement(\n          'div',\n          { className: 'centre' },\n          _react2.default.createElement(\n            'a',\n            { href: '/register/' },\n            'Register Now!'\n          )\n        )\n      );\n    }\n  }]);\n\n  return Login;\n}(_react2.default.Component);\n\nexports.default = Login;\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkxvZ2luLmpzIl0sIm5hbWVzIjpbIkxvZ2luIiwicHJvcHMiLCJyZW5kZXIiLCJiaW5kIiwiZXJyb3JfY2hlY2siLCJoYXNPd25Qcm9wZXJ0eSIsInN0YXRlIiwiZXJyb3IiLCJiYXNpY19wcm9wcyIsImxlbmd0aCIsIkNvbXBvbmVudCJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7QUFBQTs7Ozs7Ozs7Ozs7O0lBRXFCQSxLOzs7QUFFakIsaUJBQVlDLEtBQVosRUFBa0I7QUFBQTs7QUFBQSw4R0FDVkEsS0FEVTs7QUFHaEIsVUFBS0MsTUFBTCxHQUFjLE1BQUtBLE1BQUwsQ0FBWUMsSUFBWixPQUFkO0FBQ0EsVUFBS0MsV0FBTCxHQUFtQixNQUFLQSxXQUFMLENBQWlCRCxJQUFqQixPQUFuQjs7QUFFQSxRQUFJLE1BQUtGLEtBQUwsQ0FBV0ksY0FBWCxDQUEwQixhQUExQixDQUFKLEVBQTZDO0FBQzNDLFlBQUtDLEtBQUwsR0FBYTtBQUNYQyxlQUFPLE1BQUtOLEtBQUwsQ0FBV08sV0FBWCxDQUF1QkQ7QUFEbkIsT0FBYjtBQUdELEtBSkQsTUFJTyxJQUFJLE1BQUtOLEtBQUwsQ0FBV0ksY0FBWCxDQUEwQixNQUExQixDQUFKLEVBQXNDO0FBQzNDLFlBQUtDLEtBQUwsR0FBYTtBQUNYQyxlQUFPLE1BQUtOLEtBQUwsQ0FBV007QUFEUCxPQUFiO0FBR0Q7QUFkZTtBQWVqQjs7OztrQ0FHWTtBQUNYLFVBQUksS0FBS0QsS0FBTCxDQUFXQyxLQUFYLENBQWlCRSxNQUFqQixHQUEwQixDQUE5QixFQUFnQztBQUM5QixlQUFPLEtBQUtILEtBQUwsQ0FBV0MsS0FBWCxDQUFpQixDQUFqQixDQUFQO0FBQ0Q7QUFDRCxhQUFPLEtBQVA7QUFDRDs7OzZCQUdROztBQUlQLGFBRUU7QUFBQTtBQUFBO0FBQ0E7QUFBQTtBQUFBLFlBQUksV0FBVSxRQUFkO0FBQUE7QUFBQSxTQURBO0FBR0E7QUFBQTtBQUFBLFlBQUssV0FBVSxRQUFmO0FBQ0U7QUFBQTtBQUFBLGNBQU0sV0FBVSxpQkFBaEIsRUFBa0MsUUFBTyxRQUF6QyxFQUFrRCxRQUFPLE1BQXpEO0FBQ0U7QUFBQTtBQUFBLGdCQUFLLFdBQVUsWUFBZjtBQUNFO0FBQUE7QUFBQSxrQkFBTyxXQUFVLHdCQUFqQixFQUEwQyxTQUFRLE1BQWxEO0FBQUE7QUFBQSxlQURGO0FBRUU7QUFBQTtBQUFBLGtCQUFLLFdBQVUsV0FBZjtBQUNFLHlEQUFPLE1BQUssTUFBWixFQUFtQixXQUFVLGNBQTdCLEVBQTRDLElBQUcsTUFBL0MsRUFBc0QsTUFBSyxNQUEzRCxFQUFrRSxhQUFZLGdCQUE5RSxFQUErRixjQUEvRjtBQURGO0FBRkYsYUFERjtBQU9FO0FBQUE7QUFBQSxnQkFBSyxXQUFVLFlBQWY7QUFDRTtBQUFBO0FBQUEsa0JBQU8sV0FBVSx3QkFBakIsRUFBMEMsU0FBUSxLQUFsRDtBQUFBO0FBQUEsZUFERjtBQUVFO0FBQUE7QUFBQSxrQkFBSyxXQUFVLFdBQWY7QUFDRSx5REFBTyxNQUFLLFVBQVosRUFBdUIsV0FBVSxjQUFqQyxFQUFnRCxJQUFHLEtBQW5ELEVBQXlELE1BQUssTUFBOUQsRUFBcUUsYUFBWSxnQkFBakYsRUFBa0csY0FBbEc7QUFERjtBQUZGLGFBUEY7QUFjRTtBQUFBO0FBQUEsZ0JBQUssV0FBVSxZQUFmO0FBQ0U7QUFBQTtBQUFBLGtCQUFLLFdBQVUsV0FBZjtBQUNFO0FBQUE7QUFBQSxvQkFBUSxNQUFLLFFBQWIsRUFBc0IsV0FBVSxpQkFBaEM7QUFBQTtBQUFBO0FBREY7QUFERjtBQWRGO0FBREYsU0FIQTtBQTBCQTtBQUFBO0FBQUEsWUFBSyxXQUFVLFFBQWY7QUFFSSxlQUFLSCxXQUFMLEtBQ0E7QUFBQTtBQUFBLGNBQUksV0FBVSxXQUFkO0FBQUE7QUFBNEIsaUJBQUtBLFdBQUw7QUFBNUIsV0FEQSxHQUVBO0FBSkosU0ExQkE7QUFpQ0E7QUFBQTtBQUFBLFlBQUssV0FBVSxRQUFmO0FBQ0U7QUFBQTtBQUFBLGNBQUcsTUFBSyxZQUFSO0FBQUE7QUFBQTtBQURGO0FBakNBLE9BRkY7QUF3Q0g7Ozs7RUF4RWdDLGdCQUFNTSxTOztrQkFBcEJWLEsiLCJmaWxlIjoiTG9naW4uanMiLCJzb3VyY2VSb290IjoiL2FwcC9zcmMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnO1xuXG5leHBvcnQgZGVmYXVsdCBjbGFzcyBMb2dpbiBleHRlbmRzIFJlYWN0LkNvbXBvbmVudCB7XG5cbiAgICBjb25zdHJ1Y3Rvcihwcm9wcyl7XG4gICAgICBzdXBlcihwcm9wcyk7XG5cbiAgICAgIHRoaXMucmVuZGVyID0gdGhpcy5yZW5kZXIuYmluZCh0aGlzKTtcbiAgICAgIHRoaXMuZXJyb3JfY2hlY2sgPSB0aGlzLmVycm9yX2NoZWNrLmJpbmQodGhpcyk7XG4gICAgICBcbiAgICAgIGlmICh0aGlzLnByb3BzLmhhc093blByb3BlcnR5KCdiYXNpY19wcm9wcycpKXtcbiAgICAgICAgdGhpcy5zdGF0ZSA9IHtcbiAgICAgICAgICBlcnJvcjogdGhpcy5wcm9wcy5iYXNpY19wcm9wcy5lcnJvclxuICAgICAgICB9XG4gICAgICB9IGVsc2UgaWYgKHRoaXMucHJvcHMuaGFzT3duUHJvcGVydHkoJ2F1dGgnKSl7XG4gICAgICAgIHRoaXMuc3RhdGUgPSB7XG4gICAgICAgICAgZXJyb3I6IHRoaXMucHJvcHMuZXJyb3JcbiAgICAgICAgfVxuICAgICAgfSBcbiAgICB9XG4gIFxuICAgIFxuICAgIGVycm9yX2NoZWNrKCl7XG4gICAgICBpZiAodGhpcy5zdGF0ZS5lcnJvci5sZW5ndGggPiAwKXtcbiAgICAgICAgcmV0dXJuIHRoaXMuc3RhdGUuZXJyb3JbMF07XG4gICAgICB9XG4gICAgICByZXR1cm4gZmFsc2U7XG4gICAgfVxuXG5cbiAgICByZW5kZXIoKSB7XG4gICAgICBcblxuXG4gICAgICByZXR1cm4gKFxuICAgICAgICBcbiAgICAgICAgPGRpdj5cbiAgICAgICAgPGgxIGNsYXNzTmFtZT1cImNlbnRyZVwiPkxvZ2luIFBvcnRhbDwvaDE+XG4gICAgICAgIFxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImNlbnRyZVwiPlxuICAgICAgICAgIDxmb3JtIGNsYXNzTmFtZT1cImZvcm0taG9yaXpvbnRhbFwiIGFjdGlvbj1cIi9sb2dpblwiIG1ldGhvZD1cInBvc3RcIj5cbiAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZm9ybS1ncm91cFwiPlxuICAgICAgICAgICAgICA8bGFiZWwgY2xhc3NOYW1lPVwiY29udHJvbC1sYWJlbCBjb2wtc20tMlwiIGh0bWxGb3I9XCJ1c2VyXCI+VXNlcm5hbWU6PC9sYWJlbD5cbiAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJjb2wtc20tMTJcIj5cbiAgICAgICAgICAgICAgICA8aW5wdXQgdHlwZT1cInRleHRcIiBjbGFzc05hbWU9XCJmb3JtLWNvbnRyb2xcIiBpZD1cInVzZXJcIiBuYW1lPVwidXNlclwiIHBsYWNlaG9sZGVyPVwiRW50ZXIgdXNlcm5hbWVcIiByZXF1aXJlZC8+XG4gICAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImZvcm0tZ3JvdXBcIj5cbiAgICAgICAgICAgICAgPGxhYmVsIGNsYXNzTmFtZT1cImNvbnRyb2wtbGFiZWwgY29sLXNtLTJcIiBodG1sRm9yPVwicHdkXCI+UGFzc3dvcmQ6PC9sYWJlbD5cbiAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJjb2wtc20tMTJcIj4gXG4gICAgICAgICAgICAgICAgPGlucHV0IHR5cGU9XCJwYXNzd29yZFwiIGNsYXNzTmFtZT1cImZvcm0tY29udHJvbFwiIGlkPVwicHdkXCIgbmFtZT1cInBhc3NcIiBwbGFjZWhvbGRlcj1cIkVudGVyIHBhc3N3b3JkXCIgcmVxdWlyZWQgLz5cbiAgICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgICA8L2Rpdj5cblxuICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJmb3JtLWdyb3VwXCI+IFxuICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImNvbC1zbS0xMlwiPlxuICAgICAgICAgICAgICAgIDxidXR0b24gdHlwZT1cInN1Ym1pdFwiIGNsYXNzTmFtZT1cImJ0biBidG4tZGVmYXVsdFwiPkxvZ2luPC9idXR0b24+XG4gICAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgPC9mb3JtPlxuICAgICAgICA8L2Rpdj5cbiAgICAgICAgXG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiY2VudHJlXCI+XG4gICAgICAgICAgeyBcbiAgICAgICAgICAgIHRoaXMuZXJyb3JfY2hlY2soKSA/XG4gICAgICAgICAgICA8aDQgY2xhc3NOYW1lPVwiZXJyb3JfbXNnXCI+IHt0aGlzLmVycm9yX2NoZWNrKCl9PC9oND4gOlxuICAgICAgICAgICAgPGRpdj48L2Rpdj5cbiAgICAgICAgICB9XG4gICAgICAgIDwvZGl2PlxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImNlbnRyZVwiPlxuICAgICAgICAgIDxhIGhyZWY9XCIvcmVnaXN0ZXIvXCI+UmVnaXN0ZXIgTm93ITwvYT5cbiAgICAgICAgPC9kaXY+XG4gICAgICA8L2Rpdj5cbiAgICApO1xuICB9XG59XG5cbiJdfQ==",
     "ast": null,
     "map": {
       "version": 3,
@@ -746,20 +746,19 @@
         "error_check",
         "hasOwnProperty",
         "state",
-        "auth",
-        "basic_props",
         "error",
+        "basic_props",
         "length",
         "Component"
       ],
-      "mappings": ";;;;;;;;AAAA;;;;;;;;;;;;IAEqBA,K;;;AAEjB,iBAAYC,KAAZ,EAAkB;AAAA;;AAAA,8GACVA,KADU;;AAGhB,UAAKC,MAAL,GAAc,MAAKA,MAAL,CAAYC,IAAZ,OAAd;AACA,UAAKC,WAAL,GAAmB,MAAKA,WAAL,CAAiBD,IAAjB,OAAnB;;AAEA,QAAI,MAAKF,KAAL,CAAWI,cAAX,CAA0B,aAA1B,CAAJ,EAA6C;AAC3C,YAAKC,KAAL,GAAa;AACXC,cAAM,MAAKN,KAAL,CAAWO,WAAX,CAAuBD,IADlB;AAEXE,eAAO,MAAKR,KAAL,CAAWO,WAAX,CAAuBC;AAFnB,OAAb;AAID,KALD,MAKO,IAAI,MAAKR,KAAL,CAAWI,cAAX,CAA0B,MAA1B,CAAJ,EAAsC;AAC3C,YAAKC,KAAL,GAAa;AACXC,cAAM,MAAKN,KAAL,CAAWM,IADN;AAEXE,eAAO,MAAKR,KAAL,CAAWQ;AAFP,OAAb;AAID;AAhBe;AAiBjB;;;;kCAGY;AACX,UAAI,KAAKH,KAAL,CAAWG,KAAX,CAAiBC,MAAjB,GAA0B,CAA9B,EAAgC;AAC9B,eAAO,KAAKJ,KAAL,CAAWG,KAAX,CAAiB,CAAjB,CAAP;AACD;AACD,aAAO,KAAP;AACD;;;6BAGQ;;AAIP,aAEE;AAAA;AAAA;AACA;AAAA;AAAA,YAAI,WAAU,QAAd;AAAA;AAAA,SADA;AAEA;AAAA;AAAA,YAAM,QAAO,QAAb,EAAsB,QAAO,MAA7B;AACE;AAAA;AAAA,cAAK,WAAU,QAAf;AACA;AAAA;AAAA;AAAO;AAAA;AAAA;AAAA;AAAA;AAAP,aADA;AAEA,qDAAO,MAAK,MAAZ,EAAmB,aAAY,gBAA/B,EAAgD,MAAK,MAArD,EAA4D,cAA5D;AAFA,WADF;AAME;AAAA;AAAA,cAAK,WAAU,QAAf;AACA;AAAA;AAAA;AAAO;AAAA;AAAA;AAAA;AAAA;AAAP,aADA;AAEA,qDAAO,MAAK,UAAZ,EAAuB,aAAY,gBAAnC,EAAoD,MAAK,MAAzD,EAAgE,cAAhE;AAFA,WANF;AAWE;AAAA;AAAA,cAAK,WAAU,QAAf;AACE;AAAA;AAAA,gBAAQ,IAAG,cAAX,EAA0B,MAAK,QAA/B,EAAwC,WAAU,cAAlD;AAAA;AAAA;AADF;AAXF,SAFA;AAiBA;AAAA;AAAA,YAAK,WAAU,QAAf;AAEI,eAAKL,WAAL,KACA;AAAA;AAAA,cAAI,WAAU,WAAd;AAAA;AAA4B,iBAAKA,WAAL;AAA5B,WADA,GAEA;AAJJ,SAjBA;AAwBA;AAAA;AAAA,YAAK,WAAU,QAAf;AACE;AAAA;AAAA,cAAG,MAAK,YAAR;AAAA;AAAA;AADF;AAxBA,OAFF;AA+BH;;;;EAjEgC,gBAAMO,S;;kBAApBX,K",
+      "mappings": ";;;;;;;;AAAA;;;;;;;;;;;;IAEqBA,K;;;AAEjB,iBAAYC,KAAZ,EAAkB;AAAA;;AAAA,8GACVA,KADU;;AAGhB,UAAKC,MAAL,GAAc,MAAKA,MAAL,CAAYC,IAAZ,OAAd;AACA,UAAKC,WAAL,GAAmB,MAAKA,WAAL,CAAiBD,IAAjB,OAAnB;;AAEA,QAAI,MAAKF,KAAL,CAAWI,cAAX,CAA0B,aAA1B,CAAJ,EAA6C;AAC3C,YAAKC,KAAL,GAAa;AACXC,eAAO,MAAKN,KAAL,CAAWO,WAAX,CAAuBD;AADnB,OAAb;AAGD,KAJD,MAIO,IAAI,MAAKN,KAAL,CAAWI,cAAX,CAA0B,MAA1B,CAAJ,EAAsC;AAC3C,YAAKC,KAAL,GAAa;AACXC,eAAO,MAAKN,KAAL,CAAWM;AADP,OAAb;AAGD;AAde;AAejB;;;;kCAGY;AACX,UAAI,KAAKD,KAAL,CAAWC,KAAX,CAAiBE,MAAjB,GAA0B,CAA9B,EAAgC;AAC9B,eAAO,KAAKH,KAAL,CAAWC,KAAX,CAAiB,CAAjB,CAAP;AACD;AACD,aAAO,KAAP;AACD;;;6BAGQ;;AAIP,aAEE;AAAA;AAAA;AACA;AAAA;AAAA,YAAI,WAAU,QAAd;AAAA;AAAA,SADA;AAGA;AAAA;AAAA,YAAK,WAAU,QAAf;AACE;AAAA;AAAA,cAAM,WAAU,iBAAhB,EAAkC,QAAO,QAAzC,EAAkD,QAAO,MAAzD;AACE;AAAA;AAAA,gBAAK,WAAU,YAAf;AACE;AAAA;AAAA,kBAAO,WAAU,wBAAjB,EAA0C,SAAQ,MAAlD;AAAA;AAAA,eADF;AAEE;AAAA;AAAA,kBAAK,WAAU,WAAf;AACE,yDAAO,MAAK,MAAZ,EAAmB,WAAU,cAA7B,EAA4C,IAAG,MAA/C,EAAsD,MAAK,MAA3D,EAAkE,aAAY,gBAA9E,EAA+F,cAA/F;AADF;AAFF,aADF;AAOE;AAAA;AAAA,gBAAK,WAAU,YAAf;AACE;AAAA;AAAA,kBAAO,WAAU,wBAAjB,EAA0C,SAAQ,KAAlD;AAAA;AAAA,eADF;AAEE;AAAA;AAAA,kBAAK,WAAU,WAAf;AACE,yDAAO,MAAK,UAAZ,EAAuB,WAAU,cAAjC,EAAgD,IAAG,KAAnD,EAAyD,MAAK,MAA9D,EAAqE,aAAY,gBAAjF,EAAkG,cAAlG;AADF;AAFF,aAPF;AAcE;AAAA;AAAA,gBAAK,WAAU,YAAf;AACE;AAAA;AAAA,kBAAK,WAAU,WAAf;AACE;AAAA;AAAA,oBAAQ,MAAK,QAAb,EAAsB,WAAU,iBAAhC;AAAA;AAAA;AADF;AADF;AAdF;AADF,SAHA;AA0BA;AAAA;AAAA,YAAK,WAAU,QAAf;AAEI,eAAKH,WAAL,KACA;AAAA;AAAA,cAAI,WAAU,WAAd;AAAA;AAA4B,iBAAKA,WAAL;AAA5B,WADA,GAEA;AAJJ,SA1BA;AAiCA;AAAA;AAAA,YAAK,WAAU,QAAf;AACE;AAAA;AAAA,cAAG,MAAK,YAAR;AAAA;AAAA;AADF;AAjCA,OAFF;AAwCH;;;;EAxEgC,gBAAMM,S;;kBAApBV,K",
       "file": "Login.js",
       "sourceRoot": "/app/src",
       "sourcesContent": [
-        "import React from 'react';\n\nexport default class Login extends React.Component {\n\n    constructor(props){\n      super(props);\n\n      this.render = this.render.bind(this);\n      this.error_check = this.error_check.bind(this);\n      \n      if (this.props.hasOwnProperty('basic_props')){\n        this.state = {\n          auth: this.props.basic_props.auth,\n          error: this.props.basic_props.error\n        }\n      } else if (this.props.hasOwnProperty('auth')){\n        this.state = {\n          auth: this.props.auth,\n          error: this.props.error\n        }\n      } \n    }\n  \n    \n    error_check(){\n      if (this.state.error.length > 0){\n        return this.state.error[0];\n      }\n      return false;\n    }\n\n\n    render() {\n      \n\n\n      return (\n        \n        <div>\n        <h1 className=\"centre\">Login Portal</h1>\n        <form action=\"/login\" method=\"post\">\n          <div className=\"centre\">\n          <label><b>Username: </b></label>\n          <input type=\"text\" placeholder=\"Enter Username\" name=\"user\" required />\n          </div>\n          \n          <div className=\"centre\">\n          <label><b>Password: </b></label>\n          <input type=\"password\" placeholder=\"Enter Password\" name=\"pass\" required />\n          </div>\n          \n          <div className=\"centre\">\n            <button id=\"login_button\" type=\"submit\" className=\"btn btn-info\">Login</button>\n          </div>\n        </form>\n        <div className=\"centre\">\n          { \n            this.error_check() ?\n            <h4 className=\"error_msg\"> {this.error_check()}</h4> :\n            <div></div>\n          }\n        </div>\n        <div className=\"centre\">\n          <a href=\"/register/\">Register Now!</a>\n        </div>\n      </div>\n    );\n  }\n}\n\n"
+        "import React from 'react';\n\nexport default class Login extends React.Component {\n\n    constructor(props){\n      super(props);\n\n      this.render = this.render.bind(this);\n      this.error_check = this.error_check.bind(this);\n      \n      if (this.props.hasOwnProperty('basic_props')){\n        this.state = {\n          error: this.props.basic_props.error\n        }\n      } else if (this.props.hasOwnProperty('auth')){\n        this.state = {\n          error: this.props.error\n        }\n      } \n    }\n  \n    \n    error_check(){\n      if (this.state.error.length > 0){\n        return this.state.error[0];\n      }\n      return false;\n    }\n\n\n    render() {\n      \n\n\n      return (\n        \n        <div>\n        <h1 className=\"centre\">Login Portal</h1>\n        \n        <div className=\"centre\">\n          <form className=\"form-horizontal\" action=\"/login\" method=\"post\">\n            <div className=\"form-group\">\n              <label className=\"control-label col-sm-2\" htmlFor=\"user\">Username:</label>\n              <div className=\"col-sm-12\">\n                <input type=\"text\" className=\"form-control\" id=\"user\" name=\"user\" placeholder=\"Enter username\" required/>\n              </div>\n            </div>\n            <div className=\"form-group\">\n              <label className=\"control-label col-sm-2\" htmlFor=\"pwd\">Password:</label>\n              <div className=\"col-sm-12\"> \n                <input type=\"password\" className=\"form-control\" id=\"pwd\" name=\"pass\" placeholder=\"Enter password\" required />\n              </div>\n            </div>\n\n            <div className=\"form-group\"> \n              <div className=\"col-sm-12\">\n                <button type=\"submit\" className=\"btn btn-default\">Login</button>\n              </div>\n            </div>\n          </form>\n        </div>\n        \n        <div className=\"centre\">\n          { \n            this.error_check() ?\n            <h4 className=\"error_msg\"> {this.error_check()}</h4> :\n            <div></div>\n          }\n        </div>\n        <div className=\"centre\">\n          <a href=\"/register/\">Register Now!</a>\n        </div>\n      </div>\n    );\n  }\n}\n\n"
       ]
     },
-    "mtime": 1500917321931
+    "mtime": 1501046135479
   },
   "{\"filename\":\"/app/src/login_template.js\",\"env\":{\"development\":{\"plugins\":[]}},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],{\"loose\":false,\"spec\":false}],[[],null],[[],null],[[],{\"spec\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"async\":false,\"asyncGenerators\":false}]],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"sourceRoot\":\"/app/src\",\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false,\"parserOpts\":false,\"generatorOpts\":false}:6.25.0": {
     "metadata": {
@@ -991,7 +990,7 @@
         "\nexport default ({ body, title, props}) => {\n  return `\n    <!doctype html>\n    <html>\n      <head>\n        <title>${title}</title>\n        <meta name=\"description\" content=\"Web-based voting application.\">\n        <link id=\"favicon\" rel=\"icon\" href=\"https://cdn.glitch.com/f0a70106-eee3-44ca-abf0-7ae97fb8b0a6%2Ffavicon.ico?1500669329975\" type=\"image/x-icon\">\n        <meta charset=\"utf-8\">\n        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n\n        <link rel=\"stylesheet prefetch\" href=\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css\">\n\n        <link rel=\"stylesheet\" href=\"/css/login_style.css\">\n        <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js\"></script>\n\n      </head>\n      <body>\n        <script type=\"text/javascript\">var app_prop = ${props};</script>\n        <div id=\"root\">${body}</div>\n        <script src=\"/static/login.bundle.js\"></script>\n      </body>\n    </html>\n  `;\n};"
       ]
     },
-    "mtime": 1500917321947
+    "mtime": 1501038473002
   },
   "{\"filename\":\"/app/src/Register.js\",\"env\":{\"development\":{\"plugins\":[]}},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],{\"loose\":false,\"spec\":false}],[[],null],[[],null],[[],{\"spec\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"async\":false,\"asyncGenerators\":false}]],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"sourceRoot\":\"/app/src\",\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false,\"parserOpts\":false,\"generatorOpts\":false}:6.25.0": {
     "metadata": {
@@ -1509,5 +1508,540 @@
       ]
     },
     "mtime": 1500859614404
+  },
+  "{\"filename\":\"/app/src/Home.js\",\"env\":{\"development\":{\"plugins\":[]}},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],{\"loose\":false,\"spec\":false}],[[],null],[[],null],[[],{\"spec\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"async\":false,\"asyncGenerators\":false}]],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"sourceRoot\":\"/app/src\",\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false,\"parserOpts\":false,\"generatorOpts\":false}:6.25.0": {
+    "metadata": {
+      "usedHelpers": [
+        "inherits",
+        "possibleConstructorReturn",
+        "createClass",
+        "classCallCheck",
+        "interopRequireDefault"
+      ],
+      "marked": [],
+      "modules": {
+        "imports": [
+          {
+            "source": "react",
+            "imported": [
+              "default"
+            ],
+            "specifiers": [
+              {
+                "kind": "named",
+                "imported": "default",
+                "local": "React"
+              }
+            ]
+          },
+          {
+            "source": "jquery",
+            "imported": [
+              "default"
+            ],
+            "specifiers": [
+              {
+                "kind": "named",
+                "imported": "default",
+                "local": "$"
+              }
+            ]
+          }
+        ],
+        "exports": {
+          "exported": [
+            "HomePage"
+          ],
+          "specifiers": [
+            {
+              "kind": "local",
+              "local": "HomePage",
+              "exported": "default"
+            }
+          ]
+        }
+      }
+    },
+    "options": {
+      "filename": "/app/src/Home.js",
+      "filenameRelative": "/app/src/Home.js",
+      "env": {},
+      "retainLines": false,
+      "highlightCode": true,
+      "suppressDeprecationMessages": false,
+      "presets": [],
+      "plugins": [
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false,
+            "spec": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "spec": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          {
+            "async": false,
+            "asyncGenerators": false
+          }
+        ]
+      ],
+      "ignore": [],
+      "code": true,
+      "metadata": true,
+      "ast": false,
+      "comments": true,
+      "compact": "auto",
+      "minified": false,
+      "sourceMaps": "both",
+      "sourceMapTarget": "Home.js",
+      "sourceFileName": "Home.js",
+      "sourceRoot": "/app/src",
+      "babelrc": false,
+      "sourceType": "module",
+      "moduleRoot": "/app/src",
+      "moduleIds": false,
+      "passPerPreset": false,
+      "parserOpts": false,
+      "generatorOpts": false,
+      "basename": "Home"
+    },
+    "ignored": false,
+    "code": "'use strict';\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = require('react');\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _jquery = require('jquery');\n\nvar _jquery2 = _interopRequireDefault(_jquery);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar HomePage = function (_React$Component) {\n  _inherits(HomePage, _React$Component);\n\n  function HomePage(props) {\n    _classCallCheck(this, HomePage);\n\n    var _this = _possibleConstructorReturn(this, (HomePage.__proto__ || Object.getPrototypeOf(HomePage)).call(this, props));\n\n    _this.render = _this.render.bind(_this);\n    _this.componentDidMount = _this.componentDidMount.bind(_this);\n    _this.handleRedirect = _this.handleRedirect.bind(_this);\n\n    _this.state = {\n      poll: [],\n      user: \" \",\n      auth: false\n    };\n    return _this;\n  }\n\n  _createClass(HomePage, [{\n    key: 'componentDidMount',\n    value: function componentDidMount() {\n      var _this2 = this;\n\n      var request_poll = _jquery2.default.ajax({\n        type: \"POST\",\n        url: \"/get_polls\",\n        contentType: 'application/json'\n      });\n\n      request_poll.done(function (data_poll) {\n\n        var request_user = _jquery2.default.ajax({\n          type: \"POST\",\n          url: \"/get_user\",\n          contentType: 'application/json'\n        });\n\n        request_user.done(function (data_user) {\n\n          var auth_state;\n\n          if (data_user === false) {\n            auth_state = false;\n          } else {\n            auth_state = true;\n          }\n\n          _this2.setState({\n            poll: data_poll,\n            user: data_user,\n            auth: auth_state\n          });\n        });\n      });\n    }\n  }, {\n    key: 'handleRedirect',\n    value: function handleRedirect(event, target) {\n      window.location.assign(\"/poll?id=\" + target);\n    }\n  }, {\n    key: 'render',\n    value: function render() {\n      var _this3 = this;\n\n      return _react2.default.createElement(\n        'div',\n        null,\n        this.state.auth ? _react2.default.createElement(\n          'div',\n          { id: 'logout_button' },\n          _react2.default.createElement(\n            'a',\n            { href: '/logout' },\n            _react2.default.createElement(\n              'button',\n              { className: 'btn btn-danger' },\n              'Logout'\n            )\n          )\n        ) : _react2.default.createElement(\n          'div',\n          { id: 'logout_button' },\n          _react2.default.createElement(\n            'a',\n            { href: '/register' },\n            _react2.default.createElement(\n              'button',\n              { className: 'btn btn-success' },\n              'Register!'\n            )\n          )\n        ),\n        this.state.auth ? _react2.default.createElement(\n          'h4',\n          { id: 'welcome' },\n          'Welcome ',\n          this.state.user\n        ) : _react2.default.createElement(\n          'h4',\n          { id: 'welcome' },\n          'Welcome Guest!'\n        ),\n        _react2.default.createElement(\n          'div',\n          null,\n          _react2.default.createElement(\n            'h3',\n            null,\n            ' Latest Polls '\n          ),\n          this.state.auth ? _react2.default.createElement(\n            'div',\n            { className: 'btn-group', role: 'group' },\n            _react2.default.createElement(\n              'a',\n              { href: '/create_poll' },\n              _react2.default.createElement(\n                'button',\n                { className: 'btn btn-info' },\n                'Create Poll ',\n                _react2.default.createElement('span', { className: 'glyphicon glyphicon-wrench' })\n              )\n            ),\n            _react2.default.createElement(\n              'button',\n              { className: 'btn btn-info' },\n              'My Polls ',\n              _react2.default.createElement('span', { className: 'glyphicon glyphicon-filter' })\n            )\n          ) : _react2.default.createElement(\n            'button',\n            { className: 'btn btn-info', onClick: function onClick(e) {\n                return window.location.assign(\"/login\");\n              } },\n            'Sign in to Create Polls ',\n            _react2.default.createElement('span', { className: 'glyphicon glyphicon-wrench' })\n          ),\n          this.state.poll.map(function (item, i) {\n            return _react2.default.createElement(\n              'div',\n              { key: i, className: 'result', onClick: function onClick(e) {\n                  return _this3.handleRedirect(e, _this3.state.poll[i]._id);\n                } },\n              _react2.default.createElement(\n                'b',\n                null,\n                _this3.state.poll[i].title\n              ),\n              _react2.default.createElement('div', { className: 'gap' }),\n              _react2.default.createElement(\n                'p',\n                null,\n                ' Posted by ',\n                _this3.state.poll[i].poster\n              )\n            );\n          })\n        )\n      );\n    }\n  }]);\n\n  return HomePage;\n}(_react2.default.Component);\n\nexports.default = HomePage;\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkhvbWUuanMiXSwibmFtZXMiOlsiSG9tZVBhZ2UiLCJwcm9wcyIsInJlbmRlciIsImJpbmQiLCJjb21wb25lbnREaWRNb3VudCIsImhhbmRsZVJlZGlyZWN0Iiwic3RhdGUiLCJwb2xsIiwidXNlciIsImF1dGgiLCJyZXF1ZXN0X3BvbGwiLCJhamF4IiwidHlwZSIsInVybCIsImNvbnRlbnRUeXBlIiwiZG9uZSIsImRhdGFfcG9sbCIsInJlcXVlc3RfdXNlciIsImRhdGFfdXNlciIsImF1dGhfc3RhdGUiLCJzZXRTdGF0ZSIsImV2ZW50IiwidGFyZ2V0Iiwid2luZG93IiwibG9jYXRpb24iLCJhc3NpZ24iLCJlIiwibWFwIiwiaXRlbSIsImkiLCJfaWQiLCJ0aXRsZSIsInBvc3RlciIsIkNvbXBvbmVudCJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7QUFBQTs7OztBQUNBOzs7Ozs7Ozs7Ozs7SUFFcUJBLFE7OztBQUNuQixvQkFBWUMsS0FBWixFQUFrQjtBQUFBOztBQUFBLG9IQUNWQSxLQURVOztBQUdoQixVQUFLQyxNQUFMLEdBQWMsTUFBS0EsTUFBTCxDQUFZQyxJQUFaLE9BQWQ7QUFDQSxVQUFLQyxpQkFBTCxHQUF5QixNQUFLQSxpQkFBTCxDQUF1QkQsSUFBdkIsT0FBekI7QUFDQSxVQUFLRSxjQUFMLEdBQXNCLE1BQUtBLGNBQUwsQ0FBb0JGLElBQXBCLE9BQXRCOztBQUVBLFVBQUtHLEtBQUwsR0FBYTtBQUNYQyxZQUFNLEVBREs7QUFFWEMsWUFBTSxHQUZLO0FBR1hDLFlBQU07QUFISyxLQUFiO0FBUGdCO0FBWWpCOzs7O3dDQUdtQjtBQUFBOztBQUNsQixVQUFJQyxlQUFlLGlCQUFFQyxJQUFGLENBQU87QUFDeEJDLGNBQU0sTUFEa0I7QUFFeEJDLGFBQUssWUFGbUI7QUFHeEJDLHFCQUFhO0FBSFcsT0FBUCxDQUFuQjs7QUFNQUosbUJBQWFLLElBQWIsQ0FBa0IsVUFBQ0MsU0FBRCxFQUFlOztBQUUvQixZQUFJQyxlQUFlLGlCQUFFTixJQUFGLENB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QU1DLFM7O2tCQUF2QmpDLFEiLCJmaWxlIjoiSG9tZS5qcyIsInNvdXJjZVJvb3QiOiIvYXBwL3NyYyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCc7XG5pbXBvcnQgJCBmcm9tICdqcXVlcnknO1xuXG5leHBvcnQgZGVmYXVsdCBjbGFzcyBIb21lUGFnZSBleHRlbmRzIFJlYWN0LkNvbXBvbmVudCB7XG4gIGNvbnN0cnVjdG9yKHByb3BzKXtcbiAgICBzdXBlcihwcm9wcyk7XG4gICAgXG4gICAgdGhpcy5yZW5kZXIgPSB0aGlzLnJlbmRlci5iaW5kKHRoaXMpO1xuICAgIHRoaXMuY29tcG9uZW50RGlkTW91bnQgPSB0aGlzLmNvbXBvbmVudERpZE1vdW50LmJpbmQodGhpcyk7XG4gICAgdGhpcy5oYW5kbGVSZWRpcmVjdCA9IHRoaXMuaGFuZGxlUmVkaXJlY3QuYmluZCh0aGlzKTtcbiAgICBcbiAgICB0aGlzLnN0YXRlID0ge1xuICAgICAgcG9sbDogW10sXG4gICAgICB1c2VyOiBcIiBcIixcbiAgICAgIGF1dGg6IGZhbHNlXG4gICAgfVxuICB9XG4gIFxuICBcbiAgY29tcG9uZW50RGlkTW91bnQoKSB7XG4gICAgdmFyIHJlcXVlc3RfcG9sbCA9ICQuYWpheCh7XG4gICAgICB0eXBlOiBcIlBPU1RcIixcbiAgICAgIHVybDogXCIvZ2V0X3BvbGxzXCIsXG4gICAgICBjb250ZW50VHlwZTogJ2FwcGxpY2F0aW9uL2pzb24nXG4gICAgfSk7XG4gICAgXG4gICAgcmVxdWVzdF9wb2xsLmRvbmUoKGRhdGFfcG9sbCkgPT4ge1xuICAgICAgXG4gICAgICB2YXIgcmVxdWVzdF91c2VyID0gJC5hamF4KHtcbiAgICAgICAgdHlwZTogXCJQT1NUXCIsXG4gICAgICAgIHVybDogXCIvZ2V0X3VzZXJcIixcbiAgICAgICAgY29udGVudFR5cGU6ICdhcHBsaWNhdGlvbi9qc29uJ1xuICAgICAgfSk7XG4gICAgICBcbiAgICAgIHJlcXVlc3RfdXNlci5kb25lKChkYXRhX3VzZXIpID0+IHtcbiAgICAgICAgXG4gICAgICAgIHZhciBhdXRoX3N0YXRlO1xuICAgICAgICBcbiAgICAgICAgaWYgKGRhdGFfdXNlciA9PT0gZmFsc2Upe1xuICAgICAgICAgIGF1dGhfc3RhdGUgPSBmYWxzZTtcbiAgICAgICAgfSBlbHNlIHtcbiAgICAgICAgICBhdXRoX3N0YXRlID0gdHJ1ZTtcbiAgICAgICAgfVxuICAgICAgICBcbiAgICAgICAgdGhpcy5zZXRTdGF0ZSh7XG4gICAgICAgICAgcG9sbDogZGF0YV9wb2xsLFxuICAgICAgICAgIHVzZXI6IGRhdGFfdXNlcixcbiAgICAgICAgICBhdXRoOiBhdXRoX3N0YXRlXG4gICAgICAgIH0pO1xuICAgICAgfSk7XG4gICAgfSk7XG4gIH1cbiAgXG4gIGhhbmRsZVJlZGlyZWN0KGV2ZW50LCB0YXJnZXQpe1xuICAgIHdpbmRvdy5sb2NhdGlvbi5hc3NpZ24oXCIvcG9sbD9pZD1cIiArIHRhcmdldCk7XG4gIH1cbiAgXG4gIFxuIFxuICByZW5kZXIoKSB7XG4gICAgcmV0dXJuIChcbiAgICAgIDxkaXYgPlxuICAgICAgICB7dGhpcy5zdGF0ZS5hdXRoID8gXG4gICAgICAgIDxkaXYgaWQ9XCJsb2dvdXRfYnV0dG9uXCI+XG4gICAgICAgIDxhIGhyZWY9XCIvbG9nb3V0XCI+PGJ1dHRvbiBjbGFzc05hbWU9XCJidG4gYnRuLWRhbmdlclwiPkxvZ291dDwvYnV0dG9uPjwvYT5cbiAgICAgICAgPC9kaXY+IDpcbiAgICAgICAgPGRpdiBpZD1cImxvZ291dF9idXR0b25cIj5cbiAgICAgICAgPGEgaHJlZj1cIi9yZWdpc3RlclwiPjxidXR0b24gY2xhc3NOYW1lPVwiYnRuIGJ0bi1zdWNjZXNzXCI+UmVnaXN0ZXIhPC9idXR0b24+PC9hPlxuICAgICAgICA8L2Rpdj5cbiAgICAgICAgfVxuICAgICAgICAgIFxuICAgICAgICB7dGhpcy5zdGF0ZS5hdXRoID8gXG4gICAgICAgICAgPGg0IGlkPVwid2VsY29tZVwiPldlbGNvbWUge3RoaXMuc3RhdGUudXNlcn08L2g0PiA6IFxuICAgICAgICAgIDxoNCBpZD1cIndlbGNvbWVcIj5XZWxjb21lIEd1ZXN0ITwvaDQ+XG4gICAgICAgIH1cblxuICAgICAgICA8ZGl2PlxuICAgICAgICA8aDM+IExhdGVzdCBQb2xscyA8L2gzPlxuICAgICAgICAgIFxuICAgICAgICB7IFxuICAgICAgICAgIHRoaXMuc3RhdGUuYXV0aCA/XG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJidG4tZ3JvdXBcIiByb2xlPVwiZ3JvdXBcIj5cbiAgICAgICAgICAgICAgPGEgaHJlZiA9IFwiL2NyZWF0ZV9wb2xsXCI+XG4gICAgICAgICAgICAgIDxidXR0b24gY2xhc3NOYW1lPVwiYnRuIGJ0bi1pbmZvXCIgPkNyZWF0ZSBQb2xsIDxzcGFuIGNsYXNzTmFtZT1cImdseXBoaWNvbiBnbHlwaGljb24td3JlbmNoXCIgLz48L2J1dHRvbj4gXG4gICAgICAgICAgICAgIDwvYT5cbiAgICAgICAgICAgICAgPGJ1dHRvbiBjbGFzc05hbWU9XCJidG4gYnRuLWluZm9cIiA+TXkgUG9sbHMgPHNwYW4gY2xhc3NOYW1lPVwiZ2x5cGhpY29uIGdseXBoaWNvbi1maWx0ZXJcIiAvPjwvYnV0dG9uPlxuICAgICAgICAgIDwvZGl2PjpcbiAgICAgICAgICA8YnV0dG9uIGNsYXNzTmFtZT1cImJ0biBidG4taW5mb1wiIG9uQ2xpY2s9eyhlKSA9PiB3aW5kb3cubG9jYXRpb24uYXNzaWduKFwiL2xvZ2luXCIpfT5TaWduIGluIHRvIENyZWF0ZSBQb2xscyA8c3BhbiBjbGFzc05hbWU9XCJnbHlwaGljb24gZ2x5cGhpY29uLXdyZW5jaFwiLz48L2J1dHRvbj4gXG4gICAgICAgIH1cbiAgICAgICAgICBcbiAgICAgICAgICBcbiAgICAgICAge1xuICAgICAgICAgIHRoaXMuc3RhdGUucG9sbC5tYXAoKGl0ZW0saSkgPT4gXG4gICAgICAgICAgICAgIDxkaXYga2V5PXtpfSBjbGFzc05hbWU9XCJyZXN1bHRcIiBvbkNsaWNrPXsoZSkgPT4gdGhpcy5oYW5kbGVSZWRpcmVjdChlLCB0aGlzLnN0YXRlLnBvbGxbaV0uX2lkKX0+IFxuICAgICAgICAgICAgICAgIDxiPnt0aGlzLnN0YXRlLnBvbGxbaV0udGl0bGV9PC9iPlxuICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZ2FwXCIvPlxuICAgICAgICAgICAgICAgIDxwPiBQb3N0ZWQgYnkge3RoaXMuc3RhdGUucG9sbFtpXS5wb3N0ZXJ9PC9wPlxuICAgICAgICAgICAgICA8L2Rpdj4pICBcbiAgICAgICAgfVxuICAgICAgICA8L2Rpdj5cbiAgICAgIDwvZGl2PlxuICAgICk7XG4gIH1cbn0iXX0=",
+    "ast": null,
+    "map": {
+      "version": 3,
+      "sources": [
+        "Home.js"
+      ],
+      "names": [
+        "HomePage",
+        "props",
+        "render",
+        "bind",
+        "componentDidMount",
+        "handleRedirect",
+        "state",
+        "poll",
+        "user",
+        "auth",
+        "request_poll",
+        "ajax",
+        "type",
+        "url",
+        "contentType",
+        "done",
+        "data_poll",
+        "request_user",
+        "data_user",
+        "auth_state",
+        "setState",
+        "event",
+        "target",
+        "window",
+        "location",
+        "assign",
+        "e",
+        "map",
+        "item",
+        "i",
+        "_id",
+        "title",
+        "poster",
+        "Component"
+      ],
+      "mappings": ";;;;;;;;AAAA;;;;AACA;;;;;;;;;;;;IAEqBA,Q;;;AACnB,oBAAYC,KAAZ,EAAkB;AAAA;;AAAA,oHACVA,KADU;;AAGhB,UAAKC,MAAL,GAAc,MAAKA,MAAL,CAAYC,IAAZ,OAAd;AACA,UAAKC,iBAAL,GAAyB,MAAKA,iBAAL,CAAuBD,IAAvB,OAAzB;AACA,UAAKE,cAAL,GAAsB,MAAKA,cAAL,CAAoBF,IAApB,OAAtB;;AAEA,UAAKG,KAAL,GAAa;AACXC,YAAM,EADK;AAEXC,YAAM,GAFK;AAGXC,YAAM;AAHK,KAAb;AAPgB;AAYjB;;;;wCAGmB;AAAA;;AAClB,UAAIC,eAAe,iBAAEC,IAAF,CAAO;AACxBC,cAAM,MADkB;AAExBC,aAAK,YAFmB;AAGxBC,qBAAa;AAHW,OAAP,CAAnB;;AAMAJ,mBAAaK,IAAb,CAAkB,UAACC,SAAD,EAAe;;AAE/B,YAAIC,eAAe,iBAAEN,IAAF,CAAO;AACxBC,gBAAM,MADkB;AAExBC,eAAK,WAFmB;AAGxBC,uBAAa;AAHW,SAAP,CAAnB;;AAMAG,qBAAaF,IAAb,CAAkB,UAACG,SAAD,EAAe;;AAE/B,cAAIC,UAAJ;;AAEA,cAAID,cAAc,KAAlB,EAAwB;AACtBC,yBAAa,KAAb;AACD,WAFD,MAEO;AACLA,yBAAa,IAAb;AACD;;AAED,iBAAKC,QAAL,CAAc;AACZb,kBAAMS,SADM;AAEZR,kBAAMU,SAFM;AAGZT,kBAAMU;AAHM,WAAd;AAKD,SAfD;AAgBD,OAxBD;AAyBD;;;mCAEcE,K,EAAOC,M,EAAO;AAC3BC,aAAOC,QAAP,CAAgBC,MAAhB,CAAuB,cAAcH,MAArC;AACD;;;6BAIQ;AAAA;;AACP,aACE;AAAA;AAAA;AACG,aAAKhB,KAAL,CAAWG,IAAX,GACD;AAAA;AAAA,YAAK,IAAG,eAAR;AACA;AAAA;AAAA,cAAG,MAAK,SAAR;AAAkB;AAAA;AAAA,gBAAQ,WAAU,gBAAlB;AAAA;AAAA;AAAlB;AADA,SADC,GAID;AAAA;AAAA,YAAK,IAAG,eAAR;AACA;AAAA;AAAA,cAAG,MAAK,WAAR;AAAoB;AAAA;AAAA,gBAAQ,WAAU,iBAAlB;AAAA;AAAA;AAApB;AADA,SALF;AAUG,aAAKH,KAAL,CAAWG,IAAX,GACC;AAAA;AAAA,YAAI,IAAG,SAAP;AAAA;AAA0B,eAAKH,KAAL,CAAWE;AAArC,SADD,GAEC;AAAA;AAAA,YAAI,IAAG,SAAP;AAAA;AAAA,SAZJ;AAeE;AAAA;AAAA;AACA;AAAA;AAAA;AAAA;AAAA,WADA;AAIE,eAAKF,KAAL,CAAWG,IAAX,GACA;AAAA;AAAA,cAAK,WAAU,WAAf,EAA2B,MAAK,OAAhC;AACI;AAAA;AAAA,gBAAG,MAAO,cAAV;AACA;AAAA;AAAA,kBAAQ,WAAU,cAAlB;AAAA;AAA8C,wDAAM,WAAU,4BAAhB;AAA9C;AADA,aADJ;AAII;AAAA;AAAA,gBAAQ,WAAU,cAAlB;AAAA;AAA2C,sDAAM,WAAU,4BAAhB;AAA3C;AAJJ,WADA,GAOA;AAAA;AAAA,cAAQ,WAAU,cAAlB,EAAiC,SAAS,iBAACiB,CAAD;AAAA,uBAAOH,OAAOC,QAAP,CAAgBC,MAAhB,CAAuB,QAAvB,CAAP;AAAA,eAA1C;AAAA;AAA2G,oDAAM,WAAU,4BAAhB;AAA3G,WAXF;AAgBE,eAAKnB,KAAL,CAAWC,IAAX,CAAgBoB,GAAhB,CAAoB,UAACC,IAAD,EAAMC,CAAN;AAAA,mBAChB;AAAA;AAAA,gBAAK,KAAKA,CAAV,EAAa,WAAU,QAAvB,EAAgC,SAAS,iBAACH,CAAD;AAAA,yBAAO,OAAKrB,cAAL,CAAoBqB,CAApB,EAAuB,OAAKpB,KAAL,CAAWC,IAAX,CAAgBsB,CAAhB,EAAmBC,GAA1C,CAAP;AAAA,iBAAzC;AACE;AAAA;AAAA;AAAI,uBAAKxB,KAAL,CAAWC,IAAX,CAAgBsB,CAAhB,EAAmBE;AAAvB,eADF;AAEE,qDAAK,WAAU,KAAf,GAFF;AAGE;AAAA;AAAA;AAAA;AAAe,uBAAKzB,KAAL,CAAWC,IAAX,CAAgBsB,CAAhB,EAAmBG;AAAlC;AAHF,aADgB;AAAA,WAApB;AAhBF;AAfF,OADF;AA0CD;;;;EAnGmC,gBAAMC,S;;kBAAvBjC,Q",
+      "file": "Home.js",
+      "sourceRoot": "/app/src",
+      "sourcesContent": [
+        "import React from 'react';\nimport $ from 'jquery';\n\nexport default class HomePage extends React.Component {\n  constructor(props){\n    super(props);\n    \n    this.render = this.render.bind(this);\n    this.componentDidMount = this.componentDidMount.bind(this);\n    this.handleRedirect = this.handleRedirect.bind(this);\n    \n    this.state = {\n      poll: [],\n      user: \" \",\n      auth: false\n    }\n  }\n  \n  \n  componentDidMount() {\n    var request_poll = $.ajax({\n      type: \"POST\",\n      url: \"/get_polls\",\n      contentType: 'application/json'\n    });\n    \n    request_poll.done((data_poll) => {\n      \n      var request_user = $.ajax({\n        type: \"POST\",\n        url: \"/get_user\",\n        contentType: 'application/json'\n      });\n      \n      request_user.done((data_user) => {\n        \n        var auth_state;\n        \n        if (data_user === false){\n          auth_state = false;\n        } else {\n          auth_state = true;\n        }\n        \n        this.setState({\n          poll: data_poll,\n          user: data_user,\n          auth: auth_state\n        });\n      });\n    });\n  }\n  \n  handleRedirect(event, target){\n    window.location.assign(\"/poll?id=\" + target);\n  }\n  \n  \n \n  render() {\n    return (\n      <div >\n        {this.state.auth ? \n        <div id=\"logout_button\">\n        <a href=\"/logout\"><button className=\"btn btn-danger\">Logout</button></a>\n        </div> :\n        <div id=\"logout_button\">\n        <a href=\"/register\"><button className=\"btn btn-success\">Register!</button></a>\n        </div>\n        }\n          \n        {this.state.auth ? \n          <h4 id=\"welcome\">Welcome {this.state.user}</h4> : \n          <h4 id=\"welcome\">Welcome Guest!</h4>\n        }\n\n        <div>\n        <h3> Latest Polls </h3>\n          \n        { \n          this.state.auth ?\n          <div className=\"btn-group\" role=\"group\">\n              <a href = \"/create_poll\">\n              <button className=\"btn btn-info\" >Create Poll <span className=\"glyphicon glyphicon-wrench\" /></button> \n              </a>\n              <button className=\"btn btn-info\" >My Polls <span className=\"glyphicon glyphicon-filter\" /></button>\n          </div>:\n          <button className=\"btn btn-info\" onClick={(e) => window.location.assign(\"/login\")}>Sign in to Create Polls <span className=\"glyphicon glyphicon-wrench\"/></button> \n        }\n          \n          \n        {\n          this.state.poll.map((item,i) => \n              <div key={i} className=\"result\" onClick={(e) => this.handleRedirect(e, this.state.poll[i]._id)}> \n                <b>{this.state.poll[i].title}</b>\n                <div className=\"gap\"/>\n                <p> Posted by {this.state.poll[i].poster}</p>\n              </div>)  \n        }\n        </div>\n      </div>\n    );\n  }\n}"
+      ]
+    },
+    "mtime": 1501043812042
+  },
+  "{\"filename\":\"/app/src/home_template.js\",\"env\":{\"development\":{\"plugins\":[]}},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],{\"loose\":false,\"spec\":false}],[[],null],[[],null],[[],{\"spec\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"async\":false,\"asyncGenerators\":false}]],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"sourceRoot\":\"/app/src\",\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false,\"parserOpts\":false,\"generatorOpts\":false}:6.25.0": {
+    "metadata": {
+      "usedHelpers": [],
+      "marked": [],
+      "modules": {
+        "imports": [],
+        "exports": {
+          "exported": [],
+          "specifiers": []
+        }
+      }
+    },
+    "options": {
+      "filename": "/app/src/home_template.js",
+      "filenameRelative": "/app/src/home_template.js",
+      "env": {},
+      "retainLines": false,
+      "highlightCode": true,
+      "suppressDeprecationMessages": false,
+      "presets": [],
+      "plugins": [
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false,
+            "spec": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "spec": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          {
+            "async": false,
+            "asyncGenerators": false
+          }
+        ]
+      ],
+      "ignore": [],
+      "code": true,
+      "metadata": true,
+      "ast": false,
+      "comments": true,
+      "compact": "auto",
+      "minified": false,
+      "sourceMaps": "both",
+      "sourceMapTarget": "home_template.js",
+      "sourceFileName": "home_template.js",
+      "sourceRoot": "/app/src",
+      "babelrc": false,
+      "sourceType": "module",
+      "moduleRoot": "/app/src",
+      "moduleIds": false,
+      "passPerPreset": false,
+      "parserOpts": false,
+      "generatorOpts": false,
+      "basename": "home_template"
+    },
+    "ignored": false,
+    "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nexports.default = function (_ref) {\n  var body = _ref.body,\n      title = _ref.title;\n\n  return \"\\n    <!doctype html>\\n    <html>\\n      <head>\\n        <title>\" + title + \"</title>\\n        <meta name=\\\"description\\\" content=\\\"Web-based voting application.\\\">\\n        <link id=\\\"favicon\\\" rel=\\\"icon\\\" href=\\\"https://cdn.glitch.com/f0a70106-eee3-44ca-abf0-7ae97fb8b0a6%2Ffavicon.ico?1500669329975\\\" type=\\\"image/x-icon\\\">\\n        <meta charset=\\\"utf-8\\\">\\n        <meta http-equiv=\\\"X-UA-Compatible\\\" content=\\\"IE=edge\\\">\\n        <meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1\\\">\\n\\n        <link rel=\\\"stylesheet prefetch\\\" href=\\\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css\\\">\\n\\n        <link rel=\\\"stylesheet\\\" href=\\\"/css/home_style.css\\\">\\n        \\n\\n      </head>\\n      <body>\\n        <div id=\\\"root\\\">\" + body + \"</div>\\n        <script src=\\\"/static/home.bundle.js\\\"></script>\\n      </body>\\n    </html>\\n  \";\n};\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImhvbWVfdGVtcGxhdGUuanMiXSwibmFtZXMiOlsiYm9keSIsInRpdGxlIl0sIm1hcHBpbmdzIjoiOzs7Ozs7a0JBQ2UsZ0JBQW9CO0FBQUEsTUFBakJBLElBQWlCLFFBQWpCQSxJQUFpQjtBQUFBLE1BQVhDLEtBQVcsUUFBWEEsS0FBVzs7QUFDakMsOEVBSWVBLEtBSmYsMnNCQWtCdUJELElBbEJ2QjtBQXVCRCxDIiwiZmlsZSI6ImhvbWVfdGVtcGxhdGUuanMiLCJzb3VyY2VSb290IjoiL2FwcC9zcmMiLCJzb3VyY2VzQ29udGVudCI6WyJcbmV4cG9ydCBkZWZhdWx0ICh7IGJvZHksIHRpdGxlfSkgPT4ge1xuICByZXR1cm4gYFxuICAgIDwhZG9jdHlwZSBodG1sPlxuICAgIDxodG1sPlxuICAgICAgPGhlYWQ+XG4gICAgICAgIDx0aXRsZT4ke3RpdGxlfTwvdGl0bGU+XG4gICAgICAgIDxtZXRhIG5hbWU9XCJkZXNjcmlwdGlvblwiIGNvbnRlbnQ9XCJXZWItYmFzZWQgdm90aW5nIGFwcGxpY2F0aW9uLlwiPlxuICAgICAgICA8bGluayBpZD1cImZhdmljb25cIiByZWw9XCJpY29uXCIgaHJlZj1cImh0dHBzOi8vY2RuLmdsaXRjaC5jb20vZjBhNzAxMDYtZWVlMy00NGNhLWFiZjAtN2FlOTdmYjhiMGE2JTJGZmF2aWNvbi5pY28/MTUwMDY2OTMyOTk3NVwiIHR5cGU9XCJpbWFnZS94LWljb25cIj5cbiAgICAgICAgPG1ldGEgY2hhcnNldD1cInV0Zi04XCI+XG4gICAgICAgIDxtZXRhIGh0dHAtZXF1aXY9XCJYLVVBLUNvbXBhdGlibGVcIiBjb250ZW50PVwiSUU9ZWRnZVwiPlxuICAgICAgICA8bWV0YSBuYW1lPVwidmlld3BvcnRcIiBjb250ZW50PVwid2lkdGg9ZGV2aWNlLXdpZHRoLCBpbml0aWFsLXNjYWxlPTFcIj5cblxuICAgICAgICA8bGluayByZWw9XCJzdHlsZXNoZWV0IHByZWZldGNoXCIgaHJlZj1cImh0dHBzOi8vY2RuanMuY2xvdWRmbGFyZS5jb20vYWpheC9saWJzL3R3aXR0ZXItYm9vdHN0cmFwLzMuMy43L2Nzcy9ib290c3RyYXAubWluLmNzc1wiPlxuXG4gICAgICAgIDxsaW5rIHJlbD1cInN0eWxlc2hlZXRcIiBocmVmPVwiL2Nzcy9ob21lX3N0eWxlLmNzc1wiPlxuICAgICAgICBcblxuICAgICAgPC9oZWFkPlxuICAgICAgPGJvZHk+XG4gICAgICAgIDxkaXYgaWQ9XCJyb290XCI+JHtib2R5fTwvZGl2PlxuICAgICAgICA8c2NyaXB0IHNyYz1cIi9zdGF0aWMvaG9tZS5idW5kbGUuanNcIj48L3NjcmlwdD5cbiAgICAgIDwvYm9keT5cbiAgICA8L2h0bWw+XG4gIGA7XG59OyJdfQ==",
+    "ast": null,
+    "map": {
+      "version": 3,
+      "sources": [
+        "home_template.js"
+      ],
+      "names": [
+        "body",
+        "title"
+      ],
+      "mappings": ";;;;;;kBACe,gBAAoB;AAAA,MAAjBA,IAAiB,QAAjBA,IAAiB;AAAA,MAAXC,KAAW,QAAXA,KAAW;;AACjC,8EAIeA,KAJf,2sBAkBuBD,IAlBvB;AAuBD,C",
+      "file": "home_template.js",
+      "sourceRoot": "/app/src",
+      "sourcesContent": [
+        "\nexport default ({ body, title}) => {\n  return `\n    <!doctype html>\n    <html>\n      <head>\n        <title>${title}</title>\n        <meta name=\"description\" content=\"Web-based voting application.\">\n        <link id=\"favicon\" rel=\"icon\" href=\"https://cdn.glitch.com/f0a70106-eee3-44ca-abf0-7ae97fb8b0a6%2Ffavicon.ico?1500669329975\" type=\"image/x-icon\">\n        <meta charset=\"utf-8\">\n        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n\n        <link rel=\"stylesheet prefetch\" href=\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css\">\n\n        <link rel=\"stylesheet\" href=\"/css/home_style.css\">\n        \n\n      </head>\n      <body>\n        <div id=\"root\">${body}</div>\n        <script src=\"/static/home.bundle.js\"></script>\n      </body>\n    </html>\n  `;\n};"
+      ]
+    },
+    "mtime": 1501038472990
   }
 }

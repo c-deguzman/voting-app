@@ -80,7 +80,9 @@ export default class HomePage extends React.Component {
         { 
           this.state.auth ?
           <div className="btn-group" role="group">
+              <a href = "/create_poll">
               <button className="btn btn-info" >Create Poll <span className="glyphicon glyphicon-wrench" /></button> 
+              </a>
               <button className="btn btn-info" >My Polls <span className="glyphicon glyphicon-filter" /></button>
           </div>:
           <button className="btn btn-info" onClick={(e) => window.location.assign("/login")}>Sign in to Create Polls <span className="glyphicon glyphicon-wrench"/></button> 

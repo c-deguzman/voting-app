@@ -40,20 +40,20 @@ export default class Login extends React.Component {
         <div className="centre">
           <form className="form-horizontal" action="/login" method="post">
             <div className="form-group">
-              <label className="control-label col-sm-2" for="user">Username:</label>
-              <div className="col-sm-10">
+              <label className="control-label col-sm-2" htmlFor="user">Username:</label>
+              <div className="col-sm-12">
                 <input type="text" className="form-control" id="user" name="user" placeholder="Enter username" required/>
               </div>
             </div>
             <div className="form-group">
-              <label className="control-label col-sm-2" for="pwd">Password:</label>
-              <div className="col-sm-10"> 
+              <label className="control-label col-sm-2" htmlFor="pwd">Password:</label>
+              <div className="col-sm-12"> 
                 <input type="password" className="form-control" id="pwd" name="pass" placeholder="Enter password" required />
               </div>
             </div>
 
             <div className="form-group"> 
-              <div className="col-sm-10">
+              <div className="col-sm-12">
                 <button type="submit" className="btn btn-default">Login</button>
               </div>
             </div>

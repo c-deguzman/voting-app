@@ -11,6 +11,7 @@ const RedisStore = require('connect-redis')(session)
 var login = require('./routes/login.js');
 var register = require("./routes/register.js");
 var get_info = require("./routes/get_info.js");
+var make_poll = require("./routes/make_poll.js");
 
 var flash = require("connect-flash");
 var cookieParser = require('cookie-parser')
@@ -74,6 +75,8 @@ register(app);
 get_info.get_polls(app);
 get_info.get_auth(app);
 get_info.get_user(app);
+get_info.get_poll(app);
+make_poll(app);
 
 
 if (!(process.env.MODE == "DEV")){
@@ -143,6 +146,36 @@ app.get('/home', function(request, response) {
   response.send(Home_html({
     body: Home_string,
     title: "Home Page"
+  }));
+});
+
+app.get('/create_poll', function(request, response) {
+  var CreatePoll_App = require("./src/CreatePoll.js").default;
+  var CreatePoll_html = require("./src/createPoll_template").default;
+
+  var Comp_Fact = React.createFactory(CreatePoll_App);
+  const CreatePoll_string = ReactDOM.renderToString(Comp_Fact());
+  
+  response.send(CreatePoll_html({
+    body: CreatePoll_string,
+    title: "Create Poll"
+  }));
+});
+
+app.get('/poll', function(request, response) {
+  
+  console.log(request.user);
+  console.log(request.user);
+
+  var ChartDisplay_App = require("./src/ChartDisplay.js").default;
+  var ChartDisplay_html = require("./src/chartDisplay_template").default;
+
+  var Comp_Fact = React.createFactory(ChartDisplay_App);
+  const ChartDisplay_string = ReactDOM.renderToString(Comp_Fact());
+  
+  response.send(ChartDisplay_html({
+    body: ChartDisplay_string,
+    title: "Poll Results"
   }));
 });
 

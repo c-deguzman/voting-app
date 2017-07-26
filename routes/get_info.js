@@ -41,6 +41,10 @@ module.exports = {
   
   get_user(app){
     app.post('/get_user', function(request, response){
+      if (!request.isAuthenticated()){
+        response.send(false);
+      }
+      
       response.send(request.user);
     });
   }

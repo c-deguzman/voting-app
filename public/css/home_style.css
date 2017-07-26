@@ -37,9 +37,12 @@ h1 {
 }
 
 #logout_button{
-  margin-left: 100%;
+  float: right;
 }
 
+#welcome {
+  margin-bottom: 40px;
+}
 
 html {
  background: -moz-linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 69%, rgba(5,193,255,1) 87%, rgba(5,193,255,1) 100%); /* ff3.6+ */

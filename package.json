@@ -57,6 +57,6 @@
     "cors": "^2.8.4",
     "jquery": "^3.2.1",
     "jsdom": "^11.1.0",
-    "react-google-charts": "*"
+    "react-google-charts": "^1.5.5"
   }
 }

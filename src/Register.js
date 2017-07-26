@@ -52,20 +52,20 @@ export default class Register extends React.Component {
         <div className="centre">
           <form className="form-horizontal" onSubmit={this.handle_submit}>
             <div className="form-group">
-              <label className="control-label col-sm-2" for="email">Email*:</label>
-              <div className="col-sm-10">
+              <label className="control-label col-sm-2" htmlFor="email">Email*:</label>
+              <div className="col-sm-12">
                 <input type="email" className="form-control" id="email" name="email" placeholder="Enter email (optional)" />
               </div>
             </div>
             <div className="form-group">
-              <label className="control-label col-sm-2" for="user">Username:</label>
-              <div className="col-sm-10">
+              <label className="control-label col-sm-2" htmlFor="user">Username:</label>
+              <div className="col-sm-12">
                 <input type="text" className="form-control" id="user" name="user" placeholder="Enter username"  pattern="^[a-z0-9_-]{3,15}$" required/>
               </div>
             </div>
             <div className="form-group">
-              <label className="control-label col-sm-2" for="pwd">Password:</label>
-              <div className="col-sm-10"> 
+              <label className="control-label col-sm-2" htmlFor="pwd">Password:</label>
+              <div className="col-sm-12"> 
                 <input type="password" className="form-control" id="pwd" name="pass" placeholder="Enter password" required />
               </div>
             </div>

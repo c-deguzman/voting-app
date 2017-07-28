@@ -46,7 +46,7 @@ class CustomPoll extends React.Component {
       <div key={option_id} className="form-group container"> 
                 <label className="control-label col-sm-2" htmlFor={option_id}>Option {ind + 1}:</label>
                 <div className="col-sm-8">
-                  <input type="text" className="form-control" id={option_id} name={option_id} placeholder="Option" value={inp_text} onChange={(e) => this.optionChange(e,ind)} required/>
+                  <input type="text" className="form-control" id={option_id} name={option_id} placeholder="Option" value={inp_text} onChange={(e) => this.optionChange(e,ind)} pattern="^.{1,30}$" required/>
                 </div>
                 <div className="col-sm-2">
                   {ind == 0 ?
@@ -132,6 +132,7 @@ class CustomPoll extends React.Component {
               </div>
             </form>
         </div>
+        <p className="centre"> Please limit options to a maximum of 30 characters. </p>
 
           
       {
@@ -152,7 +153,6 @@ export default class CreatePoll extends React.Component {
     
     this.render = this.render.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
-    this.handleRedirect = this.handleRedirect.bind(this);
     
     this.state = {
       user: "",
@@ -186,32 +186,65 @@ export default class CreatePoll extends React.Component {
       });
   }
   
-  handleRedirect(event){
-    window.location.assign("/home");
-  }
  
   render() {
     
     if (this.state.auth == false){
       return (<div >
-          <button className="btn btn-default" onClick={this.handleRedirect}>Home</button>
-          <div id="logout_button">
-          <a href="/register"><button className="btn btn-success">Register!</button></a>
+          <nav className="navbar navbar-default">
+          <div className="container-fluid">
+            <div className="navbar-header">
+              <h4 className="navbar-text">
+                 Voting App Gamma
+              </h4>
+            </div>
+
+            <ul className="nav navbar-nav">
+              <li><a href="/home">Home</a></li>
+            </ul>
+
+            <p className="navbar-text">Not signed in</p>
+            
+            <ul className="nav navbar-nav navbar-right">
+              <li><a href="/register"><span className="glyphicon glyphicon-user"></span> Sign Up</a></li>
+              <li><a href="/login"><span className="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul> 
           </div>
-          <h4 id="welcome">Welcome Guest!</h4>
-          <p> Unfortunately this is a restricted area. </p>
-          <button className="btn btn-info" onClick={(e) => window.location.assign("/login")}>Sign in to Create Polls <span className="glyphicon glyphicon-wrench"/></button> 
+        </nav>
+        <p> Please sign up or sign in to create polls. </p>
       </div>)
     } else {
     
     return (
       <div >
-        <button className="btn btn-default" onClick={this.handleRedirect}>Home</button>
-        <div id="logout_button">
-        <a href="/logout"><button className="btn btn-danger">Logout</button></a>
-        </div> 
-         
-        <h4 id="welcome">Welcome {this.state.user}</h4>
+        <nav className="navbar navbar-default">
+          <div className="container-fluid">
+            <div className="navbar-header">
+              <h4 className="navbar-text">
+                 Voting App Gamma
+              </h4>
+            </div>
+
+            <ul className="nav navbar-nav">
+              <li><a href="/home">Home</a></li>
+            </ul>
+
+
+            <ul className="nav navbar-nav">
+              <li className="active"><a href="/create_poll">Create Poll</a></li>
+              <li><a href="#">My Polls</a></li>
+            </ul> :
+
+
+            <p className="navbar-text"> Signed in as {this.state.user} </p>
+
+
+            <ul className="nav navbar-nav navbar-right">
+              <li><a href="/logout"><span className="glyphicon glyphicon-log-out"></span> Logout </a></li>
+            </ul> 
+            
+          </div>
+        </nav>
 
         <div>
         <h3 className="centre"> Create Your Own Poll! </h3>

@@ -41,8 +41,13 @@ h1 {
   color: green;
 }
 
-#chart {
-  padding-top: 50px;
+
+#voting_options {
+  margin-bottom: 50px;
+}
+
+label {
+  text-align: right;
 }
 
 

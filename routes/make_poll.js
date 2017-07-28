@@ -1,6 +1,12 @@
 module.exports = function(app){
   
-  app.post('/make_poll', function(request, response) {    
+  app.post('/make_poll', function(request, response) {  
+
+    if (!request.isAuthenticated()){
+      response.send({"result" : "error",
+                     "error": "You are not signed in."});
+    }
+
 
     var MongoClient = require('mongodb').MongoClient;
     
@@ -11,6 +17,20 @@ module.exports = function(app){
     var time = Math.round(new Date().getTime()/1000);
     
     var votes = Array.apply(null, Array(options.length)).map(Number.prototype.valueOf,0);
+
+
+
+    var sorted_options = options.slice().sort();
+
+    for (var i in sorted_options){
+      if (i > 0){
+        if (sorted_options[i] == sorted_options[i - 1]){
+          response.send({"result" : "error",
+                          "error": "Options should not contain duplicates."});
+        }
+      }
+    }
+
     
     var document = {poster: username,
                     title: title,
@@ -20,10 +40,7 @@ module.exports = function(app){
                     voted_list: []
                     };
 
-    if (!request.isAuthenticated()){
-      response.send({"result" : "error",
-                     "error": "You are not signed in."});
-    }
+
 
     MongoClient.connect(process.env.MONGO_CONNECT, function (err, db){
       if (err){

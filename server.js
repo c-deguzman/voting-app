@@ -83,6 +83,7 @@ get_info.get_polls(app);
 get_info.get_auth(app);
 get_info.get_user(app);
 get_info.get_poll(app);
+get_info.vote(app);
 make_poll(app);
 
 
@@ -183,6 +184,7 @@ app.get('/poll', function(request, response) {
   }));
 });
 
+//app.listen(3000, '0.0.0.0', function(err) {
 app.listen(3000, function(err) {
   if (err) {
     return console.error(err);

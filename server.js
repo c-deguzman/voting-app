@@ -33,8 +33,7 @@ var app = express();
 var compiler = webpack(config);
 
 
-
-require('./authentication').init(app)
+require('./authentication').init(app);
 
 app.use(cookieParser());
 app.use(flash());
@@ -77,6 +76,8 @@ app.use(bodyParser.urlencoded({
   extended: true
 })); 
 
+app.enable('trust proxy');
+
 login(app);
 register(app);
 get_info.get_polls(app);
@@ -85,6 +86,7 @@ get_info.get_user(app);
 get_info.get_poll(app);
 get_info.vote(app);
 make_poll(app);
+
 
 
 if (!(process.env.MODE == "DEV")){
@@ -96,14 +98,23 @@ if (!(process.env.MODE == "DEV")){
       }
 
     console.log(request.path);
-
+    return next();
+    /*
     if (request.isAuthenticated() || request.path == "/login/" || request.path == "/register/") {
         return next()
       }
 
       response.redirect('/login/');
+      */
   });
 }
+
+
+
+
+app.get('/', function (request, response){
+    response.redirect('/home/');
+});
 
 
 

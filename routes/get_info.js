@@ -115,8 +115,10 @@ module.exports = {
       var IP = 'localhost';
 
       if (forwardedIpsStr) {
-          IP = forwardedIpsStr.split(',')[0];  
-       }
+        IP = forwardedIpsStr.split(',')[0] || request.connection.remoteAddress;  
+     } else {
+        IP = request.ip || request.connection.remoteAddress;
+     }
       
       if (request.isAuthenticated()){
       

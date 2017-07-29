@@ -5,8 +5,12 @@ module.exports = function(app){
      var IP = 'localhost';
 
      if (forwardedIpsStr) {
-        IP = forwardedIpsStr.split(',')[0];  
+        IP = forwardedIpsStr.split(',')[0] || request.connection.remoteAddress;  
+     } else {
+        IP = request.ip || request.connection.remoteAddress;
      }
+
+     console.log(IP);
     
     
     var MongoClient = require('mongodb').MongoClient;

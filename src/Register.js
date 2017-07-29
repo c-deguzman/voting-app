@@ -47,6 +47,27 @@ export default class Register extends React.Component {
   render() {
     return (
       <div>
+        <nav className="navbar navbar-default">
+          <div className="container-fluid">
+            <div className="navbar-header">
+              <h4 className="navbar-text">
+                 Voting App Gamma
+              </h4>
+            </div>
+
+            <ul className="nav navbar-nav">
+              <li><a href="/home">Home</a></li>
+            </ul>
+
+            <p className="navbar-text">Not signed in</p>
+            
+            <ul className="nav navbar-nav navbar-right">
+              <li className="active"><a href="/register"><span className="glyphicon glyphicon-user"></span> Sign Up</a></li>
+              <li><a href="/login"><span className="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul> 
+          </div>
+        </nav>
+
         <h1 className="centre">Register</h1>
         
         <div className="centre">
@@ -84,7 +105,6 @@ export default class Register extends React.Component {
       </div>
         
         <div id="status_msg">
-          <a className="centre" href="/login/">Login</a>
           {
             this.state.status == "Not Sent" ?
             <div /> :

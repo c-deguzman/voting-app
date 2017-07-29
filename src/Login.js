@@ -35,6 +35,27 @@ export default class Login extends React.Component {
       return (
         
         <div>
+        <nav className="navbar navbar-default">
+          <div className="container-fluid">
+            <div className="navbar-header">
+              <h4 className="navbar-text">
+                 Voting App Gamma
+              </h4>
+            </div>
+
+            <ul className="nav navbar-nav">
+              <li><a href="/home">Home</a></li>
+            </ul>
+
+            <p className="navbar-text">Not signed in</p>
+            
+            <ul className="nav navbar-nav navbar-right">
+              <li><a href="/register"><span className="glyphicon glyphicon-user"></span> Sign Up</a></li>
+              <li className="active"><a href="/login"><span className="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul> 
+          </div>
+        </nav>
+
         <h1 className="centre">Login Portal</h1>
         
         <div className="centre">
@@ -66,9 +87,6 @@ export default class Login extends React.Component {
             <h4 className="error_msg"> {this.error_check()}</h4> :
             <div></div>
           }
-        </div>
-        <div className="centre">
-          <a href="/register/">Register Now!</a>
         </div>
       </div>
     );

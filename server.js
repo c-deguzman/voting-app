@@ -32,7 +32,6 @@ const { JSDOM } = jsdom;
 var app = express();
 var compiler = webpack(config);
 
-
 require('./authentication').init(app);
 
 app.use(cookieParser());

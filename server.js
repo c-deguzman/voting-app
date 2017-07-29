@@ -196,7 +196,7 @@ app.get('/poll', function(request, response) {
 });
 
 //app.listen(3000, '0.0.0.0', function(err) {
-app.listen(3000, function(err) {
+app.listen(process.env.PORT || 3000, function(err) {
   if (err) {
     return console.error(err);
   }

@@ -22,7 +22,7 @@ var React = require('react');
 var ReactDOM = require('react-dom/server');
 
 require('babel-core/register');
-require('babel-polyfill');
+//require('babel-polyfill');
 
 var cors = require("cors");
 

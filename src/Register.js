@@ -1,5 +1,7 @@
 import React from 'react';
-var $ = require("jquery");
+import $ from "jquery";
+import Alert from './Alert';
+
 
 export default class Register extends React.Component {
   constructor(props){
@@ -9,7 +11,8 @@ export default class Register extends React.Component {
     this.handle_submit = this.handle_submit.bind(this);
     
     this.state = {
-      status: "Not Sent"
+      status: "Not Sent",
+      error_show: true
     }
   }
   
@@ -34,11 +37,13 @@ export default class Register extends React.Component {
         if (data.result == "error"){
           this.setState({
             status: data.result,
-            error: data.error
+            error: data.error,
+            error_show: true
           });
         } else {
           this.setState({
             status: data.result,
+            error_show: true
           });
         }
       });
@@ -62,7 +67,7 @@ export default class Register extends React.Component {
             <p className="navbar-text">Not signed in</p>
             
             <ul className="nav navbar-nav navbar-right">
-              <li className="active"><a href="/register"><span className="glyphicon glyphicon-user"></span> Sign Up</a></li>
+              <li className="active"><a href="#"><span className="glyphicon glyphicon-user"></span> Sign Up</a></li>
               <li><a href="/login"><span className="glyphicon glyphicon-log-in"></span> Login</a></li>
             </ul> 
           </div>
@@ -104,15 +109,10 @@ export default class Register extends React.Component {
             <p className="centre"> * Currently email is not used for anything. </p>  
       </div>
         
-        <div id="status_msg">
-          {
-            this.state.status == "Not Sent" ?
-            <div /> :
-            this.state.status == "error" ?
-              <h4 className="centre"  id="fail">{this.state.error}</h4> :
-              <h4 className="centre"  id="pass">Account Created!</h4>
-          }
-        </div>
+
+        <Alert show={this.state.error_show} changeShow={() => this.setState({error_show: false})} result={this.state.status} error={this.state.error} success={"Account created successfully."} /> :
+
+
       </div>
     );
   }

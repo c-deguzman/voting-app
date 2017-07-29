@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import Alert from './Alert';
 
 class CustomPoll extends React.Component {
   constructor(props){
@@ -17,7 +18,8 @@ class CustomPoll extends React.Component {
       title: "",
       options: [""],
       status: "not submitted",
-      error: ""
+      error: "",
+      error_show: true
     }
   }
   
@@ -98,14 +100,16 @@ class CustomPoll extends React.Component {
         if (data.result == "error"){
           this.setState({
             status: data.result,
-            error: data.error
+            error: data.error,
+            error_show: true
           });
         } else {
           this.setState({
-            status: data.result
+            status: data.result,
+            error_show: true
           });
 
-          this.handleRedirect(data.redirect);
+          this.handleRedirect(data.redir);
         }
       });
   } 
@@ -135,13 +139,18 @@ class CustomPoll extends React.Component {
         <p className="centre"> Please limit options to a maximum of 30 characters. </p>
 
           
-      {
+        <Alert show={this.state.error_show} changeShow={() => this.setState({error_show: false})} result={this.state.status} error={this.state.error} success={"Poll successfully created. Please wait to be redirected."} /> :
+        
+
+
+
+      {/*
         this.state.status != "not submitted" ? 
           this.state.status == "error" ?
             <h4 id="error_msg" className="centre">{this.state.error}</h4> :
             <h4 id="pass_msg" className="centre">Poll successfully created. Please wait to be redirected.</h4> :
-          <div />
-      }
+          null
+      */}
             
       </div>);
   }
@@ -231,8 +240,8 @@ export default class CreatePoll extends React.Component {
 
 
             <ul className="nav navbar-nav">
-              <li className="active"><a href="/create_poll">Create Poll</a></li>
-              <li><a href="#">My Polls</a></li>
+              <li className="active"><a href="#">Create Poll</a></li>
+              <li><a href="/my_polls">My Polls</a></li>
             </ul> :
 
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 
-export default class HomePage extends React.Component {
+export default class MyPolls extends React.Component {
   constructor(props){
     super(props);
     
@@ -20,7 +20,7 @@ export default class HomePage extends React.Component {
   componentDidMount() {
     var request_poll = $.ajax({
       type: "POST",
-      url: "/get_polls",
+      url: "/get_my_polls",
       contentType: 'application/json'
     });
     
@@ -43,9 +43,10 @@ export default class HomePage extends React.Component {
         }
         
         this.setState({
-          poll: data_poll,
+          poll: data_poll.my_polls,
           user: data_user,
-          auth: auth_state
+          auth: auth_state,
+          contribtution: data_poll.my_contr
         });
       });
     });
@@ -58,6 +59,33 @@ export default class HomePage extends React.Component {
   
  
   render() {
+
+    if (this.state.auth == false){
+      return (<div >
+          <nav className="navbar navbar-default">
+          <div className="container-fluid">
+            <div className="navbar-header">
+              <h4 className="navbar-text">
+                 Voting App Gamma
+              </h4>
+            </div>
+
+            <ul className="nav navbar-nav">
+              <li><a href="/home">Home</a></li>
+            </ul>
+
+            <p className="navbar-text">Not signed in</p>
+            
+            <ul className="nav navbar-nav navbar-right">
+              <li><a href="/register"><span className="glyphicon glyphicon-user"></span> Sign Up</a></li>
+              <li><a href="/login"><span className="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul> 
+          </div>
+        </nav>
+        <p> Please sign up or sign in to view the polls you've made. </p>
+      </div>);
+    }
+
     return (
       <div >
 
@@ -70,39 +98,26 @@ export default class HomePage extends React.Component {
             </div>
 
             <ul className="nav navbar-nav">
-              <li className="active"><a href="#">Home</a></li>
+              <li><a href="/home">Home</a></li>
             </ul>
 
-            {
-              this.state.auth ?
-              <ul className="nav navbar-nav">
-                <li><a href="/create_poll">Create Poll</a></li>
-                <li><a href="/my_polls">My Polls</a></li>
-              </ul> :
-              null
-            }
+            <ul className="nav navbar-nav">
+              <li><a href="/create_poll">Create Poll</a></li>
+              <li className="active"><a href="#">My Polls</a></li>
+            </ul> 
 
-            {
-              this.state.auth ? 
-              <p className="navbar-text"> Signed in as {this.state.user} </p> :
-              <p className="navbar-text">Not signed in</p>
-            }
+            <p className="navbar-text"> Signed in as {this.state.user} </p> :
 
-            {
-              this.state.auth === false ?
-              <ul className="nav navbar-nav navbar-right">
-                <li><a href="/register"><span className="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <li><a href="/login"><span className="glyphicon glyphicon-log-in"></span> Login</a></li>
-              </ul> :
-              <ul className="nav navbar-nav navbar-right">
-                <li><a href="/logout"><span className="glyphicon glyphicon-log-out"></span> Logout </a></li>
-              </ul> 
-            }
+            <ul className="nav navbar-nav navbar-right">
+              <li><a href="/logout"><span className="glyphicon glyphicon-log-out"></span> Logout </a></li>
+            </ul> 
+            
           </div>
         </nav>
 
         
-        <h3> Latest Polls </h3> 
+        <h3> Your Latest Polls <span className="badge" id="badge_contr">{this.state.contribtution}</span> </h3> 
+
         <div className="centre">
           <ul className="list-group" id="results">
           {

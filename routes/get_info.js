@@ -32,6 +32,49 @@ module.exports = {
       });
     });
   },
+
+  get_my_polls(app){
+    app.post('/get_my_polls', function(request, response) {
+      
+      var MongoClient = require('mongodb').MongoClient;
+
+      MongoClient.connect(process.env.MONGO_CONNECT, function (err, db){
+        if (err){
+          throw err;
+          return;
+        }
+
+        db.collection("polls", function (err, collection){
+
+          if (err){
+            throw err;
+            return;
+          } 
+
+          collection.find({}, {"sort" : [['time', 'descending']]}).toArray(function (err, documents) {
+
+            if (err){
+              throw err;
+              return;
+            }
+
+            var send_docs = [];
+            var total_res = 0;
+
+            for (var i in documents){
+              if (documents[i].poster == request.user){
+                send_docs.push(documents[i]);
+                total_res += documents[i].total_votes;
+              }
+            }
+            response.send({my_polls: send_docs,
+                           my_contr: total_res
+                         });
+          });   
+        });
+      });
+    });
+  },
   
   get_auth (app){
     app.post('/get_auth', function(request, response) {
@@ -120,6 +163,96 @@ module.exports = {
         IP = request.ip || request.connection.remoteAddress;
      }
       
+      MongoClient.connect(process.env.MONGO_CONNECT, function (err, db){
+        if (err){
+          throw err;
+          return;
+        }
+
+        db.collection("polls", function (err, collection){
+
+          if (err){
+            throw err;
+            return;
+          }
+
+          collection.findOne({"_id": o_id}, function (err, result){
+            if (err){
+              throw err;
+              return;
+            }
+
+            if (result){
+
+              var vote_ind = option;
+
+                if (vote_ind < 0 || vote_ind >= result.options.length){
+                  response.status(200).send({"result" : "error",
+                                  "error": "Voting option not found"});
+                } else if (result.voted_list.indexOf(IP) != -1 || (request.user && result.voted_list.indexOf(request.user) != -1)){
+                    response.status(200).send({"result" : "error",
+                                  "error": "You have already voted"});
+                } else {
+
+                  var new_votes = result.votes;
+                  new_votes[vote_ind] += 1;
+
+                  var chart_data = [["Option", "Votes"]];
+
+                  for (var i in result.options){
+                    chart_data.push([result.options[i], new_votes[i]]);
+                  }
+
+                  var new_voted_list = result.voted_list;
+                  new_voted_list.push(IP);
+
+                  if (request.user){
+                    new_voted_list.push(request.user);
+                  }
+                  
+
+                  var new_total_votes = result.total_votes + 1;
+
+                  collection.update({"_id": o_id}, 
+                    {$set : {votes: new_votes,
+                             voted_list: new_voted_list,
+                             total_votes: new_total_votes}}, function (error, result){
+
+                    if (error){
+                      response.status(200).send({"result" : "error",
+                                  "error": "Error encountered while updating"});
+                    }
+
+                    if (result){
+                      response.status(200).send({ "result": "success",
+                                                  "chart_data": chart_data});
+                    } else {
+                      response.status(200).send({"result" : "error",
+                                  "error": "Error encountered while updating"});
+                    }
+                  }); 
+
+                }
+              }
+
+          });
+        });
+      });  
+       
+    });
+  },
+
+  add_option(app){
+    app.post("/add_option", function(request, response){
+
+    var MongoClient = require('mongodb').MongoClient;
+      
+      var poll_id = request.body.id;
+      var new_option = request.body.option;
+      
+      var o_id = new require('mongodb').ObjectID(poll_id);
+
+      
       if (request.isAuthenticated()){
       
         MongoClient.connect(process.env.MONGO_CONNECT, function (err, db){
@@ -143,48 +276,40 @@ module.exports = {
 
               if (result){
 
-                var vote_ind = option;
 
-                  if (vote_ind < 0 || vote_ind >= result.options.length){
+                  if (result.options.indexOf(new_option) != -1){
                     response.status(200).send({"result" : "error",
-                                    "error": "Voting option not found"});
-                  } else if (result.voted_list.indexOf(IP) != -1 || result.voted_list.indexOf(request.user) != -1){
-                      response.status(200).send({"result" : "error",
-                                    "error": "You have already voted"});
+                                    "error": "Option already exists"});
                   } else {
 
+                    var new_options = result.options;
+                    new_options.push(new_option);
+
                     var new_votes = result.votes;
-                    new_votes[vote_ind] += 1;
+                    new_votes.push(0);
 
                     var chart_data = [["Option", "Votes"]];
 
-                    for (var i in result.options){
-                      chart_data.push([result.options[i], new_votes[i]]);
+                    for (var i in new_options){
+                      chart_data.push([new_options[i], new_votes[i]]);
                     }
 
-                    var new_voted_list = result.voted_list;
-                    new_voted_list.push(IP);
-                    new_voted_list.push(request.user);
 
                     var new_total_votes = result.total_votes + 1;
 
                     collection.update({"_id": o_id}, 
                       {$set : {votes: new_votes,
-                               voted_list: new_voted_list,
-                               total_votes: new_total_votes}}, function (error, result){
+                               options: new_options}}, function (error, result){
 
-                      if (error){
+                      if (error || !result){
                         response.status(200).send({"result" : "error",
-                                    "error": "Error encountered while updating"});
+                                    "error": "Error encountered while adding option"});
                       }
 
                       if (result){
                         response.status(200).send({ "result": "success",
                                                     "chart_data": chart_data});
-                      } else {
-                        response.status(200).send({"result" : "error",
-                                    "error": "Error encountered while updating"});
-                      }
+                      } 
                     }); 
 
                   }
@@ -195,13 +320,9 @@ module.exports = {
         });  
       } else {
         response.status(200).send({"result" : "error",
-                                    "error": "You've been logged out due to inactivity. Please login again before voting."});
+                                    "error": "You've been logged out due to inactivity. Please login again before adding options."});
       }
     });
-
-
   }
   
-  
-
 }

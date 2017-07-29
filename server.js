@@ -85,6 +85,8 @@ get_info.get_auth(app);
 get_info.get_user(app);
 get_info.get_poll(app);
 get_info.vote(app);
+get_info.add_option(app);
+get_info.get_my_polls(app);
 make_poll(app);
 
 
@@ -99,13 +101,6 @@ if (!(process.env.MODE == "DEV")){
 
     console.log(request.path);
     return next();
-    /*
-    if (request.isAuthenticated() || request.path == "/login/" || request.path == "/register/") {
-        return next()
-      }
-
-      response.redirect('/login/');
-      */
   });
 }
 
@@ -129,16 +124,13 @@ app.get('/login', function(request, response) {
   //response.sendFile(path.join(__dirname, '/views/login_index.html'));
   var Login_App = require("./src/Login.js").default;
   var Login_html = require("./src/login_template").default;
-
-  var props = {auth: request.isAuthenticated(), error: request.flash("error")};
   
   var Comp_Fact = React.createFactory(Login_App);
-  const Login_string = ReactDOM.renderToString(Comp_Fact(props));
+  const Login_string = ReactDOM.renderToString(Comp_Fact());
   
   response.send(Login_html({
     body: Login_string,
-    title: "Voting App",
-    props: safeStringify(props)
+    title: "Voting App"
   }));
 });
 
@@ -167,6 +159,20 @@ app.get('/home', function(request, response) {
     title: "Home Page"
   }));
 });
+
+app.get('/my_polls', function(request, response) {
+  var MyPolls_App = require("./src/MyPolls.js").default;
+  var MyPolls_html = require("./src/myPolls_template").default;
+
+  var Comp_Fact = React.createFactory(MyPolls_App);
+  const MyPolls_string = ReactDOM.renderToString(Comp_Fact());
+  
+  response.send(MyPolls_html({
+    body: MyPolls_string,
+    title: "My Polls"
+  }));
+});
+
 
 app.get('/create_poll', function(request, response) {
   var CreatePoll_App = require("./src/CreatePoll.js").default;

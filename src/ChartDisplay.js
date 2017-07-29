@@ -1,18 +1,29 @@
 import React from 'react';
 import { Chart } from 'react-google-charts';
 import $ from 'jquery';
+import Alert from './Alert';
  
+
 export default class ChartDisplay extends React.Component {
   constructor(props){
     super(props);
     this.render = this.render.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
     this.vote = this.vote.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.changeOption = this.changeOption.bind(this);
     
     this.state = {
       status: "n/a",
       auth: false,
-      vote_status: "n/a"
+      vote_status: "n/a",
+      vote_error: "",
+      vote_show: true,
+      live_edit: false,
+      current_option: "",
+      add_status: "n/a",
+      add_error: "",
+      add_show: true
     }
   }
   
@@ -92,17 +103,66 @@ export default class ChartDisplay extends React.Component {
       if (data.result == "error"){
         this.setState({
           vote_status: data.result,
-          vote_error: data.error
+          vote_error: data.error,
+          vote_show: true
         });
       } else {
         this.setState({
           vote_status: data.result,
-          chart_data: data.chart_data
+          chart_data: data.chart_data,
+          vote_show: true
+        })
+      }
+    });
+  }
+
+  handleClose(){
+    this.setState({
+      alert_visible: false
+    })
+  }
+
+  handleSubmit(event){
+    event.preventDefault();
+
+    var id = (window.location.search).replace("?id=", "");
+
+    var send_data = {
+      id: id,
+      option: this.state.current_option
+    };
+
+    var request = $.ajax({
+      type: "POST",
+      url: "/add_option",
+      contentType: 'application/json',
+      data: JSON.stringify(send_data),
+    });
+        
+    request.done((data) => {
+      if (data.result == "error"){
+        this.setState({
+          add_status: data.result,
+          add_error: data.error,
+          add_show: true
+        });
+      } else {
+        this.setState({
+          add_status: data.result,
+          chart_data: data.chart_data,
+          live_edit: false,
+          current_option: "",
+          add_show: true
         })
       }
     });
 
+  }
 
+  changeOption(event){
+    this.setState({
+      current_option: event.target.value
+    })
   }
   
   render() {
@@ -124,7 +184,7 @@ export default class ChartDisplay extends React.Component {
               this.state.auth ?
               <ul className="nav navbar-nav">
                 <li><a href="/create_poll">Create Poll</a></li>
-                <li><a href="#">My Polls</a></li>
+                <li><a href="/my_polls">My Polls</a></li>
               </ul> :
               <div />
             }
@@ -167,25 +227,54 @@ export default class ChartDisplay extends React.Component {
         <h4>Loading...</h4>  }
       </div>
 
-      <div className="centre">
-      {
-        this.state.vote_status == "error" ?
-        <h4 id="error_msg">{this.state.vote_error}</h4> :
-        this.state.vote_status == "success" ?
-        <h4 id="pass_msg">Your vote has been successfully recorded.</h4> :
-        <div />
-      }
-      </div>
 
+      <Alert show={this.state.vote_show} changeShow={() => this.setState({vote_show: false})} result={this.state.vote_status} error={this.state.vote_error} success={"Your vote has been successfully recorded."} /> :
+        
+
+
+        <div className="centre">
+          <h3> Voting Options </h3>
+        </div>
+        <div className="centre">
+          {
+            this.state.auth ? 
+              this.state.live_edit == false ?
+              <button type="button" className="btn btn-default" onClick={() => this.setState({live_edit: !this.state.live_edit})}> Add Option <i className="fa fa-plus"></i></button> :
+              <div>
+              <button type="button" className="btn btn-default" onClick={() => this.setState({live_edit: !this.state.live_edit})}><i className="fa fa-minus"></i></button> 
+              </div>:
+           null
+          }
+        </div>
+
+      { 
+        this.state.live_edit == true ?
+        <form onSubmit={this.handleSubmit}>
+          <div className="form-group container">
+            <div className="col-sm-7 col-sm-offset-2">
+              <input id="new_option" type="text" className="form-control" placeholder="New Option" onChange={this.changeOption} pattern="^.{1,30}$" required/>
+            </div>
+            <div className="col-sm-2">
+              <button type="submit" className="btn btn-default">Submit Option<i className="fa fa-paper-plane" aria-hidden="true"></i></button>
+            </div>
+          </div>
+        </form> :
+        null
+      }
+
+      
+      <Alert show={this.state.add_show} changeShow={() => this.setState({add_show: false})} result={this.state.add_status} error={this.state.add_error} success={"Your option has been added successfully."} /> :
+        
 
       <div id="voting_options" className="container">
+
         <div className="col-md-12"> 
 
         {
           this.state.status != "success" ?
           <div /> :
           <div>
-            <h4> Voting Options </h4>
+          
             {this.state.chart_data.map((item, i) => {
 
               if (i == 0){

@@ -8,77 +8,89 @@ module.exports = function(app){
     }
 
 
-    var MongoClient = require('mongodb').MongoClient;
-    
-    var username = request.user;
-    var title = request.body.title;
+
+    var quit_call = false;
     var options = request.body.options;
-    
-    var time = Math.round(new Date().getTime()/1000);
-    
-    var votes = Array.apply(null, Array(options.length)).map(Number.prototype.valueOf,0);
-
-
 
     var sorted_options = options.slice().sort();
 
     for (var i in sorted_options){
       if (i > 0){
         if (sorted_options[i] == sorted_options[i - 1]){
-          response.send({"result" : "error",
-                          "error": "Options should not contain duplicates."});
+          quit_call = true;
         }
       }
     }
 
-    
-    var document = {poster: username,
-                    title: title,
-                    options: options,
-                    time: time,
-                    votes: votes,
-                    voted_list: []
-                    };
+    if (quit_call){
+      response.send({"result" : "error",
+                          "error": "Options should not contain duplicates."});
+    }
+
+    if (!quit_call){
+
+      var MongoClient = require('mongodb').MongoClient;
+      
+      var username = request.user;
+      var title = request.body.title;
+      
+      
+      var time = Math.round(new Date().getTime()/1000);
+      
+      var votes = Array.apply(null, Array(options.length)).map(Number.prototype.valueOf,0);
+
+      var doc = {
+                  poster: username,
+                  title: title,
+                  options: options,
+                  time: time,
+                  votes: votes,
+                  voted_list: [],
+                  total_votes: 0
+                };
 
 
-
-    MongoClient.connect(process.env.MONGO_CONNECT, function (err, db){
-      if (err){
-        throw err;
-        return;
-      }
-
-      db.collection("polls", function (err, collection){
-
-        if (err){
-          throw err;
-          return;
-        }
-
-        collection.findOne({"title": title}, function (err, result){
+      
+        MongoClient.connect(process.env.MONGO_CONNECT, function (err, db){
           if (err){
             throw err;
             return;
           }
-          
-          if (result){
-            response.status(200).send({"result": "error",
-                           "error" : "Already a poll with the same name."});
-          } else {
-              
-            collection.insert(document, function(err, records){
 
-              if(err){
+          db.collection("polls", function (err, collection){
+
+            if (err){
+              throw err;
+              return;
+            }
+
+            collection.findOne({"title": title}, function (err, result){
+              if (err){
                 throw err;
+                return;
               }
+              
+              if (result){
+                response.send({"result": "error",
+                               "error" : "Already a poll with the same name."});
+              } else {
+                  
+                collection.insert(doc, function(err, records){
 
-              response.status(200).send({
-                "result": "success",
-                "redirect": records.ops[0]._id });
-            }); 
-          }
+                  if(err){
+                    throw err;
+                  }
+
+                  response.send({ "result": "success",
+                                  "redir": records.ops[0]._id });
+
+
+                }); 
+              }
+            });
+          });        
         });
-      });        
-    });
+    }
   });
+
 }

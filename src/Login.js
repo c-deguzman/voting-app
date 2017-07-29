@@ -1,4 +1,5 @@
 import React from 'react';
+import Alert from './Alert';
 
 export default class Login extends React.Component {
 
@@ -6,32 +7,47 @@ export default class Login extends React.Component {
       super(props);
 
       this.render = this.render.bind(this);
-      this.error_check = this.error_check.bind(this);
-      
-      if (this.props.hasOwnProperty('basic_props')){
-        this.state = {
-          error: this.props.basic_props.error
+      this.handleSubmit = this.handleSubmit.bind(this);
+
+      this.state = {
+          result: "n/a",
+          error: "",
+          error_show: true
         }
-      } else if (this.props.hasOwnProperty('auth')){
-        this.state = {
-          error: this.props.error
-        }
-      } 
-    }
-  
-    
-    error_check(){
-      if (this.state.error.length > 0){
-        return this.state.error[0];
-      }
-      return false;
     }
 
+    handleSubmit(event){
+
+      event.preventDefault();
+
+      var user = event.target.user.value;
+      var pass = event.target.pass.value;
+    
+      var send_data = {user: user, pass: pass};
+
+      var request_login = $.ajax({
+        type: "POST",
+        url: "/login",
+        contentType: 'application/json',
+        data: JSON.stringify(send_data),
+      });
+      
+      request_login.done((data_login) => {
+
+        if (data_login.result == "error"){
+          this.setState({
+            error_show: true,
+            result: "error",
+            error: data_login.message
+          });
+        } else if (data_login.result == "success"){
+          window.location.assign("/home");
+        }
+      });
+    }
 
     render() {
       
-
-
       return (
         
         <div>
@@ -51,7 +67,7 @@ export default class Login extends React.Component {
             
             <ul className="nav navbar-nav navbar-right">
               <li><a href="/register"><span className="glyphicon glyphicon-user"></span> Sign Up</a></li>
-              <li className="active"><a href="/login"><span className="glyphicon glyphicon-log-in"></span> Login</a></li>
+              <li className="active"><a href="#"><span className="glyphicon glyphicon-log-in"></span> Login</a></li>
             </ul> 
           </div>
         </nav>
@@ -59,7 +75,7 @@ export default class Login extends React.Component {
         <h1 className="centre">Login Portal</h1>
         
         <div className="centre">
-          <form className="form-horizontal" action="/login" method="post">
+          <form className="form-horizontal" onSubmit={this.handleSubmit}>
             <div className="form-group">
               <label className="control-label col-sm-2" htmlFor="user">Username:</label>
               <div className="col-sm-12">
@@ -80,14 +96,9 @@ export default class Login extends React.Component {
             </div>
           </form>
         </div>
-        
-        <div className="centre">
-          { 
-            this.error_check() ?
-            <h4 className="error_msg"> {this.error_check()}</h4> :
-            <div></div>
-          }
-        </div>
+
+        <Alert show={this.state.error_show} changeShow={() => this.setState({error_show: false})} result={this.state.result} error={this.state.error} success={"Login successful! Redirecting now."} /> :
+
       </div>
     );
   }

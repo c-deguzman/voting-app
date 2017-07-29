@@ -13,13 +13,13 @@ export default ({ body, title}) => {
 
         <link rel="stylesheet prefetch" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 
-        <link rel="stylesheet" href="/css/login_style.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="/css/myPolls_style.css">
+        
 
       </head>
       <body>
         <div id="root">${body}</div>
-        <script src="/static/login.bundle.js"></script>
+        <script src="/static/myPolls.bundle.js"></script>
       </body>
     </html>
   `;

@@ -49,6 +49,12 @@ h1 {
   margin-top: 3%;
 }
 
+#badge_contr{
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #2d6987;
+}
+
 html {
  background: -moz-linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 69%, rgba(5,193,255,1) 87%, rgba(5,193,255,1) 100%); /* ff3.6+ */
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(5,193,255,1)), color-stop(13%, rgba(5,193,255,1)), color-stop(31%, rgba(255,255,255,1)), color-stop(100%, rgba(255,255,255,1))); /* safari4+,chrome */

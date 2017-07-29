@@ -10,9 +10,6 @@ module.exports = function(app){
         IP = request.ip || request.connection.remoteAddress;
      }
 
-     console.log(IP);
-    
-    
     var MongoClient = require('mongodb').MongoClient;
     
     var username = request.body.user;

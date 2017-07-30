@@ -23,7 +23,8 @@ export default class ChartDisplay extends React.Component {
       current_option: "",
       add_status: "n/a",
       add_error: "",
-      add_show: true
+      add_show: true,
+      title: ""
     }
   }
   
@@ -165,8 +166,18 @@ export default class ChartDisplay extends React.Component {
     })
   }
 
-  share() {
-    window.location.assign("https://www.facebook.com/sharer/sharer.php?u=" + encodeURI(window.location.href));
+  share(mode) {
+
+    var url_str = "";
+    if (mode == "Facebook"){
+      url_str = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.URL) + '&t=' + encodeURIComponent(document.URL);
+    } else if (mode == "Twitter"){
+      url_str = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(document.title) + ':%20'  + encodeURIComponent(document.URL);
+    } else if (mode == "Google"){
+      url_str = 'https://plus.google.com/share?url=' + encodeURIComponent(document.URL);
+    }
+
+    window.open(url_str, '_blank');
   }
   
   render() {
@@ -213,12 +224,15 @@ export default class ChartDisplay extends React.Component {
         </nav>
 
       <div id="chart">
+        <div className="centre">
+          <h2>{this.state.title}</h2>
+        </div>
       
         {this.state.status == "success" ?
             <Chart
               chartType="PieChart"
               data={this.state.chart_data}
-              options={{title: this.state.title,
+              options={{title: "",
                         sliceVisibilityThreshold:0}}
               graph_id="PieChart"
               width="100%"
@@ -297,8 +311,11 @@ export default class ChartDisplay extends React.Component {
         </div>
       </div>
 
-      <button className="btn btn-info" onClick={this.share}>
-      Share on Facebook &nbsp; <span className="glyphicon glyphicon-share"></span></button>
+      <ul className="share-buttons">
+        <li><a  title="Share on Facebook" onClick={() => this.share("Facebook")}><img alt="Share on Facebook" src="https://cdn.glitch.com/19e2a3cd-8ff2-440c-96c3-2754b3a6f3de%2FFacebook.png?1501451188779" /></a></li>
+        <li><a  title="Tweet" onClick={() => this.share("Twitter")}><img alt="Tweet" src="https://cdn.glitch.com/19e2a3cd-8ff2-440c-96c3-2754b3a6f3de%2FTwitter.png?1501451189090" /></a></li>
+        <li><a  title="Share on Google+" onClick={() => this.share("Google")}><img alt="Share on Google+" src="https://cdn.glitch.com/19e2a3cd-8ff2-440c-96c3-2754b3a6f3de%2FGoogle%2B.png?1501451188846" /></a></li>
+      </ul>
 
     </div>
     );

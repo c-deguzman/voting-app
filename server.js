@@ -37,15 +37,8 @@ require('./authentication').init(app);
 app.use(cookieParser());
 app.use(flash());
 
-if (process.env.MODE == "DEV"){
-  // DEVELOPMENT USE ONLY
-  app.use(cors());
-} else {
 
-  // IN PRODUCTION DISABLE CORS
-  app.use(cors({origin: "https://voting-app-gamma.glitch.me/"}));
-}
-
+app.use(cors({origin: "https://voting-app-gamma.herokuapp.com/"}));
 
 
 app.use(session({  
@@ -91,18 +84,16 @@ make_poll(app);
 
 
 
-if (!(process.env.MODE == "DEV")){
-  app.use(function(request, response, next){
+app.use(function(request, response, next){
 
-    if ((request.isAuthenticated() && request.path == "/login/") || 
-        (request.isAuthenticated() && request.path == "/register/")) {
-        response.redirect('/home/');
-      }
+  if ((request.isAuthenticated() && request.path == "/login/") || 
+      (request.isAuthenticated() && request.path == "/register/")) {
+      response.redirect('/home/');
+    }
 
-    //console.log(request.path);
-    return next();
-  });
-}
+  return next();
+});
+
 
 
 

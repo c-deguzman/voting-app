@@ -86,12 +86,17 @@ make_poll(app);
 
 app.use(function(request, response, next){
 
-  if ((request.isAuthenticated() && request.path == "/login/") || 
-      (request.isAuthenticated() && request.path == "/register/")) {
-      response.redirect('/home/');
-    }
+  console.log(request.path);
 
-  return next();
+  if ((request.isAuthenticated() && request.path == "/login") ||
+      (request.isAuthenticated() && request.path == "/login/") || 
+      (request.isAuthenticated() && request.path == "/register") ||  
+      (request.isAuthenticated() && request.path == "/register/")) {
+      response.redirect('/home');
+    } else {
+      return next();
+    }
+  
 });
 
 

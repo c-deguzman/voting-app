@@ -1,4 +1,4 @@
-﻿# Voting App Gamma
+﻿# Voting App Gamma by Christopher DeGuzman
 
 Voting App Gamma is a web-based voting application. Built with:
 

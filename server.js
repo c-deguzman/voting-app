@@ -87,6 +87,7 @@ get_info.get_poll(app);
 get_info.vote(app);
 get_info.add_option(app);
 get_info.get_my_polls(app);
+get_info.delete_poll(app);
 make_poll(app);
 
 
@@ -99,7 +100,7 @@ if (!(process.env.MODE == "DEV")){
         response.redirect('/home/');
       }
 
-    console.log(request.path);
+    //console.log(request.path);
     return next();
   });
 }

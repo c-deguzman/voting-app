@@ -164,6 +164,10 @@ export default class ChartDisplay extends React.Component {
       current_option: event.target.value
     })
   }
+
+  share() {
+    window.location.assign("https://www.facebook.com/sharer/sharer.php?u=" + encodeURI(window.location.href));
+  }
   
   render() {
     return (
@@ -292,6 +296,9 @@ export default class ChartDisplay extends React.Component {
 
         </div>
       </div>
+
+      <button className="btn btn-info" onClick={this.share}>
+      Share on Facebook &nbsp; <span className="glyphicon glyphicon-share"></span></button>
 
     </div>
     );

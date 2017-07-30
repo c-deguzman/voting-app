@@ -323,6 +323,59 @@ module.exports = {
                                     "error": "You've been logged out due to inactivity. Please login again before adding options."});
       }
     });
+  },
+
+  delete_poll(app){
+    app.post('/delete', function(request, response){
+      
+      var MongoClient = require('mongodb').MongoClient;
+      
+      var poll_id = request.body.id;
+      
+      var o_id = new require('mongodb').ObjectID(poll_id);
+      
+      
+      MongoClient.connect(process.env.MONGO_CONNECT, function (err, db){
+        if (err){
+          throw err;
+          return;
+        }
+
+        db.collection("polls", function (err, collection){
+
+          if (err){
+            throw err;
+            return;
+          }
+
+          collection.findOne({"_id": o_id}, function (err, result){
+            if (err){
+              throw err;
+              return;
+            }
+
+            if (!result){
+              response.send({"result": "error",
+                            "error": "Poll not found."});
+            } else if (result.poster != request.user){
+              response.send({"result": "error",
+                            "error": "You are not the owner of this poll."});
+            } else {
+
+              collection.remove({"_id": o_id}, function (err, result){
+
+                if (err){
+                  throw err;
+                  return;
+                }
+
+                response.send({"result" : "success"});
+              });
+            }
+          });
+        });
+      });
+    });
   }
   
 }

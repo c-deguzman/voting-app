@@ -52,7 +52,7 @@ class CustomPoll extends React.Component {
                 </div>
                 <div className="col-sm-2">
                   {ind == 0 ?
-                    this.state.options.length < 10 ?
+                    this.state.options.length < 10000 ?
                     <button type="button" className="btn btn-default" onClick={this.addOption}><i className="fa fa-plus"></i></button> :
                     <button type="button" className="btn btn-default" onClick={this.addOption} disabled><i className="fa fa-plus"></i></button> :
                     <button type="button" className="btn btn-default" onClick={() => this.removeOption(ind)}><i className="fa fa-minus"></i></button>

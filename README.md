@@ -29,7 +29,8 @@ Voting App Gamma is a web-based voting application. Built with:
 ### Todos
 
  - Write tests
- - Include database encryption
+ - Implement database encryption
+ - Adjust colour scheme
 
 License
 ----

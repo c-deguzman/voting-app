@@ -28,8 +28,8 @@ Voting App Gamma is a web-based voting application. Built with:
 
 ### Todos
 
- - Write MOAR Tests
- - Add Night Mode
+ - Write tests
+ - Include database encryption
 
 License
 ----
